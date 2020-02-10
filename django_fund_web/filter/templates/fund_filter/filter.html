@@ -1,0 +1,149 @@
+{% extends "layout/middle.html" %}
+
+{#头部css,js部分#}
+{% block head_range %}
+<!-- bootstrap select组件扩展 -->
+<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-select.min.css">
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/defaults-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/html/filter/filter.css">
+<style type="text/css">
+</style>
+<script src="/static/js/html/filter/filter.js"></script>
+<script>
+    $(function(){
+        query_fund_fun()
+        $('#fund_query_btn').bind('click',query_fund_fun)
+        init_query_box()
+    })
+</script>
+{% endblock %}
+
+{#核心页面部分#}
+{% block page_main %}
+  <div class="fund_filter">
+    <h3>基金筛选</h3>
+    <div class="t-filter-form" id="t-filter-form">
+        <form id="fund_sel_from" action="/filter/query_fund" method="post">
+            {% csrf_token %}
+            <table class="filter_table">
+                <tr>
+                    <td>三年评级:</td>
+                    <td><input type="checkbox" name="three_grade" value="1" id="ch1"><label for="ch1" class="f-label">三星以上（包括三星）</label></td>
+                    <td><input type="checkbox" name="three_grade" value="2" id="ch2"><label for="ch2" class="f-label">三星以下</label></td>
+                    <td id="judge-grade">评级日期：2019-09-30 <a>查看最近月末评级>></a></td>
+                </tr>
+                <tr>
+                    <td>五年评级:</td>
+                    <td><input type="checkbox" name="five_grade" value="1" id="ch3"><label for="ch3" class="f-label">三星以上（包括三星）</label></td>
+                    <td><input type="checkbox" name="five_grade" value="2" id="ch4"><label for="ch4" class="f-label">三星以下</label></td>
+                </tr>
+                <tr>
+                    <td>基金组别:</td>
+                    <td><input type="checkbox" name="is_oc" value="2" id="ch5"><label for="ch5" class="f-label">封闭式</label></td>
+                    <td><input type="checkbox" name="is_oc" value="1" id="ch6"><label for="ch6" class="f-label">开放式</label></td>
+                    <td><input type="checkbox" name="is_eq" value="2" id="ch7"><label for="ch7" class="f-label">QDII</label></td>
+                    <td><input type="checkbox" name="is_eq" value="1" id="ch8"><label for="ch8" class="f-label">ETF</label></td>
+                </tr>
+                <tr id="fund-type_list">
+                    <td>基金分类:</td><td id="type_range" colspan="5">
+                    <table id="type_table">
+                    {% for item in type_info %}
+                        {% if forloop.first %}
+                           <tr>
+                        {% endif %}
+                        <td><input type="checkbox" name="f_type" value="{{ item.t_id }}"
+                            id="ct{{forloop.counter0}}"><label for="ct{{forloop.counter0}}" class="f-label">{{ item.type_name }}</label></td>
+                        {% if forloop.last %}
+                            </tr>
+                        {% elif forloop.counter0|divisibleby:5 == 0 and not forloop.first %}
+                            </tr><tr>
+                        {% endif %}
+                    {% endfor %}
+                    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                    <!-- Single button -->
+
+                    <div class="bootstrap-in">
+                        <select id="sel_company" class="selectpicker dropup" name="company_id"  data-size="12">
+                            <option value='' selected style='display:none'> &nbsp;&nbsp; &nbsp;-- 基金公司 --  &nbsp; &nbsp;&nbsp; &nbsp;</option>
+                        </select>
+                        <input type="text" onkeydown="" class="tin-text form-control" name="fund_name"  placeholder="基金名称"/>
+
+                    </div>
+                    </td>
+                    <td id="submit-btn"><a>更多筛选条件>> </a>
+                     <button type="button" id="fund_query_btn"
+                     class="btn btn-primary search-btn ">查询</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="t-filter-list">
+            <div class="fund-list-bar">
+                <ul class="left-part">
+                    <li class="li-check">快照</li>
+                    <li onclick="alert('敬请期待!')" class="">业绩和风险</li>
+                    <li onclick="alert('敬请期待!')" class="">投资组合</li>
+                </ul>
+                <ul class="right-part">
+                    <li onclick="alert('敬请期待!')">加入观察</li>
+                    <li onclick="alert('敬请期待!')">取消观察</li>
+                    <li onclick="alert('敬请期待!')">组合透视</li>
+                    <li onclick="alert('敬请期待!')">基金对比</li>
+                </ul>
+                <div class="clear-box"></div>
+            </div>
+            <div class="fund-list-table">
+                <table class="list-table">
+                    <tr>
+                        <th style="width:3vw;"></th>
+                        <th>代码</th>
+                        <th style="width:12vw;">基金名称</th>
+                        <th style="width:10vw;">基金分类</th>
+                        <th>评级(三年)</th>
+                        <th>评级(五年)</th>
+                        <th style="width:7vw;">净值日期</th>
+                        <th>单位净值(元)</th>
+                        <th>日变动</th>
+                        <th style="width:6vw;">今年以来回报(%)</th>
+                    </tr>
+                    <tbody id="fund-tbody"></tbody>
+
+                </table>
+            <div>
+                <nav class="page-nav" aria-label="Page navigation">
+                    <ul id="fund_pagination" class="pagination" class="table-page-nav">
+{#                            <li>#}
+{#                              <a href="#t-fund_filter-form" aria-label="Previous">#}
+{#                                <span aria-hidden="true">&laquo;</span>#}
+{#                              </a>#}
+{#                            </li>#}
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(1)">1</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(2)">2</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(3)">3</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(4)">4</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(5)">5</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(6)">6</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(7)">7</a></li>
+                    <li><a href="#t-filter-form" onclick="query_fund_fun(8)">8</a></li>
+{#                            <li>#}
+{#                              <a href="#t-fund_filter-form" aria-label="Next">#}
+{#                                <span aria-hidden="true">&raquo;</span>#}
+{#                              </a>#}
+{#                            </li>#}
+                  </ul>
+
+                </nav>
+                <div class="clear-box"></div>
+            </div>
+
+            </div>
+        </div>
+
+{% endblock %}

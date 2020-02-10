@@ -1,0 +1,223 @@
+*{
+    padding: 0;
+    margin: 0;           
+}       
+/* select{          
+    width:100%;
+    border:none;
+    outline: none;
+    list-style: none;          
+    background-color:transparent;
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+    padding:0.2vw;
+    cursor: pointer;
+}        */
+/* .rx_option{
+    text-align: center;    
+} */
+body{
+    border-top:0.45vw solid red;
+}
+#core_range{
+    width:75vw;
+    height:auto;
+    margin:0 auto;
+    font-size:1.05vw;
+    color:#333;
+    font-family:"Oxygen","宋体", 'Times New Roman', Times, serif;
+    
+}
+.page_main{  
+    min-height:40vw;   
+}
+.clear-box{
+    clear: both;
+}
+
+/* 页脚 css */
+.page_bottom{
+    width:100%;
+    background-color:#DBDBDB;;
+}
+
+.content_range{    
+    width:75vw;
+    margin:0 auto;
+    color:#555;
+}
+.content_range a{
+    font-size:14px;
+    color: #8B1A1A;
+}
+.content_range a:hover{
+    color:#ba2636;
+}
+.content_range>div{
+    margin-top:0.5vw;
+    padding:1.1vw 1.3vw;
+}
+
+
+
+/* 头部 css */
+hr{
+    border:none;
+    height:0.5vw;
+    background-color: red;
+}       
+.st_a:hover{            
+    color:Firebrick;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}    
+.label_selable:hover{
+    background-color: rgba(210, 210,210,0.8);
+    cursor: pointer;
+}
+
+.check_label{
+    background-color: rgb(210, 210,210,0.8)
+}
+.top_tags,.tags{
+    float:right;
+}
+.tags{
+    margin-left:30px;
+    text-align: right;
+    cursor: pointer;          
+}        
+#page_top >div{
+    margin:0.3vw 1.3vw 0.75vw;
+}       
+.top_row2,.search_web,.top_advertising{
+   height:4.5vw;
+}
+.top_logo, .user_range{
+   height:4.5vw;
+    float:left;
+    line-height:4.5vw;
+}
+.top_advertising img,.top_logo img{
+    height: 97.5%;
+    cursor: pointer;
+}
+.user_range span{            
+    padding-left: 1.5vw;
+}
+
+.search_web{
+    float:right;           
+}
+.search_range{
+    box-sizing: border-box;
+    margin-top: 0.6vw;
+    height:2.2vw;
+    border: 0.03vw solid rgba(46, 48, 49, 0.747);
+    border-radius: 1vw;
+    box-shadow: rgba(99, 94, 102, 0.637) 1px 0.5px 0.5px 1px;            
+    line-height:1.55vw;
+}
+.search_range label{           
+    /* margin-right: 0.8vw; */
+    cursor: pointer;
+    text-align: center;
+    padding:0.1vw 0; 
+    margin:0.2vw 0;
+    width:3.5vw;
+    font-weight: normal;
+}
+.search_range label:last-child{
+    margin-right: 1.2vw;
+}
+.search_in{
+    height:2vw;
+    padding-left: 2vw;    
+    padding-right: 0.5vw;    
+    background-repeat: no-repeat;
+    background-position: 0.5vw -0.08vw;
+    background-size:1.35vw;
+    position: relative;
+}     
+#select_1{
+    border:none;
+    width:2vw;
+    height:1.2vw;
+    outline: none;
+}
+#select_1:focus{
+    width:16vw;
+}
+input[name="select_type"]{
+    display:none;
+}      
+
+.top_navigation_bar{
+    box-sizing: border-box;
+    height:2.6vw;
+    background-color: #DBDBDB;
+    border:0.04vw solid rgb(212, 201, 201);
+}        
+
+.nav_bar,.nav_bar_bt{           
+    box-sizing: border-box;
+    float:left;            
+    font-size:14px;
+    font-weight: blod;
+    width:12vw;
+    text-align: center;
+    /* line-height=hight-padding*2 - border*2 */
+    line-height: 2vw;
+    height:2.6vw;
+    padding:0.25vw;
+    border:0.05vw solid rgb(212, 201, 201);
+    border-radius: 0.2vw;
+    cursor: pointer;    
+}         
+.nav_text{
+    display:inline-block;
+    width:100%;
+    height:100%;
+}
+.nav_bar_bt{
+    position: relative;           
+    border:0;           
+}
+.my-btn1{
+    width:100%;  
+    background-color:  #DBDBDB;
+    line-height: 1vw;
+}
+.my-btn2{              
+    width:25%;
+
+    line-height: 0.5vw;
+    background-color:  #DBDBDB;
+    top:46%;transform:translateY(-50%);
+    right:0.3vw; 
+    height:65%;
+}
+.nav-hover{
+    font-size:14px;
+}
+.nav-hover:hover{
+    color:#555;
+    transition: all 0.3s linear;
+}              
+.bar_triangle{
+    margin-left:0.12vw;
+    display: inline-block;
+    width:0;           
+    border:0.3vw solid transparent;
+    border-top-color: #333;     
+    position: relative;
+}
+.bar_triangle_in{    
+    position: absolute;      
+    top: -0.3vw;
+    left: -0.16vw;
+    width:0;            
+    border:0.16vw solid transparent;
+    border-top-color: #FFF;         
+}

@@ -1,0 +1,153 @@
+{% extends "layout/middle.html" %}
+
+{#头部css,js部分#}
+{% block head_range %}
+
+<link rel="stylesheet" type="text/css" href="/static/css/html/main_article/article_info.css">
+<style type="text/css">
+</style>
+<script type="text/javascript">
+    $(function(){
+        bind_words_size()
+    });
+
+    function bind_words_size(){
+        var articleWord = $("#article-text")[0];
+        $("#nor-btn").bind("click",function(){
+            articleWord.classList.remove("text-dis-big");
+            articleWord.classList.add("text-dis-normal")
+        })
+
+        $("#big-btn").bind("click",function(){
+            articleWord.classList.remove("text-dis-normal");
+            articleWord.classList.add("text-dis-big") ;
+        })
+    }
+</script>
+{% endblock %}
+
+{#核心页面部分#}
+{% block page_main %}
+    <div class="middle container-fluid">
+            <h5>基金研究 > {{ type_name }} > 正文</h5>
+            <div class="main-upline"></div>
+            <div class="col-md-8 col-xs-8  col-sm-8">
+                <div class="content-range">
+                    <h2>{{ article_info.title }}</h2>
+                    <div class="introduce-info">
+                        <span class="left-info">
+                            作者：<span id="author-name">{{ article_info.author }}</span>
+                                        <small id="release-date">{{ article_info.update_time }}</small>
+                        </span>
+                        <span class="right-info">
+                            字号： <small><span class="glyphicon glyphicon-font text-info size-edit" id="nor-btn"></small>
+                            <span class="glyphicon glyphicon-font text-info size-edit" id="big-btn">&nbsp;</span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-text" id="article-text">
+                        {% autoescape off %}
+                            {{ article_info.content }}
+                        {% endautoescape %}
+                    </div>
+
+                </div>
+
+
+                <div class="comment-range">
+                    <div class="main-upline"></div>
+                    <h4>有疑问 找专家</h4>
+                    <div class="comment-form">
+                        <div class="form-group">
+                            <textarea class="form-control" name="content" id="content"></textarea>
+                             <button id="submit-comment" onclick="alert('板块建设中...敬请期待.')"
+                                     class="btn btn-primary pull-right"> 提 问 </button>
+                             <div class="clear-box"></div>
+                        </div>
+                      </div>
+                    <ul class="list-group">
+                        <a class="list-group-item list-group-item-action">
+                            <div>
+                                <span class="text-info">嘿嘿1 &nbsp;
+                                    <small class="text-muted">第 1 条评论</small> </span>
+                                <span class="right-info text-muted">2020-01-09  17:49</span>
+                            </div>
+                            <p>
+                                你好啊！我的祖国
+                            </p>
+                        </a>
+                        <a class="list-group-item list-group-item-action">
+                            <p class="text-center">
+                                感谢您的使用，已经没有内容了
+                            </p>
+                        </a>
+                    </ul>
+
+                <div class="main-bottom text-center">
+{#                        <small>#}
+{#                                &copy; 2019 <a href="#">Franckisses</a> &nbsp;/&nbsp;#}
+{#                                <a href="#">Hello RxCHINA</a>#}
+{#                            </small>#}
+                        <p>
+                            <a href="#">&uarr;</a>
+                        </p>
+                </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-xs-4  col-sm-4">
+                <div class="right-cate">
+                    <div class="right-part-img">
+                        <img src="/static/images/test_img_1.png">
+                    </div>
+                    <div class="list_info_title">
+                            <div class="main-upline"></div>
+                            <div class="first-row">
+                                    <h4>基金报告 <small class="pull-right text-muted">更多>></small></h4>
+                            </div>
+                            <div>
+                                <table class="t_list_info">
+                                    <tr>
+                                        <th style="width:13vw;"></th>
+                                        <th style="width:5vw;"></th>
+                                        <th></th>
+                                    </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td><a onclick="alert('敬请期待!')">工银全球精选股票(QDII)</a></td>
+                                                <td>★★★★✩</td>
+                                                <td><i onclick="alert('敬请期待!')" class="glyphicon glyphicon-new-window"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a onclick="alert('敬请期待!')">建信内生动力混合</a></td>
+                                                <td>★★★✩✩</td>
+                                                <td><i onclick="alert('敬请期待!')" class="glyphicon glyphicon-new-window"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a onclick="alert('敬请期待!')">华夏债券 - A/B(QDII</a></td>
+                                                <td>★★★✩✩</td>
+                                                <td><i onclick="alert('敬请期待!')" class="glyphicon glyphicon-new-window"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a onclick="alert('敬请期待!')">兴全趋势投资混合(LOF)</a></td>
+                                                <td>★★★★✩</td>
+                                                <td><i onclick="alert('敬请期待!')" class="glyphicon glyphicon-new-window"></i></td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                                <button onclick="alert('敬请期待!')" id="order-btn">RSS订阅基金报告</button>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

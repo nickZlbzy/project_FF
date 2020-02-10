@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>睿选基金网</title>
+<link href="/static/images/jj_icon.png" rel="icon" type="image/x-ico">
+{#    JQ,bootstrap#}
+<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+<script src="/static/js/jquery-3.4.1.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+{#    页面引用静态资源方式#}
+<link rel="stylesheet" type="text/css" href="/static/css/layout/index.css">
+
+{% block head_range %}
+
+{% endblock %}
+<style type="text/css">
+</style>
+
+</head>
+<body>
+
+<div id="core_range">
+    {#    引用页眉#}
+
+    {% include "layout/top.html" %}
+
+    <div class="page_main">
+    {% block page_main %}
+
+        <div class="div1">
+            <p>
+                <span>中午吃啥</span>
+                <span>随便</span>
+            </p>
+            <p><img style="height:200px;" src="/static/images/timg.jpeg"></p>
+            <table style="border: 1px solid red;" cellspacing="8px;">
+
+            </table>
+        </div>
+    {% endblock %}
+
+
+
+    </div>
+</div>
+
+    {#    引用页脚#}
+    {% include "layout/bottom.html" %}
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<script src="/static/js/layout/top.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $('#jump_login_a').bind("click",function(){
+            window.open("/user/log_page","_self");
+        })
+        $('#jump_index_s').bind("click",function(){
+             window.open("/","_self");
+        })
+        $('#fund_tools_btn').bind("click",function(){
+            alert("敬请期待!")
+        })
+        $('#jump_etfs_page').bind("click",function(){
+            alert("敬请期待!")
+        })
+
+        $('#jump_manager_home').bind("click",function(){
+            window.open("/main/index","_self");
+        })
+        $('#jump_article_home').bind("click",function(){
+            window.open("/article/art_page","_self");
+        })
+         $('#jump_cls_course').bind("click",function(){
+            window.open("/main/cls_page","_self");
+        })
+        $('#fund_tools ul>li:nth-child(2)').bind("click",function(){
+            alert("敬请期待!")
+        })
+
+        $(".tags").each(function(i,ele){
+            ele.onclick=function(){
+                window.open("http://www.tmooc.cn/","_blank");
+            }
+        })
+        {'#console.log($("#fund_tools")[0].dataset["selName"])#'}
+        $('#jump_login').bind('click',function(){
+             $.ajax({
+                type:"get",
+                url:"/user/exit",
+                dataType:"json",
+                success:function(res){
+                    if(res){
+                        alert("已注销.")
+                        location.reload()
+                    }
+                }
+            })
+        })
+    })
+
+{# 验证是否已完成风险测评 #}
+function check_eva_jump(){
+    console.log("{{ session.user }}")
+    if(!"{{ session.user }}"){
+        alert("请登录。")
+        window.open("/user/log_page","_self");
+        return;
+    }else if("{{ session.ability }}"){
+        alert("已完成风险测评。")
+        return;
+    }
+    window.open("87","_self");
+}
+
+function check_login(){
+    if (!'{{ session.user }}'){
+        alert('登录失败')
+        window.open('/user/log_page','_self')
+    }else{
+        alert('登陆成功')
+        return
+    }
+}
+
+</script>
+
+<div id="page_top">
+    <div class="top_row1">
+        <span>睿选基金---您的基金专家</span>
+        <div class="top_tags">
+            <div class="tags">黄页<div class="bar_triangle"><div class="bar_triangle_in"></div></div></div>
+            <div class="tags">睿选中国</div>
+            <div class="tags">睿选产品</div>
+            <div class="tags st_a">历年大事件</div>
+        </div>
+    </div>
+    <div class="top_row2">
+        <div class="top_logo">
+            <img src="/static/images/logo.gif">
+        </div>
+        <div class="user_range">
+            {% if session.user %}
+                    <span>{{ session.user.username  }}</span>
+                    <span id="jump_login" class="st_a">退出</span>
+            {% else %}
+                    <span>游客</span>
+                    <span class="st_a" id="jump_login_a">登录</span>
+            {% endif %}
+          
+        </div>
+        <!-- <div class="user_range1">
+            <span>个人中心</span>
+            <span class="st_a" id="jump_index_a">退出登录</span> -->
+        <!-- </div> -->
+        <div class="search_web">
+            <div class="search_range">
+{#                <form action="" method="POST"   enctype="multipart/form-data">#}
+                <span class="search_in">
+                    <input type="text" id="select_1" maxlength="28" autocomplete="off"/>
+                    <div id="search-in-drop"  style="position: absolute"  >
+                        <ul class="dropdown-menu drop-menu-edit" aria-labelledby="dropdownMenu1">
+
+                        </ul>
+                    </div>
+                </span>
+                <span>
+                    <label class="label_sel check_label"><input value="s1" id="ras1" name="select_type" type="radio" checked>基金</label>
+                    <label class="label_sel"><input value="s2"  id="ras1" name="select_type" type="radio">公司</label>
+                    <label class="label_sel"><input value="s3"  id="ras1" name="select_type" type="radio">文章</label>
+                </span>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="top_advertising">
+        <img src="/static/images/jj_ad.gif" alt="">
+    </div>
+    <div class="top_navigation_bar">
+        <div class="nav_bar"><span id="jump_index_s" class="nav_text st_a">首页</span></div>
+        <div class="nav_bar"><span id="jump_article_home" class="nav_text st_a">文章</span></div>
+        <div class="nav_bar"><span id="jump_manager_home" class="nav_text st_a">组合管理</span></div>
+        <div class="nav_bar_bt" data-sel-name="fund_tools" id="fund_tools">
+            <button type="button" id="fund_tools_btn" class="btn my-btn1 st_a">基金工具</button>
+            <button type="button" class="btn dropdown-toggle my-btn2" style="position:absolute;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+
+            </ul>
+        </div>
+        <div class="nav_bar"><span id="jump_etfs_page" class="nav_text st_a">ETFs</span></div>
+        <div class="nav_bar"><span id="jump_cls_course" class="nav_text st_a">投资学堂</span></div>
+     </div>
+</div>
+
+
+

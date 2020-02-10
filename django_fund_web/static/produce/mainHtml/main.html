@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>睿选基金网</title>
+    <link href="./images/jj_icon.png" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="./static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="./static/js/base/jquery-3.4.1.js"></script>
+    <script src="./static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/top.js"></script>
+    <style type="text/css">    
+        .search_in{
+            background-image: url('images/search.png');
+        }       
+        .page_main{
+            /* border:1px solid goldenrod; */
+            min-height:45vw;
+            margin: 0 1.5vw;
+        }
+        .drop-menu-edit{
+            width:19.5vw;
+        }
+       .drop-menu-edit li{
+           padding:0 1vw;
+        }
+        
+        
+       
+    </style>
+    <script type="application/javascript">        
+        $(function(){
+            //页面加载完成后执行内容
+            $("#select_1").bind("input propertychange",function(){      
+                
+            //     $.ajax({
+            //         type:"post",
+            //         url:"/main/query_by_type",
+            //         contentType: 'application/json;charset=utf-8',
+            //         dataType:"json",                    
+            //         data:{"kind":$("input[name='select_type']:checked").val(),"value":$("#select_1").val()},
+            //         success:function(data){
+            //             console.log(data)
+            //             if(data){
+            //                 $("#search-in-drop")[0].classList.add("open")
+            //             }
+            //         }
+            //     })
+
+            // })
+            // $("#select_1").bind("blur",function(){
+            //     $("#search-in-drop")[0].classList.remove("open");
+            // })
+
+        })
+             
+
+
+       
+          
+
+    </script>
+</head>
+<body>  
+<div id="core_range">
+        <div id="page_top">
+            <div class="top_row1">
+                
+                <span>睿选基金---您的基金专家</span>
+                <div class="top_tags">
+                    <div class="tags">黄页<div class="bar_triangle"><div class="bar_triangle_in"></div></div></div> 
+                    <div class="tags">睿选中国</div>
+                    <div class="tags">睿选产品</div>                       
+                    <div class="tags st_a">历年大事件</div>   
+                </div>           
+            </div>
+            <div class="top_row2">
+                <div class="top_logo">
+                    <img src="./images/logo.gif">
+                </div>
+                <div class="user_range">
+                    <span>游客</span>
+                    <span>
+                    <span class="st_a">
+                        <a href="register.html" target="_blank" text-decoration: none;>登录</a>
+                    </span>
+                </div>
+                <div class="search_web">
+                    <div class="search_range">
+                        <form action="" method="POST"   enctype="multipart/form-data">
+                        <span class="search_in"> 
+                            <input type="text" id="select_1" maxlength="28" autocomplete="off"/>
+                            <div id="search-in-drop"  class="open" style="position: absolute">
+                                <ul class="dropdown-menu drop-menu-edit" aria-labelledby="dropdownMenu1">
+                                   <li onclick="alert(111)">dadasda爱上打算打vnia爱上大大是的的的</li>
+                                   <li>Another action</li>
+                                   <li>Something else here Another action</li>
+                                </ul>
+                            </div>
+                        </span>
+                        <span>
+                                <label class="label_selable check_label"">
+                                    <input value="s1" name="select_type" type="radio" checked>基金</label>
+                                <label class="label_selable">
+                                    <input value="s2" name="select_type" type="radio">公司</label>
+                                <label class="label_selable">
+                                    <input value="s3" name="select_type" type="radio">文章</label>
+                        </span>
+                        
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="top_navigation_bar">         
+                <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">首页</a> </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="article.html">文章</a>  </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="main-filter.html">组合管理</a> </span></div>
+                <div class="nav_bar_bt" id="fund_tools">
+                    <button type="button" class="btn my-btn1 st_a">基金工具</button>
+                    <button type="button" class="btn dropdown-toggle my-btn2" 
+                    style="position:absolute;" data-toggle="dropdown" 
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>    
+                    <ul class="dropdown-menu">
+
+                    </ul>
+                </div>   
+            <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">ETFs</a> </span></div>
+            <div class="nav_bar"><span class="nav_text st_a"><a href="study_article.html">投资学堂</a> </span></div>                 
+         </div>
+        </div>
+    <div class="page_main">
+
+    
+    
+
+        
+    </div>
+
+   
+    
+</div>
+        <div class="page_bottom">
+            <div class="content_range">
+            <div class="wrapper">
+                    <div class="declare">郑重声明：睿选基金网发布此信息目的在于传播更多信息，
+                        与本网站立场无关。睿选基金网不保证该信息（包括但不限于文字、视频、音频、
+                        数据及图表）全部或者部分内容的准确性、真实性、完整性、有效性、及时性、原
+                        创性等。相关信息并未经过本网站证实，不对您构成任何投资决策建议，据此操作
+                        ，风险自担。</div>
+                  
+                    <div class="cpright">
+                    <p style="margin: 10px 0 0; padding: 0px;"><a style="cursor: pointer;" id="foot_sethome" target="_self">
+                        将睿选基金网设为上网首页吗？</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="foot_setfavor" style="cursor: pointer;" target="_self">将睿选基金网添加到收藏夹吗？</a></p>
+                    <p><a target="_blank" href="http://www.tmooc.cn/">
+                        关于我们</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                            资质证明</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                研究中心</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                    联系我们</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                        安全指引</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                            免责条款</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                隐私条款</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                    风险提示函</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                        意见建议</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                            在线客服</a></p>
+                    <p class="cp"> 睿选基金客服热线：95077&nbsp;/&nbsp;4008888888</p>
+                    <p class="cp"> 客服邮箱：<a target="_blank" href="mailto:2363831533@qq.com">2363831533@qq.com</a></p>
+                    <p class="cp">人工服务时间：工作日 7:30-21:30 双休日 9:00-21:30</p>   
+                    <p class="cp">  郑重声明：<a target="_blank" href="http://www.tmooc.cn/" class="footFundCertLink">
+                        睿选基金系证监会批准的基金销售机构[000008888]</a>。睿选基金网所载文章、数据仅供参考，使用前请核实，风险自负。 </p>
+                      
+                    <p>中国证监会深圳监管局网址：<a href="http://www.csrc.gov.cn/pub/shenzhen/">www.csrc.gov.cn/pub/shenzhen</a></p>
+            
+                   
+  
+                </div>
+
+      
+        </div>
+        </div>
+    </div>
+</body>
+</html>

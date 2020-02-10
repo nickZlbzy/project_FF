@@ -1,0 +1,86 @@
+.home_div{
+    margin:2vw 0;
+}
+
+.div0{display: inline-block;}
+.re_submit_div{
+    height: 5.5vw;
+}
+.eva-demo{
+    padding:1.5vw 0.5vw;
+}
+#eva-btn{
+    width:11vw;
+    height:5.5vw;
+    font-size:21px;
+}
+
+.insert-div{
+    padding:0.8vw 12% 0;
+}
+.insert-div h4{
+    color:#555;
+    /* font-size:15px;  */
+}
+.insert-div>*{
+    float:right;
+    margin-right:20px;
+}
+.jump-filter-btn{
+    cursor: pointer;
+}
+.jump-filter-btn> .btn-img{
+    height:7.5vw;
+}
+.div0 li{
+    padding:0.3vw 1.6vw 0.3vw 0;
+}
+
+.div1{
+    width: 32%;
+    /* height: 680px; */
+    /* border: 2px solid red; */
+    margin-left: 10px;
+    margin-bottom: 30px;
+    float: left;
+}
+.div2{
+    width: 42%;
+    /* height: 680px; */
+    /* border: 2px solid blueviolet; */
+    /* margin-right:25%; */
+}
+.div3{
+    width: 22%;
+    /* height: 680px; */
+    /* border: 2px solid red; */
+    /* margin-top: 0px; */
+    float:right;
+}
+.c1{
+    /* text-align:center; */
+    /* margin-right:2px; */
+    list-style-type: None;
+}
+/* .table1{
+    width: 30%;
+    height: 100%;
+} */
+.table1{
+    /* width: 30%;
+    height: 25px; */
+    /* width="100%"; */
+    align:"center";
+}
+.t1{
+        width:100%;
+        border-collapse:collapse;
+    }
+.title{
+        color: #666666;
+        font:13px;
+    }
+a{
+        color: #333333;
+        font-size:16px;
+}

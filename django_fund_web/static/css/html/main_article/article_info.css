@@ -1,0 +1,88 @@
+.now-cate,.right-cate{
+    box-sizing: border-box;
+    min-height:40vw;
+}
+.main-upline{
+    width:100%;
+    border-top:0.35vw solid #BBB;
+}
+.content-range>h2{
+    text-align: center;
+    margin-bottom: 1.6vw;
+}
+#author-name{
+    color:#1E50a2;
+}
+#release-date{
+    color:#ba2636;
+}
+.right-info{
+    float:right;
+}
+.size-edit{
+    cursor: pointer;
+}
+.article-text{
+    border-top:0.15vw solid #BBB;
+    padding:1.5vw  0 4.5vw;
+}
+.text-dis-normal{
+    font-size:14px;
+}
+.text-dis-big{
+    font-size:17px;
+}
+#submit-comment{
+    margin:0.4vw 0 1vw;
+    width:6.2vw;
+}
+
+/* 投资info文章部分 */
+.first-row{
+    position: relative;
+}
+.first-row  small{
+    position: absolute;
+    right:0;
+    bottom:0;
+    cursor: pointer;
+}
+.right-part-img{
+    width:22vw;
+    height:17vw;
+    margin:1vw 0;
+}
+.right-cate{
+    margin-bottom: 5vw;
+}
+.list-group p{
+   margin:10px 0;
+}
+.list-group a:last-child p{
+   margin:10px 0 0;
+}
+.t_list_info{
+   margin:8px 0;
+}
+.t_list_info tr{
+   border-top:0.05vw solid #DBDBDB;
+}
+.t_list_info td{
+     padding:0.3vw 0.6vw;
+}
+.t_list_info a,.t_list_info i{
+    cursor: pointer;
+    width:100%;
+}
+#order-btn{
+   background-color: orange;
+   color:white;
+    width:100%;
+    font-size:20px;
+    height:32px;
+    border:0;
+    outline: none;
+}
+#order-btn:hover{
+   opacity: 0.85;
+}

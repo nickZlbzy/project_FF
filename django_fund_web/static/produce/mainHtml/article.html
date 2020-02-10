@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>睿选基金网</title>
+    <link href="./images/jj_icon.png" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="./static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="./static/js/base/jquery-3.4.1.js"></script>
+    <script src="./static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/top.js"></script>
+    <style type="text/css">    
+        .search_in{
+            background-image: url('images/search.png');
+        }       
+        .page_main{
+            /* border:1px solid goldenrod; */
+            min-height:45vw;           
+        }
+        .drop-menu-edit{
+            width:19.5vw;
+        }
+        .drop-menu-edit li{
+           padding:0 1vw;
+        }
+
+      
+        .now-cate,.right-cate{
+            box-sizing: border-box;
+            min-height:40vw;           
+        }
+        .main-upline{
+            width:100%;
+            border-top:0.4vw solid #BBB;
+        }
+        .content-range>h2{
+            text-align: center;
+        }
+        #author-name{
+            color:#1E50a2;
+        }
+        #release-date{
+            color:#ba2636;
+        }       
+        .right-info{
+            float:right;
+        }
+        .size-edit{
+            cursor: pointer;
+        }
+        .article-text{
+            border-top:0.15vw solid #BBB;
+            padding:1.5vw  0 4.5vw;
+        }
+        .text-dis-normal{
+            font-size:14px;
+        }
+        .text-dis-big{
+            font-size:17px;
+        }
+
+        #submit-comment{
+            margin:0.4vw 0 1vw;
+            width:6.2vw;
+        }
+
+
+        /* 投资学堂文章部分 */
+        .first-row{
+            position: relative;
+        }
+        .first-row  small{
+            position: absolute;
+            right:0;
+            bottom:0;
+            cursor: pointer;
+        }       
+       .right-part-img{
+           margin:1vw 0;
+       }
+       .list-group p{
+           margin:10px 0;
+       }
+       .list-group a:last-child p{
+           margin:10px 0 0;
+       }
+       .t_list_info{
+           margin:8px 0;
+       }
+       .t_list_info tr{
+           border-top:0.05vw solid #DBDBDB; 
+       }
+       .t_list_info td{
+             padding:0.3vw 0.6vw;  
+       }
+       .t_list_info a,.t_list_info i{
+            cursor: pointer;
+            width:100%;
+       }
+       #order-btn{
+           background-color: orange;
+           color:white;
+            width:100%;
+            font-size:20px;
+            height:32px;
+            border:0;
+            outline: none; 
+       }
+       #order-btn:hover{
+           opacity: 0.85;
+       }
+    </style>
+    <script type="application/javascript">        
+        window.onload = function () {
+             //页面加载完成后执行内容
+             
+            window.onscroll=function(){
+                console.log(getClientHeight())
+                if(getScrollTop()+getClientHeight()==getScrollHeight()){
+                    console.log("滚动条到底了")
+                }
+                var size = document.getElementsByClassName("list-group-item");
+                console.log(size);
+            }
+
+
+            var articleWord = $("#article-text")[0];
+            $("#nor-btn").bind("click",function(){     
+                articleWord.classList.remove("text-dis-big");
+                articleWord.classList.add("text-dis-normal")  
+            })
+        
+            $("#big-btn").bind("click",function(){
+                articleWord.classList.remove("text-dis-normal");
+                articleWord.classList.add("text-dis-big") ;
+            })
+            
+
+        };
+
+        function getScrollTop(){
+            var scrollTop=0;
+            if(document.documentElement.scrollTop&&document.documentElement){
+                scrollTop=document.documentElement.scrollTop;                
+            }else if(document.body){
+                scrollTop=document.body
+            }
+            return scrollTop;
+        }
+        
+        function getScrollHeight(){
+            return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+        }
+        function getClientHeight(){
+            return 
+        }
+
+        function load_comment_list(){
+            $.ajax({
+                type:"get",
+                url:"/comment/get_llst",
+                dataType:"json",
+                async:true,
+                success:function(){
+
+                }
+            })
+        }
+          
+
+    </script>
+</head>
+<body>  
+<div id="core_range">
+        <div id="page_top">
+            <div class="top_row1">
+                
+                <span>睿选基金---您的基金专家</span>
+                <div class="top_tags">
+                    <div class="tags">黄页<div class="bar_triangle"><div class="bar_triangle_in"></div></div></div> 
+                    <div class="tags">睿选中国</div>
+                    <div class="tags">睿选产品</div>                       
+                    <div class="tags st_a">历年大事件</div>   
+                </div>           
+            </div>
+            <div class="top_row2">
+                <div class="top_logo">
+                    <img src="./images/logo.gif">
+                </div>
+                <div class="user_range">
+                    <span>游客</span>
+                    <span>
+                    <span class="st_a">
+                        <a href="register.html" target="_blank" text-decoration: none;>登录</a>
+                    </span>
+                </div>
+                <div class="search_web">
+                    <div class="search_range">
+                        <form action="" method="POST"   enctype="multipart/form-data">
+                        <span class="search_in"> 
+                            <input type="text" id="select_1" maxlength="28" autocomplete="off"/>
+                            <div class="open" style="position: absolute">
+                                <ul class="dropdown-menu drop-menu-edit" aria-labelledby="dropdownMenu1">
+                                   <li>dadasda爱上打算打vnia爱上大大是的的的</li>
+                                   <li>Another action</li>
+                                   <li>Something else here Another action</li>
+                                </ul>
+                            </div>
+                        </span>
+                        <span>
+                                <label class="label_selable check_label"">
+                                    <input value="s1" name="select_type" type="radio" checked>基金</label>
+                                <label class="label_selable">
+                                    <input value="s2" name="select_type" type="radio">公司</label>
+                                <label class="label_selable">
+                                    <input value="s3" name="select_type" type="radio">文章</label>
+                        </span>
+                        
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="top_navigation_bar">         
+                <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">首页</a> </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="article.html">文章</a>  </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="main-filter.html">组合管理</a> </span></div>
+                <div class="nav_bar_bt" id="fund_tools">
+                    <button type="button" class="btn my-btn1 st_a">基金工具</button>
+                    <button type="button" class="btn dropdown-toggle my-btn2" 
+                    style="position:absolute;" data-toggle="dropdown" 
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>    
+                    <ul class="dropdown-menu">
+
+                    </ul>
+                </div>   
+            <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">ETFs</a> </span></div>
+            <div class="nav_bar"><span class="nav_text st_a"><a href="study_article.html">投资学堂</a> </span></div>                 
+         </div>
+        </div>
+    <div class="page_main">
+
+        <div class="middle container-fluid">
+
+            <h5>基金研究 > 新基金观察 > 正文</h5>
+            <div class="main-upline"></div>
+            <div class="col-md-8 col-xs-8  col-sm-8">
+                <div class="content-range">
+                    <h2>我是文章的标题！</h2>
+                    <div class="introduce-info">
+                        <span class="left-info">
+                            作者：<span id="author-name">吴雪梅</span>
+                                        <small id="release-date">2020-01-09</small>
+                        </span>
+                        <span class="right-info">
+                            字号： <span class="glyphicon glyphicon-font text-info size-edit" id="big-btn"></span>&nbsp; 
+                                <small><span class="glyphicon glyphicon-font text-info size-edit" id="nor-btn"></span></small>
+                        
+                    </div>                    
+
+                    <div class="article-text " id="article-text">
+                         产品动态回顾<br>
+                        随着下半年市场震荡下行，投资者避险情绪升温。在货币市场基金监管要求日趋严格的背景下，债券型基金承接了低风险投资的溢出需求。而定开债基作为债券型基金的一种，因其规模稳定、可配置低流动性品种获取更高收益的特性迅速走红。叠加摊余成本法的推出，定开债基的净值不再随着二级市场的涨跌而大幅波动，长期稳定的收益使得该类产品受到众多个人和机构投资者的青睐。在需求上升的同时，基金公司也纷纷抢滩布局旗下的定开债基，以期通过该类基金助力公司固收产品的规模增长。目前来看，超长期限定开债基是基金公司的重点发行对象。不同于此前市场上较为常见的三年内短期定开债基，5年以上的超长期限定开债基正在集中上报，其中浦银安盛旗下的定开债基期限长达九年半。超长期限定开债基一般都是机构定制化产品：一方面，机构资金的长期配置需求高，超长期限定开债基的持有周期刚好与其匹配；另一方面，公募基金自带节税属性，与债基的长期合作可为机构带来一定的税务优惠。
+                        市场概述                        受十一假期影响，10月基金发行市场明显遇冷。截至2019年10月31日，当月新成立的基金共40只，合计募得809.63亿元资金。与9月发行高峰相比，10月新基金数量及规模均出现了大幅下滑。然而，10月新成立基金的平均发行规模为20.24亿元，较上月环比增长39%，创下年内最高水平。由此看来，投资者申购新发基金的意愿仍较为强烈，数量及规模的下降主要是受到月初长假的拖累。
+                        从运作方式来看，开放式基金募集规模在10月大幅下跌，当月获得资金（371.51亿元）仅为前月（1249.01亿元）的三成不到，其中ETF基金和其他开放式基金分别下降了457.67亿元和419.81亿元。相比之下，封闭式基金吸金能力在10月显著增强，合计募得438.11亿元资金，占总募集规模的比例由上月的27.07%上升至当月的54.11%。值得注意的是，10月成立的9只封闭式基金均为定期开放债券型基金，平均规模达到48.67亿元，远高于ETF基金15.70亿元和其他开放式基金10.89亿元的平均规模水平。
+                    </div>
+                </div>
+            
+
+                <div class="comment-range">
+                    <div class="main-upline"></div>
+                    <h4>有疑问找专家</h4>
+                    <div class="comment-form">
+                        <div class="form-group">                            
+                            <textarea class="form-control" name="content" id="content"></textarea>                        
+                             <button id="submit-comment" class="btn btn-primary pull-right"> 提 问 </button>
+                             <div class="clear-box"></div>
+                        </div>
+
+                      </div>
+                    
+                    <ul class="list-group">
+                        <a class="list-group-item list-group-item-action">
+                            <div>
+                                <span class="text-info">嘿嘿1 &nbsp;
+                                    <small class="text-muted">第 1 条评论</small> </span>                                                                
+                                <span class="right-info text-muted">2020-01-09  17:49</span>
+                            </div>
+                            <p>
+                                你好啊！我的祖国
+                            </p>
+                        </a>
+                        <a class="list-group-item list-group-item-action">                               
+                                <p class="text-center">
+                                    感谢您的使用，已经没有内容了
+                                </p>
+                        </a>
+                    </ul>
+                
+                <div class="main-bottom text-center">
+                        <!-- <small>
+                            &copy; 2019 <a href="#">Franckisses</a> &nbsp;/&nbsp;
+                            <a href="#">Hello RxCHINA</a>
+                        </small> -->
+                        <p>
+                            <a href="#">&uarr;</a>
+                        </p>
+                </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-xs-4  col-sm-4">
+                    <div class="right-cate">
+                        <div class="right-part-img">
+                            <img src="./images/test_img_1.png">
+                        </div>
+                        <div class="list_info_title">
+                                <div class="main-upline"></div>
+                                <div class="first-row">
+                                        <h4>基金报告 <small class="pull-right text-muted">更多>></small></h4> 
+                                </div>
+                                <div>
+                                        <table class="t_list_info">
+                                            <tr>
+                                                <th style="width:13vw;"></th>
+                                                <th style="width:5vw;"></th>
+                                                <th></th>
+                                            </tr>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><a>工银全球精选股票(QDII)</a></td>
+                                                        <td>★★★★✩</td>
+                                                        <td><i class="glyphicon glyphicon-new-window"></i></td>
+                                                    </tr>                                                   
+    
+                                                    
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div>
+                                        <button id="order-btn">RSS订阅基金报告</button>
+                                    </div>
+
+                                
+                                
+                        </div>
+                        
+                    </div>                
+
+            </div>                 
+
+        
+
+
+
+        </div>
+        
+    </div>
+
+   
+    
+</div>
+        <div class="page_bottom">
+            <div class="content_range">
+            <div class="wrapper">
+                    <div class="declare">郑重声明：睿选基金网发布此信息目的在于传播更多信息，
+                        与本网站立场无关。睿选基金网不保证该信息（包括但不限于文字、视频、音频、
+                        数据及图表）全部或者部分内容的准确性、真实性、完整性、有效性、及时性、原
+                        创性等。相关信息并未经过本网站证实，不对您构成任何投资决策建议，据此操作
+                        ，风险自担。</div>
+                  
+                    <div class="cpright">
+                    <p style="margin: 10px 0 0; padding: 0px;"><a style="cursor: pointer;" id="foot_sethome" target="_self">
+                        将睿选基金网设为上网首页吗？</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="foot_setfavor" style="cursor: pointer;" target="_self">将睿选基金网添加到收藏夹吗？</a></p>
+                    <p><a target="_blank" href="http://www.tmooc.cn/">
+                        关于我们</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                            资质证明</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                研究中心</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                    联系我们</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                        安全指引</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                            免责条款</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                隐私条款</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                    风险提示函</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                        意见建议</a><span>|</span><a target="_blank" href="http://www.tmooc.cn/">
+                                                            在线客服</a></p>
+                    <p class="cp"> 睿选基金客服热线：95077&nbsp;/&nbsp;4008888888</p>
+                    <p class="cp"> 客服邮箱：<a target="_blank" href="mailto:2363831533@qq.com">2363831533@qq.com</a></p>
+                    <p class="cp">人工服务时间：工作日 7:30-21:30 双休日 9:00-21:30</p>   
+                    <p class="cp">  郑重声明：<a target="_blank" href="http://www.tmooc.cn/" class="footFundCertLink">
+                        睿选基金系证监会批准的基金销售机构[000008888]</a>。睿选基金网所载文章、数据仅供参考，使用前请核实，风险自负。 </p>
+                      
+                    <p>中国证监会深圳监管局网址：<a href="http://www.csrc.gov.cn/pub/shenzhen/">www.csrc.gov.cn/pub/shenzhen</a></p>
+            
+                   
+  
+                </div>
+
+      
+        </div>
+        </div>
+    </div>
+</body>
+</html>

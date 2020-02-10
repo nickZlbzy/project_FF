@@ -1,0 +1,52 @@
+  /* <!--以下是风险测评的样式，re开头表示是风险测评的样式--> */
+
+.re_title_line{
+    width:100%;
+    border-top:0.4vw solid #BBB;
+}
+.re_reminder_div{
+    margin-left:50px;
+    margin-top:20px;
+}
+.re_reminder_p{
+    font-size:15px;
+}
+.re_question_div1{
+    margin-left:50px;
+    margin-top:20px;
+}
+.re_question_div2{
+    font-weight:bold;
+    color: rgb(12, 178, 233);
+    margin-top:10px;
+}
+.re_submit_div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    /* background-color: aquamarine; */
+    /* width:50px;
+    height: 25px;
+    border: 1px solid black;
+    margin:0 auto; */
+}
+.re_submit_input{
+    /* margin-top: 20px; */
+    background-color:lightskyblue;
+    width:80px;
+    height: 25px;
+    border: 1px solid black;
+    /* margin:0 auto; */
+    /* position: relative;
+    left:50%; */
+}
+.devider{
+    border-bottom: 1px dashed gray;
+    margin-left:50px;
+    margin-right:50px;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+.re_question_div1 label{
+    font-weight:normal;
+}

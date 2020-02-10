@@ -1,0 +1,242 @@
+{% extends "layout/middle.html" %}
+
+{#头部css,js部分#}
+{% block head_range %}
+<link rel="stylesheet" type="text/css" href="/static/css/html/main/home_page.css">
+<style type="text/css">
+</style>
+<script type="text/javascript">
+$(function(){
+    $('#jump-filter-btn').bind("click",function(){
+        window.open("/filter/ffpage","_self");
+    })
+    $('#eva-btn').bind("click",function(){
+        check_eva_jump()
+    })
+
+})
+
+
+</script>
+{% endblock %}
+
+{#核心页面部分#}
+{% block page_main %}
+     <div class="home_div">
+        <div class="div0 div1 ">
+            <div class="areaOuter clearfix">
+                <div class="areaInner">
+                    <div class="areaLeft screenA">
+                        <h4 class="borderT5">最新发布 2019/01/16</h4>
+
+
+                        <div class="blank5"></div>
+                        <a href="/article/art_page">更多文章>></a>
+
+                      </div>
+
+
+                    <div class="blank10"></div>
+                    <h4 class="borderT5">{{ left_info.survey.title }}</h4>
+                    <ul class="midlist c1" >
+                        {% for item in left_info.survey.childs %}
+                            <li class="left_list_info"><a href="{{ item.url }}" target="_self">
+                                &rarr; {{ item.title }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <div class="blank10"></div>
+                <h4 class="borderT5">{{ left_info.indu.title }}</h4>
+                <div id="hotfund" class="simplelist">
+{#                    <div class="clearfix colbar"><span class="col2left">基金</span><span class="col2right">今年回报率</span></div>#}
+{#                    <a href="/quicktake/F0000003WF" class="clearfix" target="_blank"><span class="hot3number1">1</span><span class="hot3left">广发稳健增长混合</span><span class="hot3right">0.30%</span></a><a href="/quicktake/F0000003YF" class="clearfix" target="_blank"><span class="hot3number1">2</span><span class="hot3left">兴全趋势投资混合(LOF)</span><span class="hot3right">1.87%</span></a><a href="/quicktake/0P0000P5UD" class="clearfix" target="_blank"><span class="hot3number1">3</span><span class="hot3left">易方达消费行业股票</span><span class="hot3right">-1.41%</span></a><a href="/quicktake/F0000004AI" class="clearfix" target="_blank"><span class="hot3number2">4</span><span class="hot3left">易方达中小盘混合</span><span class="hot3right">-1.69%</span></a><a href="/quicktake/0P0001606X" class="clearfix" target="_blank"><span class="hot3number2">5</span><span class="hot3left">招商中证白酒指数分级</span><span class="hot3right">-2.14%</span></a>#}
+                    <ul class="midlist c1" >
+                        {% for item in left_info.indu.childs %}
+                            <li class="left_list_info"><a href="{{ item.url }}" target="_self">
+                               &nbsp;&nbsp; {{ item.title }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="div0 div2">
+
+            <div class="insert-div" id="jump-filter-btn">
+                <div class="jump-filter-btn">
+                    <img class="btn-img" src="/static/images/filter_btn.jpg" />
+                </div>
+                <h4 style="">基金速查</h4>
+                <div class="clear-box"></div>
+            </div>
+              <form action="">
+
+                <table  class="t1" id="ctl00_cphMain_gridResult" >
+                    <tr>
+                        <td colspan="5" ><h3>优选基金</h3>
+                    </td>
+                    </tr>
+                    <tr class="header">
+                        <th scope="col">&nbsp;</th>
+                        <th scope="col">&nbsp;</th>
+                        <th class="gridHeaderText" scope="col">
+                            <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$Symbol')">代码</a></th>
+                            <th class="gridHeaderText" scope="col">
+                                <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$FundName')">基金名称</a></th>
+                                <th class="gridHeaderText" scope="col">
+                                    <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$CategoryName')">基金分类</a></th>
+                    </tr>
+
+                    <tr class="gridItem">
+                    <td style="width:20px;">
+                        <span id="ctl00_cphMain_gridResult_ctl02_lblRowNo">1</span>
+                        </td>
+                    <td style="width:22px;">
+                        <span tag="0P0001606X|招商中证白酒指数分级">
+                            <input id="ctl00_cphMain_gridResult_ctl02_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl02$chkFund" />
+                        </span></td>
+                    <td class="msDataText" style="width:60px;"><a target="_blank">161725</a></td>
+                    <td class="msDataText" style="width:150px;"><a target="_blank">招商中证白酒指数分级</a></td>
+                    <td class="msDataText">股票型基金</td>
+
+                </tr>
+                    <tr class="gridAlternateItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl03_lblRowNo">2</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P0001696E|信达澳银新能源产业股票"><input id="ctl00_cphMain_gridResult_ctl03_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl03$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">001410</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">信达澳银新能源产业股票</a>
+                                    </td>
+                                    <td class="msDataText">股票型基金</td>
+
+                                </tr>
+                    <tr class="gridItem"></tr>
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl04_lblRowNo">3</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P000101GW|海富通内需热点混合"><input id="ctl00_cphMain_gridResult_ctl04_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl04$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">519056</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">海富通内需热点混合</a></td>
+                                    <td class="msDataText">激进配置型基金</td>
+
+                                </tr><tr class="gridAlternateItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl05_lblRowNo">4</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="F0000003ZX|景顺长城新兴成长混合"><input id="ctl00_cphMain_gridResult_ctl05_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl05$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">260108</a></td>
+                                        <td class="msDataText" style="width:150px;"><a target="_blank">景顺长城新兴成长混合</a>
+                                        </td><td class="msDataText">激进配置型基金</td>
+
+                                        </tr><tr class="gridItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl06_lblRowNo">5</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="F0000003XA|景顺长城鼎益混合(LOF)"><input id="ctl00_cphMain_gridResult_ctl06_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl06$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">162605</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">景顺长城鼎益混合(LOF)</a>
+                                    </td><td class="msDataText">激进配置型基金</td>
+
+                                </tr><tr class="gridAlternateItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl07_lblRowNo">6</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P0000P5UD|易方达消费行业股票"><input id="ctl00_cphMain_gridResult_ctl07_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl07$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">110022</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">易方达消费行业股票</a></td>
+                                    <td class="msDataText">股票型基金</td>
+
+                                </tr><tr class="gridItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl08_lblRowNo">7</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P0000YEN5|汇添富消费行业混合"><input id="ctl00_cphMain_gridResult_ctl08_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl08$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">000083</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">汇添富消费行业混合</a></td>
+                                    <td class="msDataText">激进配置型基金</td>
+
+                                </tr><tr class="gridAlternateItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl09_lblRowNo">8</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P00013WJV|嘉实新兴产业股票"><input id="ctl00_cphMain_gridResult_ctl09_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl09$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">000751</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">嘉实新兴产业股票</a></td>
+                                    <td class="msDataText">股票型基金</td>
+
+                                </tr><tr class="gridItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl10_lblRowNo">9</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P000147K8|国泰国证食品饮料行业指数分级"><input id="ctl00_cphMain_gridResult_ctl10_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl10$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">160222</a></td>
+                                    <td class="msDataText" style="width:150px;"><a target="_blank">国泰国证食品饮料行业指数分级
+                                    </a></td><td class="msDataText">股票型基金</td>
+
+                                </tr><tr class="gridAlternateItem">
+                        <td style="width:20px;">
+                                        <span id="ctl00_cphMain_gridResult_ctl11_lblRowNo">10</span>
+                                    </td><td style="width:22px;">
+                                        <span tag="0P0000Z3OV|汇添富中证主要消费ETF"><input id="ctl00_cphMain_gridResult_ctl11_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl11$chkFund" /></span>
+                                    </td><td class="msDataText" style="width:60px;"><a target="_blank">159928</a>
+                                    </td><td class="msDataText" style="width:150px;"><a target="_blank">汇添富中证主要消费ETF
+                                    </a></td><td class="msDataText">股票型基金</td>
+
+                                </tr><tr class="gridItem">
+
+                </table>
+                </form>
+        </div>
+        <div class="div0 div3">
+            <div><h4> 目录</h4>
+
+
+                    <h4><span>1. {{ right_info_1.title }}</span></h4>
+                    <ul  class="c1">
+                                 {% for item in right_info_1.childs %}
+                            <li class="left_list_info"><a href="{{ item.url }}" target="_self">
+                                 &nbsp;{{ item.title }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="level2">
+                    <h4><span>2. {{ right_info_2.title }}</span></h4>
+                    <ul  class="c1">
+                         {% for item in right_info_2.childs %}
+                            <li class="left_list_info"><a href="{{ item.url }}" target="_self">
+                                 &nbsp;{{ item.title }}</a></li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="level3">
+
+                         <h4><span>3. {{ right_info_3.title }}</span></h4>
+                    <ul  class="c1">
+                         {% for item in right_info_3.childs %}
+                            <li class="left_list_info"><a href="{{ item.url }}" target="_self">
+                                 &nbsp;{{ item.title }}</a></li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+{#             <div class="eva-demo">#}
+{#                <button type="button" class="btn btn-danger" id="eva-btn">风险测评</button>#}
+{#            </div>#}
+
+        </div>
+        <div class="clear-box"></div>
+     </div>
+
+
+{% endblock %}
