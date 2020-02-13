@@ -28,7 +28,7 @@ class Fund_filter_model(BaseModel):
 
 
 class Fund_type(BaseModel):
-    t_id = models.AutoField("类型id", primary_key=True, auto_created=True, serialize=False)
+    t_id = models.IntegerField("类型id", primary_key=True, auto_created=True, serialize=False)
     type_name = models.CharField("基金类型",max_length=128)
     sort = models.IntegerField("排序",default=None)
 
@@ -41,7 +41,7 @@ class Fund_type(BaseModel):
         return "类型id:%s ,名称:%s"%(self.t_id,self.type_name)
 
 class Fund_company(BaseModel):
-    c_id = models.AutoField("公司id", primary_key=True, auto_created=True, serialize=False)
+    c_id = models.IntegerField("公司id", primary_key=True, auto_created=True, serialize=False)
     c_name = models.CharField("名称",max_length=60)
     sort = models.IntegerField("排序", default=None)
     create_user = models.CharField("创建人",max_length=32, default=None,blank=True)

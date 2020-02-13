@@ -6,6 +6,7 @@ import re
 import pymysql
 
 from filter.mappers import Fund_filter_mapper
+from filter.models import Fund_type, Fund_filter_model
 
 html = 'http://cn.morningstar.com/fundselect/default.aspx'
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')
@@ -15,7 +16,7 @@ browser.get(html)
 page_num = 1
 
 # 连接数据库
-connect = pymysql.connect(host='127.0.0.1', user='root', password='123456', db='stock', charset='utf8')
+connect = pymysql.connect(host='127.0.0.1', user='root', password='123456', db='fund_web', charset='utf8')
 cursor = connect.cursor()
 
 
@@ -36,7 +37,7 @@ class my_fund:
 
 
 # 爬取共376页
-while page_num <= 376:
+while page_num <= 10:
     # 列表用于存放爬取的数据
     code_list = []  # 基金代码
     name_list = []  # 基金名称
@@ -78,7 +79,8 @@ while page_num <= 376:
             fund_model.unit_price = tds_nume[1].string
             fund_model.day_change = tds_nume[2].string
 
-            fund_model.f_type = Fund_type_mapper.get_valid_by_name(fund_model.f_cat)
+            fund_model.f_type = Fund_type.objects.values_list('t_id').filter(type_name=fund_model.f_cat)[0]
+
             fund_model.is_opcl = 1 if re.search("（开放式）", fund_model.f_cat) or \
                                       re.search(r"\(开放式\)", fund_model.f_cat) else 2
             if re.search("ETF", fund_model.f_name):
@@ -86,9 +88,9 @@ while page_num <= 376:
             elif re.search("（QDII）", fund_model.f_name) or re.search(r"\(QDII\)", fund_model.f_name):
                 fund_model.is_etqd = 2
 
-            Fund_filter_mapper.insert(f_code=fund_model.f_code,
+            Fund_filter_model.create(f_code=fund_model.f_code,
                                       f_name=fund_model.f_name,
-                                      fund_type=fund_model.f_type,
+                                      t_type_id=fund_model.f_type,
                                       three_year_level=fund_model.f_level_3,
                                       five_year_level=fund_model.f_level_5,
                                       interest=fund_model.re_curr_y,
@@ -96,7 +98,7 @@ while page_num <= 376:
                                       day_change=fund_model.day_change,
                                       is_oc=fund_model.is_opcl,
                                       is_eq=fund_model.is_etqd,
-                                      company_id=random.randint(1, 150))
+                                      company_id=random.randint(1, 15))
 
     # 將数据匹配为本地数据库所需要的
 

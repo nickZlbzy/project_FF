@@ -100,5 +100,5 @@ function create_pagination(page){
          pagingContent += '<li><a aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>'
      }
 
-    $("#fund_pagination").html(pagingContent);s
+    $("#fund_pagination").html(pagingContent);
 }

@@ -56,7 +56,8 @@
                             id="ct{{forloop.counter0}}"><label for="ct{{forloop.counter0}}" class="f-label">{{ item.type_name }}</label></td>
                         {% if forloop.last %}
                             </tr>
-                        {% elif forloop.counter0|divisibleby:5 == 0 and not forloop.first %}
+                        {% elif forloop.counter|divisibleby:"5" and not forloop.first %}
+                            <script>console.log('{{ forloop.counter|divisibleby:"5" }}')</script>
                             </tr><tr>
                         {% endif %}
                     {% endfor %}
