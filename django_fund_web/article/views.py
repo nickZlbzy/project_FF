@@ -4,10 +4,14 @@ from django.shortcuts import render
 
 # Create your views here.
 from article.mappers import Article_mapper
+from tools.logging_check import logging_check
 
 
-def article_page(request):
-    return render(request,"article/article_index.html")
+
+def article_course_page(request):
+
+    if request.method == "GET":
+        return render(request,"article/article_index.html")
 
 
 def do_article_info(request,type,artid):

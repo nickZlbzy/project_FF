@@ -39,9 +39,9 @@
 </style>
 <script type="text/javascript">
 $(function(){
-    $('#log_btn').bind("click",function(){
-        check_login()
-    })
+    {#$('#log_btn').bind("click",function(){#}
+    {#    check_login()#}
+    {#})#}
 })
 </script>
 {% endblock %}
@@ -49,11 +49,12 @@ $(function(){
 {#核心页面部分#}
 {% block page_main %}
     <div id="d1" style="">
-            <div style="color: crimson;text-align: center;"><h1>欢 迎 登 录 睿 选 基 金</h1></div>
+            <div style="color: crimson;text-align: center;"><h1>登录</h1></div>
 
             <div style="color: red;">
                 <div class="ul-from">
                 <form action="/user/login" method="post">
+                    {% csrf_token %}
                 <table>
                     <tr>
                         <td>用户名:</td>
@@ -67,10 +68,10 @@ $(function(){
                     <td>&nbsp;</td>
                 </table>
                     <div class="sub-btns">
-                        <input type="checkbox" ><p style="display: contents;">记住密码</p>
+                        <input type="checkbox" name="isSave" ><p style="display: contents;">记住密码</p>
                         <a href="/user/pwd_page" style="margin-left: 80px;">忘记密码</a>
                         <div class="user-btns" style="margin-left: 35px;">
-                            <a class="btn" href="/user/reg_page">注册新用户?</a>
+                            <a class="btn" href="/user/register">注册新用户</a>
                             <input class="btn btn-default" type="submit" id="log_btn" value="登录">
                         </div>
                     </div>

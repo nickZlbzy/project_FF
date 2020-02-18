@@ -9,8 +9,10 @@ from django.shortcuts import render
 
 from filter.mappers import Fund_filter_mapper, Fund_company_mapper
 from filter.models import Fund_type, Fund_company
+from tools.logging_check import logging_check
 
 
+@logging_check
 def fund_filter_page(request):
     type_info = Fund_type.objects.values("t_id","type_name").all()
 

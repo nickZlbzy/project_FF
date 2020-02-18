@@ -9,7 +9,7 @@ class User_profile_model(BaseModel):
     password=models.CharField("密码",max_length=128)
     email=models.EmailField("邮箱",db_index=True)
     phone=models.CharField("手机号码",max_length=25,db_index=True)
-    gender=models.CharField("性别", max_length=3,default=None,blank=True)
+    gender=models.CharField("性别", max_length=3,default="",blank=True)
     nickname = models.CharField("昵称", max_length=16,default="",blank=True)
     age=models.IntegerField("年龄",default=0,blank=True)
     ability = models.IntegerField("风险能力",default=0,blank=True)

@@ -2,7 +2,7 @@
 <script type="application/javascript">
     $(function () {
         $('#jump_login_a').bind("click",function(){
-            window.open("/user/loginPage","_self");
+            window.open("/user/login","_self");
         })
         $('#jump_index_s').bind("click",function(){
              window.open("/","_self");
@@ -21,37 +21,40 @@
             window.open("/article/art_page","_self");
         })
          $('#jump_cls_course').bind("click",function(){
-            window.open("/main/cls_page","_self");
+            window.open("/article/coursePage","_self");
         })
         $('#fund_tools ul>li:nth-child(2)').bind("click",function(){
             alert("敬请期待!")
         })
+        $(".tags").bind("click",function(){
+            window.open("http://www.tmooc.cn/","_blank");
+        })
 
-        $(".tags").each(function(i,ele){
-            ele.onclick=function(){
-                window.open("http://www.tmooc.cn/","_blank");
-            }
-        })
-        {'#console.log($("#fund_tools")[0].dataset["selName"])#'}
-        $('#jump_login').bind('click',function(){
-             $.ajax({
-                type:"get",
-                url:"/user/exit",
-                dataType:"json",
-                success:function(res){
-                    if(res){
-                        alert("已注销.")
-                        location.reload()
-                    }
-                }
-            })
-        })
+
+        console.log('{{ request.session.uid }}')
+
     })
+
+
+function logout(){
+    $.ajax({
+        type:"get",
+        url:"/user/logout",
+        dataType:"json",
+        success:function(res){
+            console.log(res)
+            if(res){
+                alert("已注销.")
+                location.reload()
+            }
+        }
+    })
+}
 
 {# 验证是否已完成风险测评 #}
 function check_eva_jump(){
-    console.log("{{ session.user }}")
-    if(!"{{ session.user }}"){
+    console.log("{{ request.session.uid }}")
+    if(!"{{ request.session.user }}"){
         alert("请登录。")
         window.open("/user/log_page","_self");
         return;
@@ -62,15 +65,15 @@ function check_eva_jump(){
     window.open("87","_self");
 }
 
-function check_login(){
-    if (!'{{ session.user }}'){
-        alert('登录失败')
-        window.open('/user/log_page','_self')
-    }else{
-        alert('登陆成功')
-        return
-    }
-}
+{#function check_login(){#}
+{#    if (!'{{ session.user }}'){#}
+{#        alert('登录失败')#}
+{#        window.open('/user/log_page','_self')#}
+{#    }else{#}
+{#        alert('登陆成功')#}
+{#        return#}
+{#    }#}
+{#}#}
 
 </script>
 
@@ -89,9 +92,12 @@ function check_login(){
             <img src="/static/images/logo.gif">
         </div>
         <div class="user_range">
-            {% if session.user %}
-                    <span>{{ session.user.username  }}</span>
-                    <span id="jump_login" class="st_a">退出</span>
+            {% if request.session.username %}
+                    <span> &nbsp;&nbsp;&nbsp;{{ request.session.username  }}</span>
+                    <span  class="st_a">个人中心</span>
+                    <span><a href="/user/logout">登出</a></span>
+
+
             {% else %}
                     <span>游客</span>
                     <span class="st_a" id="jump_login_a">登录</span>

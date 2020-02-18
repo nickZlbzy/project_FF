@@ -19,7 +19,6 @@ function get_title_address(sel_name){
         dataType: "json",
         async:false,
         success:function(data){
-            console.log(data)
             if(data){
 
                 creeateButtonSelect(sel_name,data)
@@ -47,19 +46,19 @@ function creeateButtonSelect(sel_name,text_url_data){
 }
 
 function initDimRadio(){
-    var radios = document.getElementsByName("select_type")
-    for(var i=0;i<radios.length;i++){
-        radios[i].addEventListener("change",clickRadio);
-        // radios[i].onclick = clickRadio;
-    }
+    $('[name="select_type"]').bind("change",clickRadio);
+    // var radios = document.getElementsByName("select_type")
+    // for(var i=0;i<radios.length;i++){
+    //     radios[i].addEventListener("change",clickRadio);
+    //     // radios[i].onclick = clickRadio;
+    // }
 }
 
 //模糊查询框点击事件
 function clickRadio(){
-    var parent = $(this).parent()
-
+    var parent = $(this).parent();
+    parent.siblings().removeClass("check_label");
     parent.siblings().each(function(i,ele){
-        ele.classList.remove("check_label");
         ele.children[0].setAttribute("checked",false)
     })
     parent[0].classList.add("check_label");

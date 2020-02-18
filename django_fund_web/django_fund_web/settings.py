@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8&)pym--3j=)jji9-zl734bt-6&it4outja%+gg*-r694&)951'
-
+SECRET_SALT = "asdqwe"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -92,23 +92,45 @@ DATABASES = {
 }
 
 # 打印sql日志，可用于调bug
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console':{
-#             'level':'DEBUG',
-#             'class':'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'handlers': ['console'],
-#             'propagate': True,
-#             'level':'DEBUG',
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+    }
+}
+
+CACHES = {
+    "default":{
+        "BACKEND":"django_redis.cache.RedisCache",
+        "LOCATION":"redis://127.0.0.1:6379/13",
+        "OPTIONS":{
+            "CLIENT_CLASS":"django_redis.client.DefaultClient"
+        }
+    },
+    "django_session":{
+        "BACKEND":"django_redis.cache.RedisCache",
+        "LOCATION":"redis://127.0.0.1:6379/12",
+        "OPTIONS":{
+            "CLIENT_CLASS":"django_redis.client.DefaultClient"
+        }
+    }
+}
+
+# 定义一个cache(本地缓存来存储信息,cahe指定的是redis
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# 指定本地的session使用的本地缓存名称是'default
+SESSION_CACHE_ALIAS = "django_session"
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -151,4 +173,6 @@ STATIC_URL = '/static/'
 #静态文件目录配置
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
+# 保存一天登陆状态
+SESSION_COOKIE_AGE = 60*60*24
 
