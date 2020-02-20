@@ -1,20 +1,25 @@
 import hashlib
 
-from django.conf import settings
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
-# Create your views here.
+
 from django.urls import reverse
 from django_redis import get_redis_connection
 
-from tools.logging_check import logging_check
+from tools import contants
+from tools.utils import make_pwdm
 from user.mappers import User_mapper
 from user.models import User_profile_model
 
 
 
 def register(request):
+    """
+        注册功能
+        :param request:
+        :return:
+    """
     if request.method == "GET":
         return render(request, "user/register.html")
     elif request.method == "POST":
@@ -47,8 +52,6 @@ def register(request):
 
         request.session["username"] = username
         request.session["uid"] = user.id
-
-        print(request.session['uid'])
     # 重定向到首页（可到个人中心页面提示邮箱验证）
     return redirect("/index")
     # return redirect(reverse('index.views.index_page', args=[]))
@@ -67,27 +70,23 @@ def check_reg_info(request):
         result = User_mapper.check_new(kind=kind,value=value)
         if result:
             return JsonResponse({"code": 10102,"msg":"已存在"})
-
     return JsonResponse({"code":200})
 
 
-def make_pwdm(pwd):
-    md5 = hashlib.md5()
-    md5.update(pwd.encode())
-    md5.update(settings.SECRET_SALT.encode())
-    return md5.hexdigest()
-
 
 def login(request):
-
+    """
+       登陆功能
+       :param request:
+       :return:
+    """
     if request.method == "GET":
-        path_from = request.META.get('HTTP_REFERER', '/')
+        path_from = request.META.get('HTTP_REFERER', '/') ## 记录当前页url
         # 判断是否记住了密码
         if "username" in request.COOKIES and "uid" in request.COOKIES:
             request.session["username"] = request.COOKIES["username"]
             request.session["uid"] = request.COOKIES["uid"]
             return redirect(path_from)
-
         request.session["login_from"] = path_from
         return render(request,"user/login.html")
     elif request.method == "POST":
@@ -98,7 +97,6 @@ def login(request):
         except Exception as e:
             re_data = {"code": 10108, "msg": "用户名或密码错误!"}
             render(request, "user/login.html")
-
         password_m = make_pwdm(password)
         if password_m != password:
             re_data = {"code": 10108, "msg": "用户名或密码错误!!"}
@@ -106,24 +104,20 @@ def login(request):
 
         request.session["uid"] = user.id
         request.session["username"] = username
-
-
         try:
             resp = HttpResponseRedirect(request.session['login_from'])
             del request.session['login_from']
         except KeyError as e:
             resp = HttpResponseRedirect("/")
-
         # 检查用户是否　勾选了　'记住用户名',如果勾选，还需要在Cookies中存储　uid&username 过期时间为７天
         if 'isSave' in request.POST.keys():
-            resp.set_cookie("uid",user.id,60*60*24*7)
-            resp.set_cookie("username",username,60*60*24*7)
-
+            resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
+            resp.set_cookie("username",username,contants.COOKIES_KEEP_TIME)
         return resp
 
 
 def logout(request):
-    #登出
+    #登出方法
     if 'username' in request.session:
         del request.session['username']
     if 'uid' in request.session:

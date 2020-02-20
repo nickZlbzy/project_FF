@@ -14,12 +14,20 @@ from tools.logging_check import logging_check
 
 @logging_check
 def fund_filter_page(request):
+    """
+       基金筛选器模块
+    :param request:
+    :return:
+    """
     type_info = Fund_type.objects.values("t_id","type_name").all()
-
     return render(request,"fund_filter/filter.html",locals())
 
 def query_fund(request):
-
+    """
+        基金筛选方法
+    :param request:
+    :return:
+    """
     three_grade = request.POST.getlist("three_grade")
     five_grade = request.POST.getlist("five_grade")
     is_oc = request.POST.getlist("is_oc")
@@ -27,14 +35,11 @@ def query_fund(request):
     f_type = request.POST.getlist("f_type")
     fund_name = request.POST.get("fund_name")
     company_id = request.POST.get("company_id")
-
-
-
-
     # 处理筛选器参数
     is_oc = is_oc[0] if len(is_oc) == 1 else None
     five_year_level = five_grade[0] if len(five_grade) == 1 else None
     three_year_level = three_grade[0] if len(three_grade) == 1 else None
+
     list_fund = Fund_filter_mapper.query_page(five_year_level=five_year_level,
                                               three_year_level=three_year_level,
                                               is_oc=is_oc,
@@ -58,16 +63,17 @@ def query_fund(request):
     paging['page_range'] = tuple(pagination.page_range)
     re_data=[paging, page.object_list]
 
-
-
-
-
     # json_data = serializers.serialize("json",re_dict,ensure_ascii=False)
     re_json = {"code":1,"data":re_data}
 
     return JsonResponse(re_json,safe=False)
 
 def query_company(request):
+    """
+    加载公司下拉选
+    :param request:
+    :return:
+    """
     re_json = {"code": 1, "data": Fund_company_mapper.query_box()}
 
     return JsonResponse(re_json,safe=False)

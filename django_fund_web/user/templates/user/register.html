@@ -34,9 +34,11 @@
 </style>
 <script type="text/javascript">
 var result;
+var icon_correct = "<span class='glyphicon glyphicon-ok' style='color:#28a745;'></span>"
+var icon_error="<span class='glyphicon glyphicon-remove' style='color:#dc3545;'></span>"
 $(function(){
     $('#quit-btn').bind('click',function(){
-        window.open("/user/loginPage","_self")
+        window.open("/user/login","_self")
     })
     $('#reg_btn').bind('click',check_submit);
 
@@ -49,8 +51,15 @@ $(function(){
 
 
 function checkUsername(){
-    var kind = $("#username").attr("name")
-    var value = $("#username").val()
+    var kind = $("#username").attr("name");
+    var value = $("#username").val();
+    var reg = /^[a-zA-Z]\w{5,}$/;
+    if(!reg.test(value)){
+        $('#username-icon').html(icon_error);
+        return false;
+    }
+
+
     var url = "/user/check_reg_info?kind="+ kind +"&value="+ value;
     $.ajax({
         type:"get",
@@ -59,10 +68,10 @@ function checkUsername(){
         async:false,
         success:function(res){
             if(res.code==200){
-                $('#username-icon').html("<span class='success glyphicon glyphicon-ok'></span>");
+                $('#username-icon').html(icon_correct);
 
             }else{
-                $('#username-icon').html("<span class='red glyphicon glyphicon-remove'></span>");
+                $('#username-icon').html(icon_error);
                 result = false;
             }
         },
@@ -74,6 +83,12 @@ function checkUsername(){
 function checkPhone(){
     var kind = $("#phone").attr("name");
     var value = $("#phone").val();
+    {#var reg = /^1[3-9]\d{9}$/;#}
+    {#if(!reg.test(value)){#}
+    {#    $('#phone-icon').html(icon_error);#}
+    {#    return false;#}
+    {#}#}
+
     var url = "/user/check_reg_info?kind="+ kind +"&value="+ value;
     $.ajax({
         type:"get",
@@ -82,11 +97,11 @@ function checkPhone(){
         async:false,
         success:function(res){
             if(res.code==200){
-                $('#phone-icon').html("<span class='success glyphicon glyphicon-ok'></span>");
+                $('#phone-icon').html(icon_correct);
 
 
             }else{
-                $('#phone-icon').html("<span class='red glyphicon glyphicon-remove'></span>");
+                $('#phone-icon').html(icon_error);
                 result = false;
             }
         },
@@ -99,6 +114,13 @@ function checkPhone(){
 function checkEmail(){
     var kind = $("#email").attr("name");
     var value = $("#email").val();
+    var reg = /^[a-z0-9A-z]+@[a-z0-9A-Z]+.(?:com|cn)$/
+    if(!reg.test(value)){
+        $('#email-icon').html(icon_error);
+        return false;
+    }
+
+
     var url = "/user/check_reg_info?kind="+ kind +"&value="+ value;
     $.ajax({
         type:"get",
@@ -107,9 +129,9 @@ function checkEmail(){
         async:false,
         success:function(res){
             if(res.code==200){
-                $('#email-icon').html("<span class='success glyphicon glyphicon-ok'></span>");
+                $('#email-icon').html(icon_correct);
             }else{
-                $('#email-icon').html("<span class='red glyphicon glyphicon-remove'></span>");
+                $('#email-icon').html(icon_error);
                 result = false;
             }
         },
@@ -133,7 +155,7 @@ function check_submit(){
     checkEmail();
     if(!result)
         return false;
-
+ {#alert("请核对提交信息!");#}
     $("#reg_form").submit();
 }
 
@@ -141,16 +163,16 @@ var b = false;
 function checkPwd(){
     var pwd1 = $('#pwd1').val();
     var pwd2 = $('#pwd2').val();
+    var reg = /^\w{6,20}$/;
     if(pwd1 && pwd2){
         b = true;
     }else{
         result = false;
     }
 
-
     if(b && pwd1 || pwd2){
-        if(pwd1 == pwd2){
-            $('#pwd-icon').html("<span class='success glyphicon glyphicon-ok'></span>");
+        if(reg.test(pwd1) && pwd1 == pwd2){
+            $('#pwd-icon').html(icon_correct);
 
         }else{
             $('#pwd-icon').html("<span class='glyphicon glyphicon-remove'></span>");

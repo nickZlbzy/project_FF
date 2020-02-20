@@ -9,18 +9,36 @@ from tools.logging_check import logging_check
 
 
 def article_course_page(request):
-
+    """
+    投资学堂， test
+    :param request:
+    :return:
+    """
     if request.method == "GET":
         return render(request,"article/article_index.html")
 
 
 def do_article_info(request,type,artid):
+    """
+    文章内容显示
+    :param request:
+    :param type:
+    :param artid:
+    :return:
+    """
     article_info = Article_mapper.query_by_artId(artid)
     type_name = Article_mapper.get_title_by_type(article_info.get("article_type"))
     return render(request,"article/article_info.html",locals())
 
 
 def query_title_parent(request,type):
+    """
+   文章模块首页
+   :param request:
+   :param type:
+   :param artid:
+   :return:
+   """
     type = "survey" if type == "art_page" else type
     re_dict = {}
     re_dict['parent_title'] = Article_mapper.query_article_parent()
@@ -32,11 +50,8 @@ def query_title_parent(request,type):
     except Exception as e:
         return HttpResponse("---- page is wrong")
 
-
     re_dict['list_title_page'] = list_title_page
     re_dict['page'] = page
     re_dict['type'] = type
-
-
 
     return render(request, "article/article_index.html", re_dict)
