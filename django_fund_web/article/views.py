@@ -55,3 +55,12 @@ def query_title_parent(request,type):
     re_dict['type'] = type
 
     return render(request, "article/article_index.html", re_dict)
+
+def publish_comment(request):
+    if request.method == "POST":
+        comment = request.POST.get("comment")
+        if not comment:
+            print(type(comment))
+
+    return HttpResponse("")
+

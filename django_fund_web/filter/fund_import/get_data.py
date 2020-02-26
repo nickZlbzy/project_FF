@@ -1,12 +1,16 @@
+import os
 import random
+
+import django
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 import re
 import pymysql
 
-from filter.mappers import Fund_filter_mapper
 from filter.models import Fund_type, Fund_filter_model
+
+
 
 html = 'http://cn.morningstar.com/fundselect/default.aspx'
 browser = webdriver.Chrome('/usr/local/bin/chromedriver')

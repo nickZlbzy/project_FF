@@ -2,6 +2,7 @@
 
 {#头部css,js部分#}
 {% block head_range %}
+<title>登陆</title>
 <style type="text/css">
 #d1{
     width: 100%;
@@ -36,12 +37,19 @@
 .sub-btns a{
     color:purple;
 }
+.text-red{
+    color:red;
+    width:62px;
+}
+
 </style>
 <script type="text/javascript">
 $(function(){
-    {#$('#log_btn').bind("click",function(){#}
-    {#    check_login()#}
-    {#})#}
+
+    {% if code and code == 10108 %}
+        alert('{{ msg }}');
+    {% endif %}
+
 })
 </script>
 {% endblock %}
@@ -49,26 +57,27 @@ $(function(){
 {#核心页面部分#}
 {% block page_main %}
     <div id="d1" style="">
-            <div style="color: crimson;text-align: center;"><h1>登录</h1></div>
+            <div style="color:crimson;text-align: center;"><h1>欢 迎 登 录</h1></div>
 
-            <div style="color: red;">
+            <div style="">
                 <div class="ul-from">
                 <form action="/user/login" method="post">
                     {% csrf_token %}
                 <table>
                     <tr>
-                        <td>用户名:</td>
+                        <td class="text-red">用户名:</td>
                         <td><input type="text" name="username" placeholder="请输入用户名"></td>
                     </tr>
                     <td>&nbsp;</td>
                     <tr>
-                        <td>密码:</td>
+                        <td class="text-red">密 码:</td>
                         <td><input type="password" name="password" placeholder="请输入密码"></td>
                     </tr>
                     <td>&nbsp;</td>
                 </table>
                     <div class="sub-btns">
-                        <input type="checkbox" name="isSave" ><p style="display: contents;">记住密码</p>
+                        <input type="checkbox" id="isSave"  name="isSave" >
+                        <label for="isSave" style="margin-left: 5px;">记住密码</label>
                         <a href="/user/pwd_page" style="margin-left: 80px;">忘记密码</a>
                         <div class="user-btns" style="margin-left: 35px;">
                             <a class="btn" href="/user/register">注册新用户</a>

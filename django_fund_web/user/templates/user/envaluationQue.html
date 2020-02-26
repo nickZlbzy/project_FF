@@ -1,0 +1,212 @@
+{% extends "layout/middle.html" %}
+
+{#头部css,js部分#}
+{% block head_range %}
+<title>风险测评</title>
+<link rel="stylesheet" type="text/css" href="/static/css/html/main/eva_que.css">
+
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+$(function(){
+
+
+})
+
+function check() {
+     // var xhr = new XMLHttpRequest();
+     var submit = document.getElementById("submit");
+     // var form1=document.getElementById("form1");
+     var list_answers = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11"]
+
+    var result=get_first_question_without_answer();
+    console.log(result);
+    if(result!="-1"){
+        str01="q";
+        str01+=String(result);
+        alert("仍有未答题目，继续作答");
+        document.getElementById(str01).scrollIntoView();
+        return false;
+    }
+    return true;
+}
+
+// 判断某题是否未答的函数
+function is_answered(q) {
+    var inputs = document.getElementsByName(q);
+    for (var index = 0; index < inputs.length; index++) {
+        if (inputs[index].checked == true) {
+            return "1";
+        }
+    }
+    return "0";
+}
+
+// 判断当前未答的第一个题目的函数
+function get_first_question_without_answer(){
+    for(var i=0;i<list_answers.length;i++){
+        if(is_answered(list_answers[i])=="0"){
+            return i+1;
+        }
+    }
+    return "-1";
+}
+</script>
+{% endblock %}
+
+{#核心页面部分#}
+{% block page_main %}
+<!-- 以下是风险测评答题页body非script部分 -->
+       <h3>风险测评</h3>
+       <!--风险测评下面的横线最终还是要做自己的，不能用筛选器的-->
+       <div class="re_title_line"></div>
+
+       <!-- 大的粉红色边框 -->
+       <div id="re_border">
+
+       <!--以下是测评提示语-->
+       <div class="re_reminder_div">
+           <p class="re_reminder_p">
+           亲爱的会员，以下题目有助于您了解自己的风险承受能力和风险偏好，请根据实际情况作答。
+           </p>
+       </div>
+
+       <!-- 此处需加一条虚线用于分割 -->
+       <div class="devider"></div>
+
+       <!--以下是各个题目及选项-->
+       <div class="re_question_div1">
+           <form id="form1" action="/evaluate/re_page" onsubmit="return check()">
+               <div font-weight="100">
+                   <div id="q1" class="re_question_div2">1.您的年龄是？</div>
+                   <input type="radio" name="q1" value="A" id="q1_A">
+                   <label for="q1_A">18-30岁</label><br>
+                   <input type="radio" name="q1" value="B" id="q1_B">
+                   <label for="q1_B">31-50岁</label><br>
+                   <input type="radio" name="q1" value="C" id="q1_C">
+                   <label for="q1_C">51-60岁</label><br>
+                   <input type="radio" name="q1" value="D" id="q1_D">
+                   <label for="q1_D">高于60岁或小于18岁</label><br>
+               </div>
+               <div>
+                   <div id="q2" class="re_question_div2">2.您的家庭年收入为多少元（折合人民币）？</div>
+                   <input type="radio" name="q2" value="A" id="q2_A">
+                   <label for="q2_A">10万以下</label><br>
+                   <input type="radio" name="q2" value="B" id="q2_B">
+                   <label for="q2_B">10万-50万</label><br>
+                   <input type="radio" name="q2" value="C" id="q2_C">
+                   <label for="q2_C">50万-100万</label><br>
+                   <input type="radio" name="q2" value="D" id="q2_D">
+                   <label for="q2_D">100万以上</label><br>
+               </div>
+               <div>
+                   <div id="q3" class="re_question_div2">3.在您每年的家庭收入中，可用于金融投资（储蓄存款除外）的比例为？</div>
+                   <input type="radio" name="q3" value="A" id="q3_A">
+                   <label for="q3_A">小于10%</label><br>
+                   <input type="radio" name="q3" value="B" id="q3_B">
+                   <label for="q3_B">10%-20%</label><br>
+                   <input type="radio" name="q3" value="C" id="q3_C">
+                   <label for="q3_C">20%-50%</label><br>
+                   <input type="radio" name="q3" value="D" id="q3_D">
+                   <label for="q3_D">50%以上</label><br>
+               </div>
+               <div>
+                   <div id="q4" class="re_question_div2">4.对于您目前的投资组合，一年内能承受的最大损失比例是多少？</div>
+                   <input type="radio" name="q4" value="A" id="q4_A">
+                   <label for="q4_A">本金无损失</label><br>
+                   <input type="radio" name="q4" value="B" id="q4_B">
+                   <label for="q4_B">本金20%以内的损失</label><br>
+                   <input type="radio" name="q4" value="C" id="q4_C">
+                   <label for="q4_C">本金20-50%的损失</label><br>
+                   <input type="radio" name="q4" value="D" id="q4_D">
+                   <label for="q4_D">本金50%以上的损失</label><br>
+               </div>
+               <div>
+                   <div id="q5" class="re_question_div2">5.以下哪项描述最符合您的投资态度？</div>
+                   <input type="radio" name="q5" value="A" id="q5_A">
+                   <label for="q5_A">风险厌恶，不希望本金损失，希望获得稳定回报</label><br>
+                   <input type="radio" name="q5" value="B" id="q5_B">
+                   <label for="q5_B">保守投资，不希望本金损失，愿意承担一定幅度的收益波动</label><br>
+                   <input type="radio" name="q5" value="C" id="q5_C">
+                   <label for="q5_C">寻求资金的较高收益和成长性，愿意为此承担有限本金损失</label><br>
+                   <input type="radio" name="q5" value="D" id="q5_D">
+                   <label for="q5_D">希望赚取高回报，愿意为此承担较大本金损失</label><br>
+               </div>
+               <div>
+                   <div id="q6" class="re_question_div2">6.以下情况，您会选择哪一种？</div>
+                   <input type="radio" name="q6" value="A" id="q6_A">
+                   <label for="q6_A">有100%的机会赢取10万元现金</label><br>
+                   <input type="radio" name="q6" value="B" id="q6_B">
+                   <label for="q6_B">有50%的机会赢取30万元现金，50%的机会什么都得不到</label><br>
+                   <input type="radio" name="q6" value="C" id="q6_C">
+                   <label for="q6_C">有25%的机会赢取100万元现金，75%的机会什么都得不到</label><br>
+                   <input type="radio" name="q6" value="D" id="q6_D">
+                   <label for="q6_D">有10%的机会赢取400万元现金，90%的机会什么都得不到</label><br>
+               </div>
+               <div>
+                   <div id="q7" class="re_question_div2">7.以下哪项最能说明您的投资经验？</div>
+                   <input type="radio" name="q7" value="A" id="q7_A">
+                   <label for="q7_A">除存款、国债外，我几乎不投资其他金融产品</label><br>
+                   <input type="radio" name="q7" value="B" id="q7_B">
+                   <label for="q7_B">大部分投资于存款、国债等，较少投资于股票、基金等风险产品</label><br>
+                   <input type="radio" name="q7" value="C" id="q7_C">
+                   <label for="q7_C">资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</label><br>
+                   <input type="radio" name="q7" value="D" id="q7_D">
+                   <label for="q7_D">大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label><br>
+               </div>
+               <div>
+                   <div id="q8" class="re_question_div2">8.下面是4个组合在一年内的最好和最差的表现。获得潜在最高收益的组合的潜在风险也最大。您偏好持有哪一个组合？</div>
+                   <input type="radio" name="q8" value="A" id="q8_A">
+                   <label for="q8_A">最差表现亏损25%，最好表现获利40%</label><br>
+                   <input type="radio" name="q8" value="B" id="q8_B">
+                   <label for="q8_B">最差表现亏损19%，最好表现获利30%</label><br>
+                   <input type="radio" name="q8" value="C" id="q8_C">
+                   <label for="q8_C">最差表现亏损11%，最好表现获利18%</label><br>
+                   <input type="radio" name="q8" value="D" id="q8_D">
+                   <label for="q8_D">最差表现亏损3%，最好表现获利10%</label><br>
+               </div>
+               <div>
+                   <div id="q9" class="re_question_div2">9.您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验？</div>
+                   <input type="radio" name="q9" value="A" id="q9_A">
+                   <label for="q9_A">没有经验</label><br>
+                   <input type="radio" name="q9" value="B" id="q9_B">
+                   <label for="q9_B">少于2年</label><br>
+                   <input type="radio" name="q9" value="C" id="q9_C">
+                   <label for="q9_C">2-5年</label><br>
+                   <input type="radio" name="q9" value="D" id="q9_D">
+                   <label for="q9_D">6年以上</label><br>
+               </div>
+               <div>
+                   <div id="q10" class="re_question_div2">10.您计划的投资期限是多久？</div>
+                   <input type="radio" name="q10" value="A" id="q10_A">
+                   <label for="q10_A">1年以下</label><br>
+                   <input type="radio" name="q10" value="B" id="q10_B">
+                   <label for="q10_B">1-2年</label><br>
+                   <input type="radio" name="q10" value="C" id="q10_C">
+                   <label for="q10_C">3-5年</label><br>
+                   <input type="radio" name="q10" value="D" id="q10_D">
+                   <label for="q10_D">5年以上</label><br>
+               </div>
+               <div>
+                   <div id="q11" class="re_question_div2">11.您的投资目的是？</div>
+                   <input type="radio" name="q11" value="A" id="q11_A">
+                   <label for="q11_A">资产保值</label><br>
+                   <input type="radio" name="q11" value="B" id="q11_B">
+                   <label for="q11_B">资产稳健增长</label><br>
+                   <input type="radio" name="q11" value="C" id="q11_C">
+                   <label for="q11_C">资产迅速增长</label><br>
+                   <input type="radio" name="q11" value="D" id="q11_D">
+                   <label for="q11_D">其他</label><br>
+               </div>
+
+               <!-- 以下是提交按钮 -->
+               <div class="re_submit_div">
+                   <input id="submit" type="submit" class="re_submit_input">
+               </div>
+           </form>
+       </div>
+    </div>
+
+
+{% endblock %}

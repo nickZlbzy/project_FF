@@ -61,10 +61,13 @@
                     <h4>有疑问 找专家</h4>
                     <div class="comment-form">
                         <div class="form-group">
-                            <textarea class="form-control" name="content" id="content"></textarea>
-                             <button id="submit-comment" onclick="alert('板块建设中...敬请期待.')"
-                                     class="btn btn-primary pull-right"> 提 问 </button>
-                             <div class="clear-box"></div>
+                            <form action="/user/sendComment" method="post">
+                                <textarea class="form-control" name="content" id="content"></textarea>
+                                <input id="submit-comment" type="submit"
+                                       class="btn btn-primary pull-right"> 提 问 </input>
+                            </form>
+
+                            <div class="clear-box"></div>
                         </div>
                       </div>
                     <ul class="list-group">

@@ -30,9 +30,6 @@
             window.open("http://www.tmooc.cn/","_blank");
         })
 
-
-        console.log('{{ request.session.uid }}')
-
     })
 
 
@@ -93,14 +90,18 @@ function check_eva_jump(){
         </div>
         <div class="user_range">
             {% if request.session.username %}
-                    <span> &nbsp;&nbsp;&nbsp;{{ request.session.username  }}</span>
-                    <span  class="st_a">个人中心</span>
-                    <span><a href="/user/logout">登出</a></span>
+                {% if request.session.nickname %}
+                    <span> Hello！&nbsp;&nbsp;<label class="text-primary">{{ request.session.nickname }}</label></span>
+                {% else %}
+                     <span> Hello！&nbsp;&nbsp;<label class="text-primary">{{ request.session.username }}</label></span>
+                {% endif %}
+                <span class="st_a"><a href="/user/personal">个人中心</a></span>
+                <span><a href="/user/logout">登出</a></span>
 
 
             {% else %}
-                    <span>游客</span>
-                    <span class="st_a" id="jump_login_a">登录</span>
+                <span>游客</span>
+                <span class="st_a" id="jump_login_a">登录</span>
             {% endif %}
           
         </div>

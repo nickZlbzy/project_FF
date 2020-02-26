@@ -2,6 +2,7 @@
 
 {#头部css,js部分#}
 {% block head_range %}
+<title>用户注册</title>
 <style type="text/css">
 #d1{
     min-height: 20vw;
@@ -11,6 +12,9 @@
 .u-from{
     width:20vw;
     margin: 44px auto 0;
+}
+.u-from tr{
+    height:42px;
 }
 .sub-btns{
     float:right;
@@ -28,7 +32,14 @@
 }
 
 #right-image{
-    margin-top:14vh;
+    margin-top:16vh;
+}
+#mobile-code{
+    width:60px;
+}
+#send-btn{
+    margin-left:20px;
+
 }
 
 </style>
@@ -36,9 +47,10 @@
 var result;
 var icon_correct = "<span class='glyphicon glyphicon-ok' style='color:#28a745;'></span>"
 var icon_error="<span class='glyphicon glyphicon-remove' style='color:#dc3545;'></span>"
+
 $(function(){
     $('#quit-btn').bind('click',function(){
-        window.open("/user/login","_self")
+        window.open("/index","_self")
     })
     $('#reg_btn').bind('click',check_submit);
 
@@ -46,8 +58,12 @@ $(function(){
     $("#phone").bind("blur",checkPhone);
     $("#email").bind("blur",checkEmail);
     $(".password-in").bind("blur",checkPwd);
+    $("#send-btn").bind("click",send_mobile);
+    $("#mobile-code").bind("blur",check_verify_code);
 
 })
+
+
 
 
 function checkUsername(){
@@ -98,10 +114,10 @@ function checkPhone(){
         success:function(res){
             if(res.code==200){
                 $('#phone-icon').html(icon_correct);
-
-
+                $('#send-btn').attr("disabled",false);
             }else{
                 $('#phone-icon').html(icon_error);
+                $('#send-btn').attr("disabled","disabled");
                 result = false;
             }
         },
@@ -141,6 +157,81 @@ function checkEmail(){
     })
 
 }
+
+function send_mobile(){
+    var phone_num = $('#phone').val()
+    url = "/user/mobile_verify?phone="+ phone_num
+    $.ajax({
+        type:"get",
+        url:url,
+        dataType:"json",
+        async:false,
+        success:function(res) {
+            if (res.code == 200) {
+                alert(res.msg)
+                $('#code-icon').html(icon_correct);
+
+            }else{
+             $('#code-icon').html(icon_error);
+                alert(res.msg)
+                result = false;}
+
+             }
+    })
+}
+
+function send_mobile(){
+    var phone_num = $('#phone').val()
+    url = "/user/mobile_verify?phone="+ phone_num
+    $.ajax({
+        type:"get",
+        url:url,
+        dataType:"json",
+        async:false,
+        success:function(res) {
+            if (res.code == 200) {
+                alert(res.msg)
+                $('#send-btn').attr("disabled","disabled")
+                setTimeout(function(){
+                    $('#send-btn').attr("disabled",false)
+                },1000*60);
+
+            }else{
+             $('#code-icon').html(icon_error);
+                alert(res.msg)
+                result = false;}
+
+             }
+    })
+}
+
+function check_verify_code(){
+    var phone_num = $('#phone').val();
+    var verify_code = $('#mobile-code').val();
+    if(verify_code.length !=6)
+        return false
+    var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+    var data = {"phone":phone_num,"verifyCode":verify_code,'csrfmiddlewaretoken': csrf}
+    $.ajax({
+        type:"post",
+        url:"/user/mobile_verify",
+        dataType:"json",
+        async:false,
+        data:data,
+        success:function(res) {
+            if (res.code == 200) {
+                $('#code-icon').html(icon_correct);
+
+            }else{
+             $('#code-icon').html(icon_error);
+                result = false;
+            }
+        }
+    })
+}
+
+
+
 function check_submit(){
     result = true;
     checkPwd();
@@ -155,6 +246,12 @@ function check_submit(){
     checkEmail();
     if(!result)
         return false;
+    check_verify_code()
+    if(!result){
+        alert("验证码输入错误!")
+        return false;
+    }
+
  {#alert("请核对提交信息!");#}
     $("#reg_form").submit();
 }
@@ -175,7 +272,7 @@ function checkPwd(){
             $('#pwd-icon').html(icon_correct);
 
         }else{
-            $('#pwd-icon').html("<span class='glyphicon glyphicon-remove'></span>");
+            $('#pwd-icon').html(icon_error);
             result = false;
         }
     }
@@ -209,20 +306,20 @@ function checkPwd(){
                                    minlength="4" maxlength="16"></td>
                         <td>&nbsp;<i id="username-icon"><span style="color:red">*</span></i></td>
                     </tr>
-                    <td>&nbsp;</td>
+
                     <tr>
                         <td>密码:&nbsp;</td>
                         <td><input class="password-in" id="pwd1" type="password" name="password" placeholder="请输入密码"></td>
                         <td>&nbsp;<i id="username-icon"><span style="color:red">*</span></i></td>
                     </tr>
-                    <td>&nbsp;</td>
+
                     <tr>
                         <td>确认密码:&nbsp;</td>
                         <td><input class="password-in" id="pwd2" type="password"
                                   name="password2" placeholder="请再次输入密码"></td>
                         <td>&nbsp;<i id="pwd-icon"></i></td>
                     </tr>
-                    <td>&nbsp;</td>
+
                     <tr>
                         <td>手机号码:&nbsp;</td>
                         <td><input type="text" id="phone" name="phone"
@@ -230,7 +327,18 @@ function checkPwd(){
                                    placeholder="请输入手机号码" maxlength="11"></td>
                         <td>&nbsp;<i id="phone-icon"><span style="color:red">*</span></i></td>
                     </tr>
-                    <td>&nbsp;</td>
+                    <tr>
+                        <td>验证码:&nbsp;</td>
+                        <td><input type="text" id="mobile-code" name="verifyCode"
+    {#                               onkeyup="value=value.replace(/[^\d]/g,'')" onblur="if(/\d{11}/gi.test(this.value)?true:false){}else{alert('请输入正确的电话号码');}"  #}
+                                   placeholder="" maxlength="6">
+                            <button type="button" id="send-btn" disabled
+                                    class="btn btn-primary search-btn ">短信验证</button>
+                        </td>
+                        <td>&nbsp;<i id="code-icon"></i></td>
+
+                    </tr>
+
                     <tr>
                         <td>邮箱:&nbsp;</td>
                         <td><input id="email" type="email" name="email"

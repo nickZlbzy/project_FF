@@ -8,11 +8,14 @@ from django.urls import reverse
 from django_redis import get_redis_connection
 
 from tools import contants
-from tools.utils import make_pwdm
+from tools.logging_check import logging_check
+from tools.sms_code import Sms_verify
+from tools.utils import Utils
 from user.mappers import User_mapper
 from user.models import User_profile_model
 
 
+r = get_redis_connection()
 
 def register(request):
     """
@@ -41,7 +44,8 @@ def register(request):
             re_data = {"code": 10106, "msg": "邮箱已存在!"}
             render(request, "user/register.html", locals())
 
-        password_m = make_pwdm(password)
+        password_m = Utils.make_md5s(password)
+
         try:
             user = User_profile_model.objects.create(username=username,password=password_m,
                             phone=phone,email=email)
@@ -95,20 +99,27 @@ def login(request):
         try:
             user = User_profile_model.objects.get(username=username)
         except Exception as e:
+
             re_data = {"code": 10108, "msg": "用户名或密码错误!"}
-            render(request, "user/login.html")
-        password_m = make_pwdm(password)
-        if password_m != password:
+            return render(request, "user/login.html",re_data)
+        password_m = Utils.make_md5s(password)
+        if password_m != user.password:
+
             re_data = {"code": 10108, "msg": "用户名或密码错误!!"}
-            render(request, "user/login.html")
+            return render(request, "user/login.html",re_data)
 
         request.session["uid"] = user.id
         request.session["username"] = username
+        nickname = user.nickname
+        if nickname:
+            request.session["nickname"] = nickname
+
+
         try:
             resp = HttpResponseRedirect(request.session['login_from'])
             del request.session['login_from']
         except KeyError as e:
-            resp = HttpResponseRedirect("/")
+            resp = HttpResponseRedirect("/index")
         # 检查用户是否　勾选了　'记住用户名',如果勾选，还需要在Cookies中存储　uid&username 过期时间为７天
         if 'isSave' in request.POST.keys():
             resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
@@ -128,3 +139,69 @@ def logout(request):
     if 'uid' in request.COOKIES:
         resp.delete_cookie('uid')
     return resp
+
+def mobile_verify(request):
+    if request.method == "GET":
+        mobile = request.GET.get("phone")
+        if mobile:
+            code = Sms_verify.send(mobile)
+            if code:
+                key = 'sms:%s'%mobile
+                code_m = Utils.make_md5s(code)
+
+                r.set(key,code_m)
+                r.expire(key, contants.MOBILE_KEEP_TIME)
+                print("本次验证码:",code)
+                return JsonResponse({"code":200,"msg":"发送成功！"})
+            
+            return JsonResponse({"code": 10109, "msg": "发送失败！"})
+    elif request.method == "POST":
+        phone = request.POST.get('phone')
+        mobile_verify_code = request.POST.get('verifyCode')
+        print(phone,mobile_verify_code)
+        if mobile_verify_code and len(mobile_verify_code) == 6:
+            key = 'sms:%s'%phone
+            saved_code = r.get(key).decode()
+
+            verify_code_m = Utils.make_md5s(mobile_verify_code)
+            print("saved:", saved_code)
+            print(verify_code_m)
+            if not saved_code:
+                return JsonResponse({"code":10111,"msg":"验证码输入错误"})
+            elif saved_code != verify_code_m:
+                return JsonResponse({"code":10112,"msg":"验证码输入错误"})
+
+            return JsonResponse({"code": 200})
+        else:
+            return JsonResponse({"code":10110,"msg":"验证码输入错误!"})
+
+
+def personal_center(request):
+    if request.method == "GET":
+        user = User_profile_model.objects.get(id=request.session['uid'])
+
+        return render(request,"user/personal.html",locals())
+    elif request.method == "POST":
+        uid = request.POST.get('uid')
+        nickname = request.POST.get('nickname')
+
+        if nickname:
+            try:
+                user = User_profile_model.objects.get(id=uid)
+
+            except Exception as e:
+                print('系统异常，用户不存在')
+                return redirect('/user/login')
+
+            user.nickname = nickname
+            user.save()
+            request.session['nickname'] = nickname
+            result = {"code":200,"user":user,"msg":"修改成功!"}
+            return render(request, "user/personal.html", result)
+        else:
+            return render(request, "user/personal.html", {"code":10113})
+
+
+
+
+
