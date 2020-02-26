@@ -76,7 +76,7 @@ class StarCourseSpider:
             dict["parent_id"] = 0
             dict["url"] = '/'
             dict["title"] = list_one_title[i-1]
-            dict["module_type"] = 'inv_course'
+            dict["module_type"] = 'course_inv'
             dict["course_type"] = 'cls'
             dict["article_id"] = 'cls%s' % i
             dict["sort"] = sort01

@@ -9,4 +9,5 @@ urlpatterns=[
     url(r'^check_reg_info$',views.check_reg_info),
     url(r'^mobile_verify$',views.mobile_verify),
     url(r'^personal$',views.personal_center),
+    url(r'^evaluation$',views.envaluation),
 ]

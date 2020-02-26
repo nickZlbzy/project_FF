@@ -86,11 +86,16 @@ def login(request):
     """
     if request.method == "GET":
         path_from = request.META.get('HTTP_REFERER', '/') ## 记录当前页url
+        print(path_from)
+        path_from = path_from if path_from != '/user/login' else '/index'
         # 判断是否记住了密码
+
         if "username" in request.COOKIES and "uid" in request.COOKIES:
             request.session["username"] = request.COOKIES["username"]
             request.session["uid"] = request.COOKIES["uid"]
             return redirect(path_from)
+
+
         request.session["login_from"] = path_from
         return render(request,"user/login.html")
     elif request.method == "POST":
@@ -184,7 +189,6 @@ def personal_center(request):
     elif request.method == "POST":
         uid = request.POST.get('uid')
         nickname = request.POST.get('nickname')
-
         if nickname:
             try:
                 user = User_profile_model.objects.get(id=uid)
@@ -200,6 +204,50 @@ def personal_center(request):
             return render(request, "user/personal.html", result)
         else:
             return render(request, "user/personal.html", {"code":10113})
+
+def envaluation(request):
+    if request.method == "GET":
+        return render(request,"user/riskEnvaluation.html")
+    if request.method == "POST":
+
+        if "uid" not in request.session.keys():
+            return redirect("/user/login")
+        uid = request.session['uid']
+        q1 = request.POST.get("q1")
+        q2 = request.POST.get("q2")
+        q3 = request.POST.get("q3")
+        q4 = request.POST.get("q4")
+        q5 = request.POST.get("q5")
+        q6 = request.POST.get("q6")
+        q7 = request.POST.get("q7")
+        q8 = request.POST.get("q8")
+        q9 = request.POST.get("q9")
+        q10 = request.POST.get("q10")
+        q11 = request.POST.get("q11")
+
+        dict1 = {"A": 2, "B": 6, "C": 4, "D": 0}
+        dict2_7 = {"A": 0, "B": 2, "C": 4, "D": 6}
+        dict8 = {"A": 6, "B": 4, "C": 2, "D": 0}
+
+        # 计算各题分值
+        score1 = dict1[q1]
+        score2 = dict2_7[q2]
+        score3 = dict2_7[q3]
+        score4 = dict2_7[q4]
+        score5 = dict2_7[q5]
+        score6 = dict2_7[q6]
+        score7 = dict2_7[q7]
+        score8 = dict8[q8]
+
+        # 计算风险承受等级
+        risk_bear_score = score1 + score2 + score3 + score4
+        # 计算风险偏好等级
+        risk_prefer_score = score5 + score6 + score7 + score8
+        user = User_profile_model.objects.get(id=uid)
+        user.ability = risk_bear_score
+        user.preference = risk_prefer_score
+        user.save()
+        return render(request,"user/personal.html",{"user":user})
 
 
 
