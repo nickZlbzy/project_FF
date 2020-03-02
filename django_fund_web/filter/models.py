@@ -13,7 +13,7 @@ class Fund_filter_model(BaseModel):
     f_type_id = models.IntegerField("基金类型id", default=None)
     five_year_level=models.FloatField("五年评级", default=0)
     three_year_level=models.FloatField("三年评级", default=0)
-    unit_price = models.CharField("单位净值",max_length=30,default=None)
+    unit_price = models.DecimalField("单位净值",max_digits=7,decimal_places=4,default=None)
     day_change = models.DecimalField("日变动",max_digits=5,decimal_places=4,default=None)
     interest=models.DecimalField("今年来回报",max_digits=6,decimal_places=2,default=None)
 

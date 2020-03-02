@@ -99,11 +99,11 @@ function checkUsername(){
 function checkPhone(){
     var kind = $("#phone").attr("name");
     var value = $("#phone").val();
-    {#var reg = /^1[3-9]\d{9}$/;#}
-    {#if(!reg.test(value)){#}
-    {#    $('#phone-icon').html(icon_error);#}
-    {#    return false;#}
-    {#}#}
+    var reg = /^1[3-9]\d{9}$/;
+    if(!reg.test(value)){
+        $('#phone-icon').html(icon_error);
+        return false;
+    }
 
     var url = "/user/check_reg_info?kind="+ kind +"&value="+ value;
     $.ajax({
@@ -158,27 +158,6 @@ function checkEmail(){
 
 }
 
-function send_mobile(){
-    var phone_num = $('#phone').val()
-    url = "/user/mobile_verify?phone="+ phone_num
-    $.ajax({
-        type:"get",
-        url:url,
-        dataType:"json",
-        async:false,
-        success:function(res) {
-            if (res.code == 200) {
-                alert(res.msg)
-                $('#code-icon').html(icon_correct);
-
-            }else{
-             $('#code-icon').html(icon_error);
-                alert(res.msg)
-                result = false;}
-
-             }
-    })
-}
 
 function send_mobile(){
     var phone_num = $('#phone').val()
@@ -187,11 +166,10 @@ function send_mobile(){
         type:"get",
         url:url,
         dataType:"json",
-        async:false,
         success:function(res) {
             if (res.code == 200) {
-                alert(res.msg)
                 $('#send-btn').attr("disabled","disabled")
+                alert(res.msg)
                 setTimeout(function(){
                     $('#send-btn').attr("disabled",false)
                 },1000*60);
@@ -270,7 +248,7 @@ function checkPwd(){
     if(b && pwd1 || pwd2){
         if(reg.test(pwd1) && pwd1 == pwd2){
             $('#pwd-icon').html(icon_correct);
-
+            $('#password-icon').html("");
         }else{
             $('#pwd-icon').html(icon_error);
             result = false;
@@ -310,7 +288,7 @@ function checkPwd(){
                     <tr>
                         <td>密码:&nbsp;</td>
                         <td><input class="password-in" id="pwd1" type="password" name="password" placeholder="请输入密码"></td>
-                        <td>&nbsp;<i id="username-icon"><span style="color:red">*</span></i></td>
+                        <td>&nbsp;<i id="password-icon"><span style="color:red">*</span></i></td>
                     </tr>
 
                     <tr>

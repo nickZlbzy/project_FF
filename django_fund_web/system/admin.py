@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from system.models import Project_dict, Title_url_model
+from system.models import Project_dict, Title_url_model, Sync_code
 
 
 class dictManager(admin.ModelAdmin):
@@ -21,6 +21,9 @@ class cateManager(admin.ModelAdmin):
     list_editable = ['sort']
 
 
+@admin.register(Sync_code)
+class syncManager(admin.ModelAdmin):
+    pass
 
 admin.site.register(Project_dict, dictManager)
 admin.site.register(Title_url_model, cateManager)

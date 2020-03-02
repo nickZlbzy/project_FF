@@ -7,6 +7,7 @@ from django.shortcuts import render
 from system.mappers import Title_url_mapper
 
 
+
 def queryBox(request):
     """
     项目字典，加载下拉选

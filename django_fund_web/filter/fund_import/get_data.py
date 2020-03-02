@@ -10,6 +10,9 @@ import pymysql
 
 from filter.models import Fund_type, Fund_filter_model
 
+#该爬虫功能django中暂不可用， Scrapy项目制作中
+
+
 
 
 html = 'http://cn.morningstar.com/fundselect/default.aspx'
@@ -85,8 +88,8 @@ while page_num <= 10:
 
             fund_model.f_type = Fund_type.objects.values_list('t_id').filter(type_name=fund_model.f_cat)[0]
 
-            fund_model.is_opcl = 1 if re.search("（开放式）", fund_model.f_cat) or \
-                                      re.search(r"\(开放式\)", fund_model.f_cat) else 2
+            fund_model.is_opcl = 1 if re.search("（封闭式）", fund_model.f_cat) or \
+                                      re.search(r"\(封闭式\)", fund_model.f_cat) else 2
             if re.search("ETF", fund_model.f_name):
                 fund_model.is_etqd = 1
             elif re.search("（QDII）", fund_model.f_name) or re.search(r"\(QDII\)", fund_model.f_name):

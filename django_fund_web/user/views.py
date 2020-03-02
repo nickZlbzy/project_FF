@@ -45,7 +45,6 @@ def register(request):
             render(request, "user/register.html", locals())
 
         password_m = Utils.make_md5s(password)
-
         try:
             user = User_profile_model.objects.create(username=username,password=password_m,
                             phone=phone,email=email)
@@ -95,7 +94,6 @@ def login(request):
             request.session["uid"] = request.COOKIES["uid"]
             return redirect(path_from)
 
-
         request.session["login_from"] = path_from
         return render(request,"user/login.html")
     elif request.method == "POST":
@@ -119,7 +117,6 @@ def login(request):
         if nickname:
             request.session["nickname"] = nickname
 
-
         try:
             resp = HttpResponseRedirect(request.session['login_from'])
             del request.session['login_from']
@@ -129,6 +126,7 @@ def login(request):
         if 'isSave' in request.POST.keys():
             resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
             resp.set_cookie("username",username,contants.COOKIES_KEEP_TIME)
+            resp.set_cookie("nickname",nickname,contants.COOKIES_KEEP_TIME)
         return resp
 
 
@@ -138,6 +136,8 @@ def logout(request):
         del request.session['username']
     if 'uid' in request.session:
         del request.session['uid']
+    if 'nickname' in request.session:
+        del request.session['nickname']
     resp = HttpResponseRedirect('/')
     if 'username' in request.COOKIES:
         resp.delete_cookie('username')

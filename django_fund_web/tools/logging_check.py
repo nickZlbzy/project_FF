@@ -13,6 +13,8 @@ def logging_check(func):
         elif "username" in request.COOKIES and "uid" in request.COOKIES:
             request.session["username"] = request.COOKIES["username"]
             request.session["uid"] = request.COOKIES["uid"]
+            if "nickname" in request.COOKIES:
+                request.session["nickname"] = request.COOKIES["nickname"]
         else:
             return redirect("/user/login")
         return func(request,*args,**kwargs)

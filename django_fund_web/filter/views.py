@@ -60,7 +60,10 @@ def query_fund(request):
     paging['prev_num'] = page.previous_page_number() if page.has_previous() else 0
     paging['number'] = page.number
     paging['page_size'] = pagination.per_page
+
     paging['page_range'] = tuple(pagination.page_range)
+    paging['page_count'] = pagination.num_pages
+
     re_data=[paging, page.object_list]
 
     # json_data = serializers.serialize("json",re_dict,ensure_ascii=False)

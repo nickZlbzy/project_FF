@@ -37,3 +37,13 @@ class Title_url_model(BaseModel):
     def __str__(self):
         return 'title=%s, url=%s, type=%s, parent_id=%s>' \
                % (self.title, self.url, self.type, self.parent_id)
+
+class Sync_code(models.Model):
+    module = CharField("所属模块",max_length=20, unique=True)
+    prefix = CharField("前缀",max_length=20)
+    serial_num = IntegerField("auto编号",default="100000")
+
+    class Meta:
+        db_table = 't_sync_code'
+        verbose_name = '序列号管理'
+        verbose_name_plural = verbose_name

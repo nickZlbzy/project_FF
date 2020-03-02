@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'system','index','article',
-    'filter',
+    'system','index',
     'user',
+    'article',
+    'filter',
+    'payment',
 
 ]
 
@@ -49,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -172,6 +174,9 @@ STATIC_URL = '/static/'
 
 #静态文件目录配置
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+#alipay - keyfile
+ALIPAY_KEY_DIRS = os.path.join(BASE_DIR,"static/pay/key_file/")
 
 # 保存一天登陆状态
 SESSION_COOKIE_AGE = 60*60*24

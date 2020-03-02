@@ -43,7 +43,7 @@ def query_title_parent(request,type):
     re_dict = {}
     re_dict['parent_title'] = Article_mapper.query_article_parent()
     list_title = Article_mapper.query_type_article(type)
-    list_title_page = Paginator(list_title,2)
+    list_title_page = Paginator(list_title,12)
     cur_page=request.GET.get('page',1)
     try:
         page =  list_title_page.page(cur_page)
