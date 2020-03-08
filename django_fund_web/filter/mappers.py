@@ -6,7 +6,8 @@ from filter.models import Fund_filter_model, Fund_type, Fund_company
 
 class Fund_filter_mapper:
     # 基金筛选器所需的字段信息
-    sql_base = "select id,f_code,f_name,three_year_level,five_year_level,interest,unit_price,day_change," \
+    sql_base = "select id,f_code,f_name,three_year_level,five_year_level,interest,unit_price,day_change, " \
+               "update_time, " \
                "(select a.c_name from t_fund_company a where a.c_id=company_id)," \
                "(select b.value from system_dict b where b.valid=is_oc and b.type='oc_sel')," \
                "(select c.value from system_dict c where c.valid=is_eq and c.type='eq_sel')," \
@@ -14,7 +15,7 @@ class Fund_filter_mapper:
                "from t_fund_filter as t1"
 
     @staticmethod
-    def query_page(page=1, *, f_name=None, is_oc=0, is_eq=[], company_id=None, f_type=[],
+    def query_list(page=1, *, f_name=None, is_oc=0, is_eq=[], company_id=None, f_type=[],
                    three_year_level=0, five_year_level=0, page_size=25):
         """
             分页查询方法
@@ -102,10 +103,11 @@ class Fund_filter_mapper:
                 fund_dict["interest"] = float(item[5])
                 fund_dict["unit_price"] = item[6]
                 fund_dict["day_change"] = float(item[7])
-                fund_dict["company_name"] = item[8]
-                fund_dict["oc_name"] = item[9]
-                fund_dict["eq_name"] = item[10]
-                fund_dict["type_name"] = item[11]
+                fund_dict["update_time"] = item[8]
+                fund_dict["company_name"] = item[9]
+                fund_dict["oc_name"] = item[10]
+                fund_dict["eq_name"] = item[11]
+                fund_dict["type_name"] = item[12]
                 re_list.append(fund_dict)
         return re_list
 

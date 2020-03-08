@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 from django.db.models import CharField, IntegerField
+from django_redis import get_redis_connection
+
 from base.BaseModel import BaseModel
 
 
@@ -17,6 +19,7 @@ class Project_dict(BaseModel):
         db_table = 'system_dict'
         verbose_name = '项目字典'
         verbose_name_plural = verbose_name
+        ordering = ('type', 'sort',)
 
     def __str__(self):
         return "类别:%s Key:%s Value:%s"%(self.type,self.valid,self.value)

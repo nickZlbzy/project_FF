@@ -102,10 +102,43 @@
 .select_level{
     background-color:red;
 }
+.t-list-order{
+    border:1px solid darkblue;
+}
+.t-list-order th,.t-list-order td{
+    min-width: 9vw;
+    padding:0.5vw;
+}
+.t-list-order th:first-child,.t-list-order td:first-child{
+    min-width: 3vw;
+    text-align: center;
+}
+
+#user-btn1,#user-btn2{
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 4px;
+}
+#list-order{
+    max-height:35vw;
+    overflow: auto;
+    display: none;
+}
+.select-color{
+    background-color: rgba(211,211,211,0.6);
+}
+.pay-jump {
+    cursor: pointer;
+    color:#337ab7;
+}
 
 </style>
 <script type="text/javascript">
 $(function(){
+    {% if code and code == 200 %}
+        alert('{{ msg }}');
+    {% endif %}
+
     $('#nickname_modify').bind('click',function(){
         var value = $('#nickname').val()
         var reg = new RegExp(" ","g")
@@ -115,16 +148,28 @@ $(function(){
             $('#ui-form').submit()
         else
             return false;
+
     })
-    {% if code and code == 200 %}
-        alert('{{ msg }}');
-    {% endif %}
     var ability = "{{ user.ability }}"
     var preference = "{{ user.preference }}"
     if(preference && ability){
-
         set_eva(parseInt(ability),parseInt(preference))
     }
+    $('#user-btn1').bind('click',function(){
+        $("#user-info").show()
+        $("#list-order").hide()
+        $("#user-btn2").addClass('select-color')
+        $("#user-btn1").removeClass('select-color')
+    })
+    $('#user-btn2').bind('click',function(){
+        $("#user-info").hide()
+        $("#list-order").show()
+        $("#user-btn1").addClass('select-color')
+        $("#user-btn2").removeClass('select-color')
+
+    })
+
+
 
 })
 
@@ -156,80 +201,163 @@ function set_eva(ability,preference){
     $("#"+preference_id).addClass("select_level");
 
 }
+
+function buy_fund2(self){
+    $.confirm({
+        title: '确认',
+        content: '即将跳转到支付页面',
+        type: 'red',
+        icon: 'glyphicon glyphicon-question-sign',
+        buttons: {
+            ok: {
+                text: '确认',
+                btnClass: 'btn-primary',
+                action: function() {
+                    aliPayment(self)
+                }
+            },
+            cancel: {
+                text: '取消',
+                btnClass: 'btn-primary'
+            }
+        }
+    });
+}
+
+function aliPayment(self){
+
+    var parent = $(self).parent().parent();
+    var amount = parseFloat(parent.children('.amount').text());
+        // 测试功能暂定数量为100
+    var order_code = parent.children('.order_code').text()
+    var fund_code = parent.children('.fund_code').text();
+    // var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+    // console.log(csrf)
+    var post_data = {"fund_code":fund_code,"order_code":order_code,
+        "amount":amount};
+
+    $.ajax({
+        url:"/payment/jump2/",
+        type:"post",
+        dataType:"json",
+        headers: {
+            "X-CSRFToken": getCsrfFromCookie("csrftoken")
+        },
+        // contentType:"application/json",
+        data:JSON.stringify(post_data),
+        success:function(data){
+            if(data.code==200)
+                window.location = data.pay_url;
+            else
+                alert(data.msg)
+        }
+    })
+
+}
 </script>
 {% endblock %}
 
 {#核心页面部分#}
-{% block page_main %}
+{% block page_main %}s
 
 <div class="personal-range">
-    <h2 class="title text-primary">个人中心</h2>
+    <h3 class="title text-primary"><span id="user-btn1">个人中心</span> &nbsp;&nbsp;/
+        &nbsp;&nbsp; <span id="user-btn2" class="select-color">订单管理</span></h3>
+    <div id="user-info">
+        <div class="top-left-part">
+            <form id="ui-form" action="/user/personal" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="uid" value="{{ user.id }}">
+                <table class="info-tb">
+                <tr>
+                    <td>用户名:</td>
+                    <td>{{ user.username }}</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>邮箱:</td>
+                    <td>{{ user.email }}</td>
+                     <td></td>
+                </tr>
+                <tr>
+                    <td>手机号:</td>
+                    <td>{{ user.phone }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>昵称:</td>
+                    <td><input id="nickname" class="tl-input" type="text" name="nickname" value="{{ user.nickname }}"/></td>
+                    <td><button id="nickname_modify">修 改</button></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+        <div class="top-right-part">
+            {% if not user.ability or not user.preference %}
+                <span>您当前的投资风险系数<b style="color:#dc3545">未知</b>,是否立即进行
+              <a href="/user/evaluation" style="color:#dc3545">风险评估</a>？</span>
+            {% else %}
+                <div id="re_result_title"> 测评结果 </div>
 
-    <div class="top-left-part">
-        <form id="ui-form" action="/user/personal" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="uid" value="{{ user.id }}">
-            <table class="info-tb">
-            <tr>
-                <td>用户名:</td>
-                <td>{{ user.username }}</td>
-                <td></td>
-            </tr>
-             <tr>
-                <td>邮箱:</td>
-                <td>{{ user.email }}</td>
-                 <td></td>
-            </tr>
-            <tr>
-                <td>手机号:</td>
-                <td>{{ user.phone }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>昵称:</td>
-                <td><input id="nickname" class="tl-input" type="text" name="nickname" value="{{ user.nickname }}"/></td>
-                <td><button id="nickname_modify">修 改</button></td>
-            </tr>
-        </table>
-        </form>
-    </div>
-    <div class="top-right-part">
-        {% if not user.ability or not user.preference %}
-            <span>您当前的投资风险系数<b style="color:#dc3545">未知</b>,是否立即进行
-          <a href="/user/evaluation" style="color:#dc3545">风险评估</a>？</span>
-        {% else %}
-            <div id="re_result_title"> 测评结果 </div>
 
+                <div class="re_result_div-1">
 
-            <div class="re_result_div-1">
+                    <div class="re_result_div0">
+                        <div class="re_result_div1_1">
+                            <div class="re_result_div2">风险承受能力：</div>
+                            <div id="re_bear1" class="re_result_div3">低</div>
+                            <div id="re_bear2" class="re_result_div3">较低</div>
+                            <div id="re_bear3" class="re_result_div3">中等</div>
+                            <div id="re_bear4" class="re_result_div3">较高</div>
+                            <div id="re_bear5" class="re_result_div3">高</div>
+                        </div>
 
-                <div class="re_result_div0">
-                    <div class="re_result_div1_1">
-                        <div class="re_result_div2">风险承受能力：</div>
-                        <div id="re_bear1" class="re_result_div3">低</div>
-                        <div id="re_bear2" class="re_result_div3">较低</div>
-                        <div id="re_bear3" class="re_result_div3">中等</div>
-                        <div id="re_bear4" class="re_result_div3">较高</div>
-                        <div id="re_bear5" class="re_result_div3">高</div>
+                        <div class="re_result_div1_2">
+                            <div class="re_result_div2">风险偏好型：</div>
+                            <div id="re_prefer1" class="re_result_div3">保守型</div>
+                            <div id="re_prefer2" class="re_result_div3">稳健型</div>
+                            <div id="re_prefer3" class="re_result_div3">平衡型</div>
+                            <div id="re_prefer4" class="re_result_div3">积极型</div>
+                            <div id="re_prefer5" class="re_result_div3">进取型</div>
+                        </div>
                     </div>
 
-                    <div class="re_result_div1_2">
-                        <div class="re_result_div2">风险偏好型：</div>
-                        <div id="re_prefer1" class="re_result_div3">保守型</div>
-                        <div id="re_prefer2" class="re_result_div3">稳健型</div>
-                        <div id="re_prefer3" class="re_result_div3">平衡型</div>
-                        <div id="re_prefer4" class="re_result_div3">积极型</div>
-                        <div id="re_prefer5" class="re_result_div3">进取型</div>
-                    </div>
                 </div>
+            {% endif %}
 
-            </div>
-        {% endif %}
-
+        </div>
+        <div class="clearfix"></div>
     </div>
-    <div class="clearfix"></div>
-     <div class="middle-part">
-         <h3 class="text-primary">订单管理</h3>
+
+     <div class="middle-part" id="list-order">
+        <table class="t-list-order">
+            <tr>
+                <th>序号</th><th>用户名</th><th>订单号</th><th>基金名称</th><th>单价</th><th>数量</th>
+                <th>金额</th><th>状态</th>
+            </tr>
+            <tbody>
+            {% for item in list_order %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td class="order_code">{{ item.order_code }}</td>
+                    <td class="fund_code">{{ item.fund_code }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.total }}</td>
+                    <td class="amount">{{ item.amount }}</td>
+                    {% if item.status == 1 %}
+                        <td><span class="pay-jump" onclick="buy_fund2(this)">继续支付</span></td>
+                    {% else %}
+                        <td>{{ item.status_name }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div style="float: right;margin:8px 11vw 0 0;">合计：</div>
+
+
+
      </div>
 
 </div>

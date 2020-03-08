@@ -16,12 +16,10 @@ class Sms_verify:
         headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
         verify_code = str(int((random.uniform(0,1)*9+1)*100000))
 
-
-        # 短信验证功能，当前剩余一次了，下面return verify_code语句，会在控制台打印输出验证码
+        # 短信验证功能，现在剩余一条了，下面return verify_code语句，会直接输出打印验证码
         return verify_code
 
         content = "您的验证码是：{}。请不要把验证码泄露给其他人。".format(verify_code)
-
         conn = http.client.HTTPConnection(host, port=80, timeout=30)
 
         data = {}

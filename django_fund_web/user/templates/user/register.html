@@ -194,7 +194,6 @@ function check_verify_code(){
         type:"post",
         url:"/user/mobile_verify",
         dataType:"json",
-        async:false,
         data:data,
         success:function(res) {
             if (res.code == 200) {

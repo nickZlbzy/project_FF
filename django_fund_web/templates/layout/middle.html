@@ -6,28 +6,29 @@
 
 <link href="/static/images/jj_icon.png" rel="icon" type="image/x-ico">
 {#    JQ,bootstrap#}
+<link rel="stylesheet" href="/static/css/base/jquery-confirm.min.css">
+<script src="/static/js/base/jquery-3.4.1.min.js"></script>
+<script src="/static/js/base/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
-<script src="/static/js/jquery-3.4.1.js"></script>
 <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
 {#    页面引用静态资源方式#}
 <link rel="stylesheet" type="text/css" href="/static/css/layout/index.css">
+<script src="/static/js/html/main/common.js"></script>
 
-{% block head_range %}
+{% block head_range %} {#重写的页面头part#}
 <title>睿选基金网</title>
-{% endblock %}
-<style type="text/css">
-</style>
 
+{% endblock %}
 </head>
 <body>
 
 <div id="core_range">
     {#    引用页眉#}
-
     {% include "layout/top.html" %}
-
     <div class="page_main">
-    {% block page_main %}
+
+    {% block page_main %} {#重写的页面核心代码#}
 
         <div class="div1">
             <p>
@@ -39,15 +40,13 @@
 
             </table>
         </div>
+
     {% endblock %}
-
-
 
     </div>
 </div>
 
     {#    引用页脚#}
     {% include "layout/bottom.html" %}
-
 </body>
 </html>

@@ -60,12 +60,12 @@ function table_list_fun(data){
     var fund_content = ""
     $.each(data[1],function(i,ele){
         fund_content += "<tr><td>"+ ((data[0].number-1)*data[0].page_size+1+parseInt(i)) +"</td>"
-                        + "<td><a style='cursor: pointer;' onclick='aliPayment(this)'>"+ ele.f_code +"</a></td>"
+                        + "<td><a onclick='buy_fund(this)' style='cursor: pointer;' >"+ ele.f_code +"</a></td>"
                         + "<td>"+ ele.f_name +"</td>"
                         + "<td>"+ ele.type_name +"</td>"
                         + "<td>"+ ele.three_year_level +"</td>"
                         + "<td>"+ ele.five_year_level +"</td>"
-                        + "<td>2020-01-08</td>"
+                        + "<td>"+ ele.update_time + "</td>"
                         + "<td class='price'>"+ ele.unit_price +"</td>"
                         + "<td>"+ ele.day_change +"</td>"
                         + "<td>"+ ele.interest +"</td>"
@@ -74,9 +74,10 @@ function table_list_fun(data){
     $("#fund-tbody").html(fund_content)
 
 }
-//加载分页栏方法
+//加载分页栏方法  (bug未解决)
 function create_pagination(page){
-     console.log(page.page_range)
+     // console.log(page.page_range)
+    console.log(page)
      pagingContent = ""
      if(page.prev_num){
          pagingContent += "<li><a href='#t-filter-form'  aria-label='Previous' "
@@ -85,37 +86,31 @@ function create_pagination(page){
      }else{
          pagingContent += '<li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>'
      }
+     if(page.prev_range_num){
+         pagingContent += "<li><a href='#t-filter-form'  aria-label='Previous' "
+             + "onclick='query_fund_fun(" + page.prev_range_num + ")' "
+             + "<span aria-hidden='true'>..</span></a></li>"
+     }
 
      $.each(page.page_range,function(i,ele) {
-
-         if(i==0 && page.number >= 10){
-             var num1 = Math.floor(page.number/10)*10-1
-              pagingContent += '<li><a href="#t-filter-form" '
-                + 'onclick="query_fund_fun('+ num1 +')">...</a></li>'
-         }
-
-         if(page.number%10==0 && page.number == ele){
-             pagingContent += '<li class="active"><a>'+ ele +'</a></li>'
-         }else if(ele>Math.floor(page.number/10)*10 && ele<=(Math.floor(page.number/10)+1)*10){
-
-             if(ele == page.number){
-                 pagingContent += '<li class="active"><a>'+ ele +'</a></li>'
-             }else{
-                 pagingContent += '<li><a href="#t-filter-form" '
-                    + 'onclick="query_fund_fun('+ ele +')">'+ ele +'</a></li>'
-             }
-         }
-
-
-         if(Math.floor((page.number)/10)< Math.floor(page.page_count/10) &&
-             Math.ceil(page.number/10)==Math.ceil(ele/10) && ele%10==0 ){
-            var num2 = Math.ceil(page.number/10)*10+1
+         if(ele == page.number){
+             pagingContent += '<li class="active"><a href="#t-filter-form" '
+            + 'onclick="query_fund_fun('+ ele +')">'+ ele +'</a></li>'
+         }else{
              pagingContent += '<li><a href="#t-filter-form" '
-                + 'onclick="query_fund_fun('+ num2 +')">...</a></li>'
+            + 'onclick="query_fund_fun('+ ele +')">'+ ele +'</a></li>'
          }
+
 
 
      })
+
+     if(page.next_range_num){
+         pagingContent += "<li><a href='#t-filter-form'  aria-label='Previous' "
+             + "onclick='query_fund_fun(" + page.next_range_num + ")' "
+             + "<span aria-hidden='true'>..</span></a></li>"
+     }
+
      if(page.next_num){
          pagingContent += "<li><a href='#t-filter-form'  aria-label='Previous' "
              + "onclick='query_fund_fun(" + page.next_num + ")' "
@@ -127,21 +122,60 @@ function create_pagination(page){
     $("#fund_pagination").html(pagingContent);
 }
 
-function aliPayment(self){
-    var parent = $(self).parent().parent();
-    var amount = parseInt(parseFloat(parent.children('.price').text()*100));
-    var fund_code = self.innerText
 
-    var post_data = {"fund_code":fund_code,"amount":amount};
+
+
+function buy_fund(self){
+    $.confirm({
+        title: '确认',
+        content: '确认购买基金吗？',
+        type: 'red',
+        icon: 'glyphicon glyphicon-question-sign',
+        buttons: {
+            ok: {
+                text: '确认',
+                btnClass: 'btn-primary',
+                action: function() {
+                    aliPayment(self)
+                }
+            },
+            cancel: {
+                text: '取消',
+                btnClass: 'btn-primary'
+            }
+        }
+    });
+}
+
+function aliPayment(self){
+
+    var parent = $(self).parent().parent();
+    var price = parseFloat(parent.children('.price').text());
+        // 测试功能暂定数量为100
+    var count =  100;
+    var amount = parseInt(price*count);
+    var fund_code = self.innerText;
+    // var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+    // console.log(csrf)
+    var post_data = {"fund_code":fund_code,"price":price,"count":count,
+        "amount":amount};
 
     $.ajax({
-        url:"http://127.0.0.1:8000/payment/jump/",
+        url:"/payment/jump/",
         type:"post",
-        contentType:"application/json",
+        dataType:"json",
+        headers: {
+            "X-CSRFToken": getCsrfFromCookie("csrftoken")
+        },
+        // contentType:"application/json",
         data:JSON.stringify(post_data),
         success:function(data){
-            window.location = data.pay_url;
+            if(data.code==200)
+                window.location = data.pay_url;
+            else
+                alert(data.msg)
         }
     })
 
 }
+

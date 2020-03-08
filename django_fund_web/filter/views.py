@@ -1,4 +1,5 @@
 import json
+import math
 
 from django.core import serializers
 from django.core.paginator import Paginator
@@ -9,6 +10,7 @@ from django.shortcuts import render
 
 from filter.mappers import Fund_filter_mapper, Fund_company_mapper
 from filter.models import Fund_type, Fund_company
+from tools.contants import DEFAULT_MAX_PAGE
 from tools.logging_check import logging_check
 
 
@@ -35,41 +37,61 @@ def query_fund(request):
     f_type = request.POST.getlist("f_type")
     fund_name = request.POST.get("fund_name")
     company_id = request.POST.get("company_id")
+    cur_page = request.POST.get("ser_num", 1)
     # 处理筛选器参数
     is_oc = is_oc[0] if len(is_oc) == 1 else None
     five_year_level = five_grade[0] if len(five_grade) == 1 else None
     three_year_level = three_grade[0] if len(three_grade) == 1 else None
 
-    list_fund = Fund_filter_mapper.query_page(five_year_level=five_year_level,
+    list_fund = Fund_filter_mapper.query_list(five_year_level=five_year_level,
                                               three_year_level=three_year_level,
                                               is_oc=is_oc,
                                               is_eq=is_eq,
                                               f_type=f_type,
                                               f_name=fund_name,
-                                              company_id=company_id
+                                              company_id=company_id)
                                               # ,page=ser_num
-                                              )
-    page_size = 25
-    pagination = Paginator(list_fund, page_size)
+    re_data = get_pagination(list_fund,cur_page)
+    re_json = {"code":1,"data":re_data}
+    return JsonResponse(re_json,safe=False)
 
-    cur_page = request.POST.get("ser_num",1)
-    page = pagination.page(cur_page)
-
-    paging= {}
+def get_pagination(list_data,pageNum,pageSize=25):
+    """
+    自定义分页页码对象
+    :param list_data:   数据列表
+    :param pageNum:     页数
+    :param pageSize:    每页显示最大数量
+    :return:        (pages,data)
+    """
+    pagination = Paginator(list_data, pageSize)
+    page = pagination.page(pageNum)
+    paging = {}
     paging['next_num'] = page.next_page_number() if page.has_next() else 0
     paging['prev_num'] = page.previous_page_number() if page.has_previous() else 0
     paging['number'] = page.number
     paging['page_size'] = pagination.per_page
-
-    paging['page_range'] = tuple(pagination.page_range)
+    # 需要把pages对象转为列表
+    rows = list(pagination.page_range)
+    index = 0
+    while rows:
+        index += 1
+        row = rows[:DEFAULT_MAX_PAGE]
+        if page.number in row:
+            paging['page_range'] = row
+            break;
+        rows = rows[DEFAULT_MAX_PAGE:]
+    else:
+        paging['page_range'] = None
     paging['page_count'] = pagination.num_pages
-
-    re_data=[paging, page.object_list]
-
-    # json_data = serializers.serialize("json",re_dict,ensure_ascii=False)
-    re_json = {"code":1,"data":re_data}
-
-    return JsonResponse(re_json,safe=False)
+    length = math.ceil(pagination.num_pages / DEFAULT_MAX_PAGE)
+    if index == 1:
+        paging['next_range_num'] = index * DEFAULT_MAX_PAGE + 1
+    elif index == length:
+        paging['prev_range_num'] = (index - 1) * DEFAULT_MAX_PAGE
+    else:
+        paging['next_range_num'] = index * DEFAULT_MAX_PAGE + 1
+        paging['prev_range_num'] = (index - 1) * DEFAULT_MAX_PAGE
+    return paging,page.object_list
 
 def query_company(request):
     """

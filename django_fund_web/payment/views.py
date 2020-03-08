@@ -4,6 +4,8 @@ from alipay import AliPay
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+
+from payment.models import Fund_payment_model
 from tools.utils import Utils
 
 # Create your views here.
@@ -68,11 +70,34 @@ class OrderProcessingView(MyAliPay):
     def post(self, request):
         #获取支付地址
         json_obj = json.loads(request.body)
+        price = json_obj.get('price')
+        count = json_obj.get('count')
         amount = json_obj.get('amount')
-        # fund_id = json_obj.get('fund_id')
-        order_id = Utils.get_sync("ali_pay")
-        return JsonResponse({'code':200, 'pay_url':self.get_trade_url(order_id, int(amount))})
+        fund_code = json_obj.get('fund_code')
+        order_code = Utils.get_sync("ali_pay")
+        if "uid" in request.session:
+            uid = request.session['uid']
+            Fund_payment_model.objects.create(order_code=order_code,fund_code=fund_code,
+                          price=price,total=count,amount=amount,uid_id=uid)
+            return JsonResponse({'code':200, 'pay_url':self.get_trade_url(order_code, int(amount))})
+        else:
+            return JsonResponse({'code': 20101, 'msg':'请登录!'})
 
+class OrderCountinueView(MyAliPay):
+
+    def get(self, request):
+        return render(request, 'ajax_alipay.html')
+
+    def post(self, request):
+        #获取支付地址
+        json_obj = json.loads(request.body)
+        amount = json_obj.get('amount')
+        order_code = json_obj.get('order_code')
+        if "uid" in request.session:
+            uid = request.session['uid']
+            return JsonResponse({'code':200, 'pay_url':self.get_trade_url(order_code, int(amount))})
+        else:
+            return JsonResponse({'code': 20101, 'msg':'请登录!'})
 
 
 
@@ -82,12 +107,11 @@ class OrderResultView(MyAliPay):
     def get(self, request):
         #{'a':['1','2']}
         request_data = {k:request.GET[k] for k in request.GET.keys()}
-        print("*" * 45)
-        print(request_data)
-        print("*" * 45)
 
+        print(request_data)
         #sign
         sign = request_data.pop('sign')
+        # 确认是否是支付宝发过来的
         is_verify = self.get_verify_result(request_data, sign)
         if is_verify:
             #证明的确是支付宝发过来的
@@ -95,9 +119,15 @@ class OrderResultView(MyAliPay):
             #主动查询
             result = self.get_trade_result(order_id)
             if result:
+                # 确认支付成功后的处理
+                fund_order = Fund_payment_model.objects.filter(order_code=order_id)
+                if fund_order:
+                    fo = fund_order[0]
+                    fo.status = 2
+                    fo.save()
                 return redirect("/user/personal")
             else:
                 return HttpResponse("支付失败")
         else:
-            return redirect("/user/personal")
+            return HttpResponse("支付异常")
             # return HttpResponse("系统异常")

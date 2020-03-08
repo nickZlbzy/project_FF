@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django_redis import get_redis_connection
 
-from tools import contants
+from tools import contants, pro_dict
 from tools.logging_check import logging_check
 from tools.sms_code import Sms_verify
 from tools.utils import Utils
@@ -183,7 +183,15 @@ def mobile_verify(request):
 
 def personal_center(request):
     if request.method == "GET":
-        user = User_profile_model.objects.get(id=request.session['uid'])
+        try:
+            user = User_profile_model.objects.get(id=request.session['uid'])
+        except KeyError as e:
+            print(e)
+            return redirect('/user/login')
+        list_order = user.fund_payment_model_set.all()
+        for item in list_order:
+            sname = pro_dict.get_from_dict("pay_status",item.status)
+            item.status_name = sname if sname else ""
 
         return render(request,"user/personal.html",locals())
     elif request.method == "POST":

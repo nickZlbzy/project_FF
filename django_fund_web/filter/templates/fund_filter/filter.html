@@ -7,16 +7,22 @@
 <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-select.min.css">
 <script src="/static/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="/static/bootstrap-3.3.7-dist/js/defaults-zh_CN.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/static/css/html/filter/filter.css">
+
+
 <style type="text/css">
 </style>
 <script src="/static/js/html/filter/filter.js"></script>
 <script>
-    $(function(){
-        query_fund_fun()
-        $('#fund_query_btn').bind('click',query_fund_fun)
-        init_query_box()
-    })
+$(function(){
+    query_fund_fun()
+    $('#fund_query_btn').bind('click',query_fund_fun)
+    init_query_box()
+})
+
+
+
 
 
 </script>
@@ -89,65 +95,67 @@
     </div>
 </div>
 <div class="t-filter-list">
-            <div class="fund-list-bar">
-                <ul class="left-part">
-                    <li class="li-check">快照</li>
-                    <li onclick="alert('敬请期待!')" class="">业绩和风险</li>
-                    <li onclick="alert('敬请期待!')" class="">投资组合</li>
-                </ul>
-                <ul class="right-part">
-                    <li onclick="alert('敬请期待!')">加入观察</li>
-                    <li onclick="alert('敬请期待!')">取消观察</li>
-                    <li onclick="alert('敬请期待!')">组合透视</li>
-                    <li onclick="alert('敬请期待!')">基金对比</li>
-                </ul>
-                <div class="clear-box"></div>
-            </div>
-            <div class="fund-list-table">
-                <table class="list-table">
-                    <tr>
-                        <th style="width:3vw;"></th>
-                        <th>代码</th>
-                        <th style="width:12vw;">基金名称</th>
-                        <th style="width:10vw;">基金分类</th>
-                        <th>评级(三年)</th>
-                        <th>评级(五年)</th>
-                        <th style="width:7vw;">净值日期</th>
-                        <th>单位净值(元)</th>
-                        <th>日变动</th>
-                        <th style="width:6vw;">今年以来回报(%)</th>
-                    </tr>
-                    <tbody id="fund-tbody"></tbody>
+        <div class="fund-list-bar">
+            <ul class="left-part">
+                <li class="li-check">快照</li>
+                <li onclick="alert('敬请期待!')" class="">业绩和风险</li>
+                <li onclick="alert('敬请期待!')" class="">投资组合</li>
+            </ul>
+            <ul class="right-part">
+                <li onclick="alert('敬请期待!')">加入观察</li>
+                <li onclick="alert('敬请期待!')">取消观察</li>
+                <li onclick="alert('敬请期待!')">组合透视</li>
+                <li onclick="alert('敬请期待!')">基金对比</li>
+            </ul>
+            <div class="clear-box"></div>
+        </div>
+        <div class="fund-list-table">
+            {% csrf_token %}
+            <table class="list-table">
+                <tr>
+                    <th style="width:3vw;"></th>
+                    <th>代码</th>
+                    <th style="width:12vw;">基金名称</th>
+                    <th style="width:10vw;">基金分类</th>
+                    <th>评级(三年)</th>
+                    <th>评级(五年)</th>
+                    <th style="width:7vw;">净值日期</th>
+                    <th>单位净值(元)</th>
+                    <th>日变动</th>
+                    <th style="width:6vw;">今年以来回报(%)</th>
+                </tr>
+                <tbody id="fund-tbody"></tbody>
 
-                </table>
-            <div>
-                <nav class="page-nav" aria-label="Page navigation">
-                    <ul id="fund_pagination" class="pagination" class="table-page-nav">
+            </table>
+        <div>
+            <nav class="page-nav" aria-label="Page navigation">
+                <ul id="fund_pagination" class="pagination" class="table-page-nav">
 {#                            <li>#}
 {#                              <a href="#t-fund_filter-form" aria-label="Previous">#}
 {#                                <span aria-hidden="true">&laquo;</span>#}
 {#                              </a>#}
 {#                            </li>#}
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(1)">1</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(2)">2</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(3)">3</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(4)">4</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(5)">5</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(6)">6</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(7)">7</a></li>
-                    <li><a href="#t-filter-form" onclick="query_fund_fun(8)">8</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(1)">1</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(2)">2</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(3)">3</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(4)">4</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(5)">5</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(6)">6</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(7)">7</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(8)">8</a></li>
 {#                            <li>#}
 {#                              <a href="#t-fund_filter-form" aria-label="Next">#}
 {#                                <span aria-hidden="true">&raquo;</span>#}
 {#                              </a>#}
 {#                            </li>#}
-                  </ul>
+              </ul>
 
-                </nav>
-                <div class="clear-box"></div>
-            </div>
-
-            </div>
+            </nav>
+            <div class="clear-box"></div>
         </div>
+
+        </div>
+    </div>
+
 
 {% endblock %}

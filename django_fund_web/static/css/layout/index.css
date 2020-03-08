@@ -31,7 +31,6 @@ body{
     font-size:1.05vw;
     color:#333;
     font-family:"Oxygen","宋体", 'Times New Roman', Times, serif;
-
 }
 .page_main{
     /*border:1px solid goldenrod;*/
@@ -237,4 +236,7 @@ input[name="select_type"]{
     width:0;
     border:0.16vw solid transparent;
     border-top-color: #FFF;
+}
+.container-fluid{
+    padding: 0;
 }
