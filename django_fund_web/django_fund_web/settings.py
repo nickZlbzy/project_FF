@@ -112,6 +112,7 @@ LOGGING = {
     }
 }
 
+## celery占用了redis 10库
 CACHES = {
     "default":{
         "BACKEND":"django_redis.cache.RedisCache",
@@ -172,6 +173,18 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+
+# 发送邮件地址
+EMAIL_BACKED = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'nickZlbzy@qq.com'
+EMAIL_HOST_PASSWORD = 'ovvjhhcyyiptbhdf'
+EMAIL_USE_TLS = False #向服务器通信时，是否启动TLS连接（安全连接） 默认Flase 实际开发设置成True
+
 
 
 # Static files (CSS, JavaScript, Images)

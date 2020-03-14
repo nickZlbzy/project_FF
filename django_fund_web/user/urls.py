@@ -10,4 +10,5 @@ urlpatterns=[
     url(r'^mobile_verify$',views.mobile_verify),
     url(r'^personal$',views.personal_center),
     url(r'^evaluation$',views.envaluation),
+    url(r'^activation$',views.users_active),
 ]

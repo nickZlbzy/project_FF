@@ -15,7 +15,7 @@ class User_profile_model(BaseModel):
     ability = models.IntegerField("风险能力",default=0,blank=True)
     preference = models.IntegerField("风险偏好",default=0,blank=True)
     uid=models.CharField('第三方id',max_length=32,default="",blank=True)
-    is_active = models.BooleanField(default=0)
+    is_active = models.BooleanField(default=False)
 
     class Meta:
         db_table="user_profile"

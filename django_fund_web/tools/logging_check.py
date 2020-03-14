@@ -8,7 +8,7 @@ def logging_check(func):
     :return:
     """
     def wrapper(request,*args,**kwargs):
-        if "username" in request.session.keys() and "uid" in request.session.keys():
+        if "username" in request.session.keys() and "uid" in request.session.keys() :
             pass
         elif "username" in request.COOKIES and "uid" in request.COOKIES:
             request.session["username"] = request.COOKIES["username"]

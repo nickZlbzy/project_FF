@@ -7,7 +7,7 @@ from user.models import User_profile_model
 
 class userProfileManager(admin.ModelAdmin):
 
-    list_display = ['username','email','phone','nickname','age']
+    list_display = ['username','email','phone','nickname','age','is_active']
     # 列表页用于跳转详情的字段
     list_display_links = ['username']
     list_filter = ['gender']

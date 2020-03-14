@@ -1,10 +1,13 @@
+import base64
 import hashlib
+import random
 
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-
+from .task import send_active_mail
 
 from django.urls import reverse
+
 from django_redis import get_redis_connection
 
 from tools import contants, pro_dict
@@ -53,11 +56,58 @@ def register(request):
             re_data = {"code": 10107, "msg": "系统异常!"}
             render(request, "user/register.html", locals())
 
+        # TODO 发送激活邮件
+        random_num = str(int((random.uniform(0,1)*9+1)*1000))
+        code_str = username + '_' + random_num
+        code_str_bs = base64.urlsafe_b64encode(code_str.encode())
+        # 将随机码存储到redis里。 可以存储1-3天
+        r.set('email_active:%s' % username, random_num)
+        active_url = "http://127.0.0.1:8000/user/activation?code=%s" % (code_str_bs.decode())
+        # 发邮件
+        send_active_mail.delay(email, active_url)
+
         request.session["username"] = username
         request.session["uid"] = user.id
     # 重定向到首页（可到个人中心页面提示邮箱验证）
     return redirect("/index")
     # return redirect(reverse('index.views.index_page', args=[]))
+
+def users_active(request):
+    """
+    处理激活邮件
+    :param request:
+    :return:
+    """
+    if request.method != "GET":
+        result = {'code':10114,'error':"Please use get"}
+    code = request.GET.get('code')
+    if not code:
+        return HttpResponse(result['error'])
+    code_str = base64.urlsafe_b64decode(code.encode())
+    new_code_str = code_str.decode()
+    username,rcode = new_code_str.split('_')
+    print('username:',username)
+    old_data =  r.get('email_active:%s'%username)
+    if not old_data:
+        result = {'code':10115,'error':'Your code is wrong !'}
+        return HttpResponse(result['error'])
+    if rcode != old_data.decode():
+        result = {'code': 10116, 'error': 'Your code is wrong !!'}
+        return HttpResponse(result['error'])
+    try:
+        user = User_profile_model.objects.get(username=username)
+    except Exception:
+        result = {'code': 10117, 'error': '用户不存在 !!'}
+        return HttpResponse(result['error'])
+    user.is_active = True
+    user.save()
+    r.delete('email_active_%s' % username)
+
+    result = {'code': 200, 'msg': "邮箱激活成功！"}
+    return HttpResponse(result['msg'])
+
+
+
 
 def check_reg_info(request):
     """
@@ -113,6 +163,7 @@ def login(request):
 
         request.session["uid"] = user.id
         request.session["username"] = username
+        request.session["is_active"] = user.is_active
         nickname = user.nickname
         if nickname:
             request.session["nickname"] = nickname
@@ -126,6 +177,7 @@ def login(request):
         if 'isSave' in request.POST.keys():
             resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
             resp.set_cookie("username",username,contants.COOKIES_KEEP_TIME)
+            resp.set_cookie("is_active", user.is_active, contants.COOKIES_KEEP_TIME)
             resp.set_cookie("nickname",nickname,contants.COOKIES_KEEP_TIME)
         return resp
 
