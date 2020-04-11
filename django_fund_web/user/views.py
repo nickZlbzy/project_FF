@@ -4,7 +4,7 @@ import random
 
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-from .task import send_active_mail
+from .task import send_active_mail, send_short_verify
 
 from django.urls import reverse
 
@@ -201,16 +201,15 @@ def mobile_verify(request):
     if request.method == "GET":
         mobile = request.GET.get("phone")
         if mobile:
-            code = Sms_verify.send(mobile)
+            code = send_short_verify.delay(mobile)
             if code:
+                print(code)
                 key = 'sms:%s'%mobile
                 code_m = Utils.make_md5s(code)
-
                 r.set(key,code_m)
                 r.expire(key, contants.MOBILE_KEEP_TIME)
                 print("本次验证码:",code)
                 return JsonResponse({"code":200,"msg":"发送成功！"})
-            
             return JsonResponse({"code": 10109, "msg": "发送失败！"})
     elif request.method == "POST":
         phone = request.POST.get('phone')

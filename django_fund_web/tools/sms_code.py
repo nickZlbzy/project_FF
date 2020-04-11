@@ -7,20 +7,21 @@ import urllib
 
 
 
-host = "106.ihuyi.com"
-sms_send_uri = "/webservice/sms.php?method=Submit"
+
 
 class Sms_verify:
+    host = "106.ihuyi.com"
+    sms_send_uri = "/webservice/sms.php?method=Submit"
     @staticmethod
-    def send(phone_num):
+    def send(cls,phone_num):
         headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
         verify_code = str(int((random.uniform(0,1)*9+1)*100000))
 
         # 短信验证功能，现在剩余一条了，下面return verify_code语句，会直接输出打印验证码
-        return verify_code
+
 
         content = "您的验证码是：{}。请不要把验证码泄露给其他人。".format(verify_code)
-        conn = http.client.HTTPConnection(host, port=80, timeout=30)
+        conn = http.client.HTTPConnection(cls.host, port=80, timeout=30)
 
         data = {}
         data['account'] = 'C53200230'
@@ -33,7 +34,7 @@ class Sms_verify:
         #      'password':'4c0857b9af197a8243c04bccfd2da77f','mobile':phone_num,
         #          'content':content,'format':'json'})
 
-        conn.request("POST", sms_send_uri, params, headers)
+        conn.request("POST", cls.sms_send_uri, params, headers)
         response = conn.getresponse()
         response_str = response.read()
         conn.close()
