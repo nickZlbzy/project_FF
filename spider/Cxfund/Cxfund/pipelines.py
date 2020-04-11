@@ -8,5 +8,5 @@
 
 class CxfundPipeline(object):
     def process_item(self, item, spider):
-        print(item['title'], item['parent_id'], item['lid'])
+        print(item['title'], item['lid'])
         return item

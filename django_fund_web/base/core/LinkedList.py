@@ -5,7 +5,7 @@ class Node:
         self.value = value
         self.next = None
 
-class SingleLinkList:
+class linkedList:
     """单链表类"""
     def __init__(self,obj=None):
         self.head = None
@@ -99,10 +99,7 @@ class SingleLinkList:
             else:
                 if current.value == value:
                     return index
-
         return None
-
-
 
     def remove(self,value,count=1):
         """
@@ -137,5 +134,4 @@ class SingleLinkList:
             raise StopIteration
 
     def __str__(self):
-
         self.travel()

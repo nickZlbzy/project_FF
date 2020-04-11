@@ -13,8 +13,8 @@ class CxfundLevelItem(scrapy.Item):
     lid = scrapy.Field()
     title = scrapy.Field()
     url = scrapy.Field()
-    kind = scrapy.Field()
-    module = scrapy.Field()
+    # kind = scrapy.Field()
+    # module = scrapy.Field()
     parent_id = scrapy.Field()
 
 class CxfundContentItem(scrapy.Item):
