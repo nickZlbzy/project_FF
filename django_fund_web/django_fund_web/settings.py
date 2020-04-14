@@ -135,6 +135,13 @@ CACHES = {
             "CLIENT_CLASS":"django_redis.client.DefaultClient"
         }
     },
+    "likes":{
+        "BACKEND":"django_redis.cache.RedisCache",
+        "LOCATION":"redis://127.0.0.1:6379/13",
+        "OPTIONS":{
+            "CLIENT_CLASS":"django_redis.client.DefaultClient"
+        }
+    },
 }
 
 # 定义一个cache(本地缓存来存储信息,cahe指定的是redis

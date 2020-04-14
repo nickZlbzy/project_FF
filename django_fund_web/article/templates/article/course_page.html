@@ -2,85 +2,8 @@
 
 {#头部css,js部分#}
 {% block head_range %}
-{#<link rel="stylesheet" type="text/css" href="/static/css/html/main_article/article_index.css">#}
+<link rel="stylesheet" type="text/css" href="/static/css/html/main_article/course_page.css">
 <style type="text/css">
-/* info文章部分 */
-.first-row{
-    position: relative;
-}
-.first-row  small{
-    position: absolute;
-    right:0;
-    bottom:0;
-    cursor: pointer;
-}
-#order-btn{
-   background-color: orange;
-   color:white;
-    width:100%;
-    font-size:20px;
-    height:32px;
-    border:0;
-    outline: none;
-}
-#order-btn:hover{
-   opacity: 0.85;
-}
-.main-upline{
-    width:100%;
-    border-top:0.4vw solid #BBB;
-}
-.left_bar_range{
-    margin-top:10px;
-}
-.left_bar_range ul li{
-    {#list-style: none;#}
-    padding:3px 0 ;
-    border-bottom:1px solid #aaa ;
-    cursor: pointer;
-}
-.left_bar_range ul li:hover,.right-bar-range li:hover,.next_bar a:hover{
-    color:#ba2636;
-    text-decoration: underline;
-}
-
-#left-title{
-    margin: 12px 0 0 -15px;
-    font-size:13px;
-}
-.right-cate{
-    margin-bottom: 5vw;
-}
-.right_bar_title{
-    padding:5px 0;
-    border-bottom:1px solid #aaa ;
-}
-.right-bar-range li{
-    list-style: none;
-    margin: 0 0 4px 8px;
-    cursor: pointer;
-}
-
-.middle-range{
-    margin:20px 0;
-}
-.mid-content{
-    padding:8px;
-    border-bottom: 0.5px solid #ddd;
-    border-top: 0.5px solid #ddd;
-}
-.next_bar{
-     padding:8px;
-}
-.next_bar a{
-    color:#333333;
-}
-.present_title{
-    color:#007bff;
-    cursor:default;
-}
-
-
 </style>
 <script type="text/javascript">
 $(function(){
@@ -122,9 +45,11 @@ $(function(){
                     {{ info.content }}
                 {% endautoescape %}
             </div>
-            <div class="next_bar">
-                <a href="{{ info.next_url }}">下一节：{{ info.next }} &raquo;</a>
-            </div>
+            {% if info.next %}
+                <div class="next_bar">
+                    <a href="{{ info.next_url }}">下一节：{{ info.next }} &raquo;</a>
+                </div>
+            {% endif %}
 
         </div>
 
@@ -158,7 +83,7 @@ $(function(){
 
         </div>
     </div>
-
-
-
+</div>
 {% endblock %}
+
+

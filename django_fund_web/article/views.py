@@ -4,8 +4,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from article.mappers import Article_mapper
-from tools.logging_check import logging_check
+from django_redis import get_redis_connection
 
+r = get_redis_connection('likes')
 
 
 def article_course_info(request,level,artid):
@@ -31,16 +32,6 @@ def article_course_info(request,level,artid):
 
         return render(request,"article/course_page.html",re_dict)
 
-# def article_course_info(request,level,art_id):
-#     """
-#         投资学堂， 跳转文章
-#         :param request:
-#         :return:
-#         """
-#     if request.method == "GET":
-#
-#
-#         return render(request, "article/course_page.html")
 
 def do_article_info(request,type,artid):
     """
@@ -89,3 +80,6 @@ def publish_comment(request):
 
     return HttpResponse("")
 
+def press_support(request):
+    user_id = request.session["uid"]
+    article_id = request.GET.get('article_id')

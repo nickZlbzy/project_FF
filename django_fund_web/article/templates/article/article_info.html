@@ -5,6 +5,10 @@
 
 <link rel="stylesheet" type="text/css" href="/static/css/html/main_article/article_info.css">
 <style type="text/css">
+.comment-supports-total span{
+    margin: 5px 0 10px 15px;
+    cursor:pointer;
+}
 </style>
 <script type="text/javascript">
     $(function(){
@@ -22,6 +26,10 @@
             articleWord.classList.remove("text-dis-normal");
             articleWord.classList.add("text-dis-big") ;
         })
+    }
+
+    function press_support(artid){
+        console.log(artid)
     }
 </script>
 {% endblock %}
@@ -57,6 +65,11 @@
 
 
                 <div class="comment-range">
+                    <div class="comment-supports-total">
+                        <span class="glyphicon glyphicon-comment"><small> 1</small></span>
+                        <span class="glyphicon glyphicon-thumbs-up" onclick="press_support({{ article_info.article_id }})"><small> 1</small></span>
+
+                    </div>
                     <div class="main-upline"></div>
                     <h4>有疑问 找专家</h4>
                     <div class="comment-form">
@@ -64,7 +77,7 @@
                             <form action="/user/sendComment" method="post">
                                 <textarea class="form-control" name="content" id="content"></textarea>
                                 <input id="submit-comment" type="submit"
-                                       class="btn btn-primary pull-right"> 提 问 </input>
+                                       class="btn btn-primary pull-right" value="提 问 ">
                             </form>
 
                             <div class="clear-box"></div>
@@ -93,9 +106,9 @@
 {#                                &copy; 2019 <a href="#">Franckisses</a> &nbsp;/&nbsp;#}
 {#                                <a href="#">Hello RxCHINA</a>#}
 {#                            </small>#}
-                        <p>
-                            <a href="#">&uarr;</a>
-                        </p>
+                    <p>
+                        <a href="#">&uarr;</a>
+                    </p>
                 </div>
                 </div>
 

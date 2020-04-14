@@ -12,7 +12,7 @@ from django_redis import get_redis_connection
 
 from tools import contants, pro_dict
 from tools.logging_check import logging_check
-from tools.sms_code import Sms_verify
+
 from tools.utils import Utils
 from user.mappers import User_mapper
 from user.models import User_profile_model

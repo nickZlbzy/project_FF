@@ -73,7 +73,31 @@ class Article_mapper:
             for item in l_data:
                 Article_mapper.create_child(dic_son, item, l_data)
 
+    @staticmethod
+    def query_article_list2(type,module=None):
+        if module:
+            re = Article_level_model.objects.filter(module=module, kind=type)
+        else:
+            re = Article_level_model.objects.filter(kind=type)
 
+        # 为提升性能转化为链表
+        list_re = linkedList(tuple(re))
+        re_dic = {}
+        for item in list_re:
+            if item.parent_id == "0":
+                # print(list_re.length())
+                dic = {}
+                dic["lid"] = item.lid
+                dic["title"] = item.title
+                dic["url"] = item.url
+
+                dic["parent_id"] = item.parent_id
+                list_re.remove(item)
+                for item2 in list_re:
+                    Article_mapper.create_cls_child(dic, item2, list_re)
+                re_dic[item.lid] = dic
+
+        return re_dic
 
     @staticmethod
     def query_cls_all(level_id=None):
@@ -100,7 +124,6 @@ class Article_mapper:
                     Article_mapper.create_cls_child(dic, item2, list_re)
                 re_dic[item.lid] = dic
 
-        re_dic = re_dic if re_dic else ""
         return re_dic,re_list
 
     @staticmethod
