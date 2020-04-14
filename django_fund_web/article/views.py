@@ -8,15 +8,39 @@ from tools.logging_check import logging_check
 
 
 
-def article_course_page(request):
+def article_course_info(request,level,artid):
     """
     投资学堂， test
     :param request:
     :return:
     """
     if request.method == "GET":
-        return render(request,"article/article_index.html")
+        level = None if level == 'index' else level
+        data = Article_mapper.query_cls_all(level)
+        info = ""
+        if artid != "0":
+            for item in data[1]:
+                if item.article_id == artid:
+                    info = item
+                    break
+        else:
+            info = data[1][0]
 
+        re_dict = {'right_titles':data[0],'left_titles':data[1],'info':info,
+                   'level':level,'artid':artid}
+
+        return render(request,"article/course_page.html",re_dict)
+
+# def article_course_info(request,level,art_id):
+#     """
+#         投资学堂， 跳转文章
+#         :param request:
+#         :return:
+#         """
+#     if request.method == "GET":
+#
+#
+#         return render(request, "article/course_page.html")
 
 def do_article_info(request,type,artid):
     """
@@ -26,7 +50,7 @@ def do_article_info(request,type,artid):
     :param artid:
     :return:
     """
-    article_info = Article_mapper.query_by_artId(artid)
+    article_info = Article_mapper.select_by_artId(artid)
     type_name = Article_mapper.get_title_by_type(article_info.get("article_type"))
     return render(request,"article/article_info.html",locals())
 
@@ -39,6 +63,7 @@ def query_title_parent(request,type):
    :param artid:
    :return:
    """
+    print('222')
     type = "survey" if type == "art_page" else type
     re_dict = {}
     re_dict['parent_title'] = Article_mapper.query_article_parent()

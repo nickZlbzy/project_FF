@@ -1,0 +1,500 @@
+   14  python3 demo10_loadtxt.py 
+   15  python3 demo10_loadtxt.py 
+   16  python3 demo10_loadtxt.py 
+   17  python3 demo10_loadtxt.py 
+   18  python3 demo10_loadtxt.py 
+   19  python3 demo10_loadtxt.py 
+   20  python3 demo10_loadtxt.py 
+   21  python3 demo10_loadtxt.py 
+   22  python3 demo10_loadtxt.py 
+   23  python3 demo10_loadtxt.py 
+   24  python3 demo10_loadtxt.py 
+   25  python3 demo09_animation.py 
+   26  cd python/nick/month05/day04
+   27  python3 demo08_ma.py 
+   28  python3 demo08_ma.py 
+   29  python3 demo08_ma.py 
+   30  python3 demo08_ma.py 
+   31  python3 demo08_ma.py 
+   32  python3 demo08_ma.py 
+   33  python3 demo08_ma.py 
+   34  python3 demo08_ma.py 
+   35  python3 demo08_ma.py 
+   36  python3 demo08_ma.py 
+   37  python3 demo08_ma.py 
+   38  python3 demo08_ma.py 
+   39  python3 demo08_ma.py 
+   40  mysql -uroot -p
+   41  python3 manage.py runserver
+   42  cd
+   43  cd PycharmProjects/
+   44  ls
+   45  cd fProject/
+   46  cd django_fund_web/
+   47  python3 manage.py runserver
+   48  python3 manage.py runserver
+   49  redis-cli
+   50  cd python/
+   51  ls
+   52  cd nick
+   53  ls
+   54  cd month05
+   55  cd day05
+   56  python3 demo03_pred.py 
+   57  python3 demo04_tred.py 
+   58  python3 demo04_tred.py 
+   59  python3 demo05_poly.py 
+   60  python3 demo05_poly.py 
+   61  python3 demo06_polyfit.py 
+   62  python3 demo06_polyfit.py 
+   63  python3 demo07_smooth.py 
+   64  python3 demo07_smooth.py 
+   65  python3 demo07_smooth.py 
+   66  python3 demo07_smooth.py 
+   67  python3 demo07_smooth.py 
+   68  python3 demo07_smooth.py 
+   69  python3 demo07_smooth.py 
+   70  python3 demo07_smooth.py 
+   71  python3 demo07_smooth.py 
+   72  python3 demo07_smooth.py 
+   73  python3 demo07_smooth.py 
+   74  cd python/nick/month03_2/project_b2c/
+   75  ipython3
+   76  ipython3
+   77  cd
+   78  cd python/nick/month03_2
+   79  cd project_b2c/
+   80  celery -A tasks worker --loglevel=info
+   81  celery -A tasks_result worker --loglevel=info
+   82  celery -A tasks worker --loglevel=info
+   83  from tasks import task_test
+   84  celery -A tasks_result worker --loglevel=info
+   85  cd python/nick/month03_2/project_b2c/
+   86  celery -A tasks_result worker --loglevel=info
+   87  ipython3
+   88  redis-cli
+   89  cd PycharmProjects/
+   90  ls
+   91  cd fProject/
+   92  cd django_fund_web/
+   93  python3 manage.py runserver
+   94  cd PycharmProjects/
+   95  ls
+   96  cd fProject/
+   97  ls
+   98  cd django_fund_web/
+   99  ls
+  100  celery -A django_fund_web worker -l info
+  101  python3 manage.py startapp comment
+  102  python3 manage.py startapp bbs
+  103  mysql 
+  104  celery -A django_fund_web worker -l info
+  105  python3 manage.py runserver
+  106  pip3 install jupyter -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  107  cd python/
+  108  ls
+  109  cd nick
+  110  ls
+  111  cd month05
+  112  ls
+  113  cd day08
+  114  jupyter notebook
+  115  jupyter notebook
+  116  pip3 install jupyter -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  117  jupyter notebook
+  118  jupyter notebook
+  119  jupyter notebook
+  120  jupyter notebook
+  121  jupyter notebook
+  122  pip3 install tushare
+  123  pip3 install tushare -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  124  pip3 install tushare -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  125  cd python/
+  126  cd nick/
+  127  ls
+  128  cd month04
+  129  ls
+  130  scray startproject Cxfund
+  131  scrapy startproject Cxfund
+  132  ls
+  133  cd Cxfund/
+  134  scrapy genspider course cn.morningstar.com/
+  135  mysql -uroot -p
+  136  ls
+  137  jupyter notebook
+  138  redis-cli
+  139  jupyter notebook
+  140  jupyter notebook
+  141  cd ..
+  142  ls
+  143  cd day09
+  144  ls
+  145  4_使用python对北京主城区二手房进行数据分析;
+  146  mv 4_使用python对北京主城区二手房进行数据分析与可视化实验/ thh
+  147  ls
+  148  mv 用户流失预测 loss
+  149  jutynote notebook
+  150  jutybook notebook
+  151  jupyter notebook
+  152  python3 manage.py makemigrations
+  153  pip3 install sklearn -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  154  python3 manage.py makemigrations
+  155  python3 manage.py migrate
+  156  python3 manage.py runserver
+  157  python3 manage.py runserver 0.0.0.0:8004
+  158  ipython
+  159  jupyter notebook
+  160  jupyter notebook
+  161  jupyter notebook
+  162  jupyter notebook
+  163  python3 demo06_fft.py 
+  164  ls
+  165  cd ..
+  166  cd day10
+  167  ls
+  168  python3 demo07_.py 
+  169  cd python/
+  170  ls
+  171  cd
+  172  ls
+  173  cd Downloads/
+  174  ls
+  175  cd movie_rec/
+  176  ls
+  177  cd movie_rec
+  178  ls
+  179  python3 manage.py runserver 0.0.0.0:8000
+  180  python3 manage.py runserver 0.0.0.0:8080
+  181  ipython
+  182  sudo service nginx start
+  183  sudo sudo /etc/init.d/nginx start
+  184   sudo /etc/init.d/nginx start
+  185   sudo usr/local/etc/init.d/nginx start
+  186  /usr/local/etc/nginx/nginx.conf
+  187  sudo /usr/local/etc/nginx/nginx.conf
+  188  sudo /usr/local/etc/nginx/nginx.conf
+  189  ps aux|grep 'nginx'
+  190  sudo /usr/local/etc/nginx/nginx.conf
+  191  ls
+  192  sudo /usr/local/etc/nginx/nginx.conf
+  193  cd /usr/local/Cellar/nginx/
+  194  ls
+  195  cd 1.17.7/
+  196  ls
+  197  cd bin
+  198  ls
+  199  nginx
+  200  sudo nginx
+  201  ps aux|grep 'nginx'
+  202  pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  203  pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  204  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  205  pip3 install ALTK -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  206  pip3 install nltk -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  207  ls
+  208  python3 manage.py runserver 0.0.0.0:8888
+  209  python3 manage.py runserver 0.0.0.0:8080
+  210  python3 manage.py runserver 0.0.0.0:8000
+  211  redis-cli
+  212  ls
+  213  python3 manage.py demo03_.py 
+  214  python3 demo03_.py 
+  215  python3 demo03_.py 
+  216  cd /Users/nick/nltk_data
+  217  cd
+  218  cd python/nick/
+  219  ls
+  220  cd month05
+  221  ls
+  222  cd day15
+  223  ls
+  224  python3 demo02_tk.py 
+  225  ipython3
+  226  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 -m pip install -U pylint --user
+  227  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 -m pip install -U pylint --user
+  228  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo03_pred.py
+  229  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo02_boll.py
+  230  cd day05
+  231  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo02_boll.py/Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo02_boll.py
+  232  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo02_boll.py
+  233  pip3 install pylint -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  234  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo05_grid.py
+  235  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo06_locator.py
+  236  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo07_fill.py
+  237  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo07_fill.py
+  238  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo08_scatter.py
+  239  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo01_bar.py
+  240  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo02_hist.py
+  241  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo04_contuor.py
+  242  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo04_contuor.py
+  243  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo05_imshow_hot.py
+  244  cd day03
+  245  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo05_imshow_hot.py
+  246  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo06_scatter.py
+  247  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo07_3dsurface.py
+  248  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo08_wireframe.py
+  249  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo09_animation.py
+  250  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo10_loadtxt.py
+  251  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo01_bar.py
+  252  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo02_hist.py
+  253  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day03/demo05_imshow_hot.py
+  254  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day02/demo02_olot.py
+  255  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo06_polyfit.py
+  256  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day04/demo01_K.py
+  257  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day04/demo07_2cov.py
+  258  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day04/demo07_cov.py
+  259  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day04/demo06_agg.py
+  260  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day04/demo08_ma.py
+  261  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo01_convolve.py
+  262  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day05/demo02_boll.py
+  263  ipython
+  264  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day15/demo03_bow.py
+  265  import nltk;
+  266  import nltk;
+  267  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day13/demo05_car.py
+  268  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day13/demo05_car.py
+  269  cd day15
+  270  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day13/demo05_car.py
+  271  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day13/demo05_car.py
+  272  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day13/demo05_car.py
+  273  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  274  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  275  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  276  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  277  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  278  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo02_20news.py
+  279  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo07_opencv.py
+  280  /Library/Frameworks/Python.framework/Versions/3.6/bin/python3 /Users/nick/python/nick/month05/day16/demo07_opencv.py
+  281  ipython3
+  282  ipython3
+  283  pip3 opencv_python
+  284  pip3 search opencv_python
+  285  pip3 search opencv_python -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  286  pip3 search opencv_python
+  287  pip3 instal opencv-contrip-python==3.4.2.16 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  288  pip3 install opencv-contrip-python==3.4.2.16 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  289  pip3 install opencv-contrib-python==3.4.2.16 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  290  pip3 unintall opencv-python
+  291  pip3 unstall opencv-python
+  292  pip3 uninstall opencv-python
+  293  pip3 install opencv-python==3.4.2.16 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  294  pip3 list
+  295  pip3 uninstall opencv-python
+  296  pip3 search opencv_python -i https://pypi.tuna.tsinghua.ed
+  297  history > 123.txt
+  298  pip3 install opencv-python==4.0.0.21 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  299  pip3 uninstall opencv-python
+  300  pip3 install opencv-python-4.0.0.21 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  301  pip3 install opencv-python==4.0.0.21 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  302  pip3 uninstall opencv-contrib-python
+  303  pip3 install opencv-python
+  304  pip3 install opencv-contrib-python==4.0.0.21 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  305  pip3 uninstall opencv-contrib-python
+  306  pip3 install opencv-contrib-python==3.4.2.16 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  307  sudo chmod a-r /Library/CoreMediaIO/Plug-Ins/DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  308  sudo chmod a-r /Library/CoreMediaIO/Plug-Ins/DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  309  sudo chmod a-r /Library/CoreMediaIO/Plug-Ins/FCP-DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  310  sudo chmod a+r /Library/CoreMediaIO/Plug-Ins/DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  311  sudo chmod a+r /Library/CoreMediaIO/Plug-Ins/FCP-DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  312  作者：luckycoder
+  313  链接：https://www.jianshu.com/p/5c2a38970ec7
+  314  来源：简书
+  315  著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+  316  python3 demo06_capture.py 
+  317  python3 demo06_capture.py \
+  318  python3 demo06_capture.py
+  319  python3 demo06_capture.py
+  320  python3 demo06_capture.py
+  321  redis-xli
+  322  redis-cli
+  323  python3 demo06_capture.py
+  324  python3 demo06_capture.py
+  325  python3 demo06_capture.py
+  326  python3 demo06_capture.py
+  327  python3 demo06_capture.py
+  328  python3 demo06_capture.py
+  329  python3 demo06_capture.py
+  330  python3 demo06_capture.py
+  331  redis-cli
+  332  python3 demo06_capture.py
+  333  python3 demo06_capture.py
+  334  mysql -uroot -p 
+  335  python3 demo06_capture.py
+  336  mysql -uroot -p123456
+  337  python3 demo06_capture.py
+  338  python3 demo06_capture.py
+  339  python3 demo06_capture.py
+  340  which mysql
+  341  more log.txt 
+  342  less log.txt 
+  343  more log.txt 
+  344  redis-cli
+  345  python3 demo06_capture.py
+  346  python3 demo06_capture.py
+  347  redis-cli
+  348  ipython
+  349  cd PycharmProjects/
+  350  cd fProject
+  351  ls
+  352  cd django_fund_web/
+  353  git add .
+  354  git status
+  355  git commit '1'
+  356  git commit -m'1'
+  357  git push
+  358  git branch
+  359  git branch -d leaf01
+  360  git branch -d leaf01
+  361  git branch leaf01
+  362  git brach
+  363  git branch
+  364  git checkout leaf01
+  365  git helper -a
+  366  git stash save 'fangan1'
+  367  git stash list
+  368  git stash save 'fangan2'
+  369  git stash apply fangan2
+  370  git stash list
+  371  git stash apply stash@{0}
+  372  git stash list
+  373  git add .
+  374  git commit -m '123'
+  375  git stash list
+  376  git stash clear
+  377  python3 manage.py runserver
+  378  git
+  379  git stash list
+  380  git log
+  381  git checkout master
+  382  git status
+  383  git branch
+  384  git stash
+  385  git stash list
+  386  git git checkout leaf01
+  387  git checkout leaf01
+  388  git checkout master
+  389  git stash list
+  390  git stash apply stash@{0}
+  391  git checkout leaf01
+  392  git stash '12'
+  393  git stash save '12'
+  394  git reset --hard^HEAD
+  395  git reset --hard[HEAD^]
+  396  git reset --hard HEAD^
+  397  git log
+  398  git relog
+  399  git reflog
+  400  git checkout e411788
+  401  git branch
+  402  git checkout master
+  403  git stash list
+  404  git stash apply stash@{1}
+  405  git status
+  406  git log
+  407  git checkout e4117882969063d95db5f9ff7d312957ba96bd36
+  408  python3 manage.py runserver
+  409  cd ..
+  410  ls
+  411  git status
+  412  git add .
+  413  git commit -m '1219'
+  414  git log
+  415  git push
+  416  git push
+  417  git branch
+  418  git merge master git checkout master
+  419  git branch
+  420  git checkout master
+  421  git status
+  422  git branch
+  423  ls
+  424  git log
+  425  cd django_fund_web/
+  426  git log
+  427  git reflog
+  428  git checkout 9f0dc816
+  429  cd ..
+  430  git status
+  431  git log
+  432  git branch
+  433  git merge master
+  434  git branch
+  435  git branch leaf01 9f0dc81
+  436  git branch leaf02 9f0dc81
+  437  git branch
+  438  git checkout master
+  439  git merge leaf02
+  440  git status
+  441  git push
+  442  git push
+  443  mysql -uroot -p
+  444  redis-cli
+  445  cd PycharmProjects/
+  446  ls
+  447  cd fProject
+  448  cd django_fund_web/
+  449  python3 manage.py migrate
+  450  python3 manage.py migrate
+  451  python3 manage.py makemigrations;
+  452  python3 manage.py migrate
+  453  python manage.py migrate --fake
+  454  python3 manage.py migrate --fake
+  455  python3 manage.py makemigrations;
+  456  python3 manage.py migrate
+  457  python3 manage.py makemigrations;
+  458  python3 manage.py migrate
+  459  redis-cli
+  460  mysql -uroot -p
+  461  cd PycharmProjects/
+  462  cd fProject/django_fund_web/
+  463  python3 manage.py makemigrations;
+  464  python3 manage.py migrate
+  465  python3 manage.py makemigrations;
+  466  python3 manage.py migrate
+  467  python3 manage.py makemigrations;
+  468  python3 manage.py migrate
+  469  python3 manage.py runserver
+  470  python3 manage.py shell
+  471  python3 manage.py shell
+  472  python3 manage.py shell
+  473  python3 manage.py runserver
+  474  python3 manage.py shell
+  475  python3 manage.py shell
+  476  python3 manage.py shell
+  477  python3 manage.py shell
+  478  python3 manage.py shell
+  479  python3 manage.py shell
+  480  python3 manage.py shell
+  481  python3 manage.py shell
+  482  python3 manage.py shell
+  483  python3 manage.py shell
+  484  python3 manage.py shell
+  485  python3 manage.py shell
+  486  python3 manage.py runserver
+  487  python3 manage.py shell
+  488  python3 manage.py shell
+  489  python3 manage.py shell
+  490  python3 manage.py shell
+  491  python3 manage.py shell
+  492  python3 manage.py shell
+  493  python3 manage.py shell
+  494  python3 manage.py shell
+  495  python3 manage.py shell
+  496  python3 manage.py shell
+  497  redis-cli
+  498  mysql -uroot -p
+  499  redis-cli
+  500  ls
+  501  cd PycharmProjects/
+  502  cd fProject/django_fund_web/
+  503  ;s
+  504  ls
+  505  python3 manage.py runserver
+  506  python3 manage.py shell
+  507  python3 manage.py shell
+  508  python3 manage.py makemigrations
+  509  python3 manage.py migrate
+  510  python3 manage.py migrate
+  511  python3 manage.py makemigrations
+  512  python3 manage.py migrate
+  513  history > log.txt

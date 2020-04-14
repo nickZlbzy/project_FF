@@ -106,7 +106,9 @@ class CxfundDownloaderMiddleware(object):
 #中间件1 - 所有请求包装随机User-Agent
 from fake_useragent import UserAgent
 class CxFundUaDownloaderMiddleware(object):
+
     def process_request(self,request,spider):
         request.headers["User-Agent"] = UserAgent(verify_ssl=False).random
         print('middlewares1')
         return None
+

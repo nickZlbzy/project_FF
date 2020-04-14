@@ -23,12 +23,13 @@ class Article_model(BaseModel):
             self.article_type,self.module_type,self.article_id,self.parent_id)
 
 class Article_level_model(BaseModel):
-    lid = models.CharField("分级id",max_length=20,)
-    title = models.CharField("标题",max_length=20)
+    lid = models.CharField("分级id",max_length=20,primary_key=True)
+    title = models.CharField("标题",max_length=36)
     kind = models.CharField("文章类别",max_length=20,db_index=True)
     module = models.CharField("所属模块",max_length=20,default="")
-    url = models.CharField("所属模块",max_length=50,default="")
-    parent_id = models.CharField("父级id",max_length=20,default=0)
+    url = models.CharField("URL",max_length=50,default="")
+    parent_id = models.CharField("父id",max_length=20,default=0)
+    sort = models.IntegerField("排序", default=None)
 
     class Meta:
         db_table = 't_article_level'
@@ -41,22 +42,24 @@ class Article_level_model(BaseModel):
 
 
 class Article_info_model(BaseModel):
+    level = models.ForeignKey(Article_level_model)
     article_id = models.CharField("唯一id",max_length=25,primary_key=True)
-    title = models.CharField("标题", max_length=20)
-    url = models.CharField("所属模块", max_length=50, default="")
-    content = models.CharField("文章正文", max_length=4000, default="")
+    title = models.CharField("标题", max_length=36)
+    url = models.CharField("路径", max_length=50, default="")
+    content = models.CharField("文章正文", max_length=4005, default="")
     author = models.CharField("作者", max_length=32, default="")
-    next = models.CharField("下一个", max_length=25, default="")
-    lid = models.ForeignKey(Article_level_model)
+    next = models.CharField("下一篇", max_length=36, default="")
+    next_url = models.CharField("下一url", max_length=50, default="")
+    sort = models.IntegerField("排序", default=None)
 
     class Meta:
         db_table = 't_article_info'
-        verbose_name = '文章正文表'
+        verbose_name = '文章表'
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return "文章id:%s ,标题:%s ,作者:%s ,下一篇:%s" % (self.article_id,self.title,
-                  self.author, self.parent_id)
+        return "文章id:%s ,标题:%s ,作者:%s " % (self.article_id,self.title,
+                  self.author)
 
     def get_next_id(self):
         pass

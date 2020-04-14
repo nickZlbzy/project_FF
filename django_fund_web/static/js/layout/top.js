@@ -7,9 +7,53 @@ $(function(){
         $("#search-in-drop")[0].classList.remove("open");
     })
 
+    $('#jump_login_a').bind("click",function(){
+            window.open("/user/login","_self");
+        })
+        $('#jump_index_s').bind("click",function(){
+             window.open("/","_self");
+        })
+        $('#fund_tools_btn').bind("click",function(){
+             window.open("/filter/ffpage","_self");
+        })
+        $('#jump_etfs_page').bind("click",function(){
+            alert("敬请期待!")
+        })
+
+        $('#jump_manager_home').bind("click",function(){
+            alert("敬请期待!")
+        })
+        $('#jump_article_home').bind("click",function(){
+            window.open("/article/info/art_page","_self");
+        })
+         $('#jump_cls_course').bind("click",function(){
+            window.open("/article/course/index/0","_self");
+        })
+        $('#fund_tools ul>li:nth-child(2)').bind("click",function(){
+            alert("敬请期待!")
+        })
+        $(".tags").bind("click",function(){
+            window.open("http://www.tmooc.cn/","_blank");
+        })
+
+
+
 })
 
-
+function logout(){
+    $.ajax({
+        type:"get",
+        url:"/user/logout",
+        dataType:"json",
+        success:function(res){
+            console.log(res)
+            if(res){
+                alert("已注销.")
+                location.reload()
+            }
+        }
+    })
+}
 
 function get_title_address(sel_name){
     var typeName=$("#"+sel_name).attr("data-sel-name");
