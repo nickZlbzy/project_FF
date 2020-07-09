@@ -3,35 +3,33 @@
 {#头部css,js部分#}
 {% block head_range %}
 
+
 <link rel="stylesheet" type="text/css" href="/static/css/html/main_article/article_info.css">
+<script src="/static/js/base/vue.min.js"></script>
 <style type="text/css">
-.comment-supports-total span{
-    margin: 5px 0 10px 15px;
+.comment-supports-total{
+    box-sizing: border-box;
+    height:46px;
+}
+
+.comment-supports-total>span{
+    display: inline-block;
+    margin: 5px 0 8px 15px;
+
+}
+.comment-supports > span:first-child{
     cursor:pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 5px;
+    height:27px;
+    width:27px;
+}
+.has-press{
+    border:1px solid red;
 }
 </style>
-<script type="text/javascript">
-    $(function(){
-        bind_words_size()
-    });
 
-    function bind_words_size(){
-        var articleWord = $("#article-text")[0];
-        $("#nor-btn").bind("click",function(){
-            articleWord.classList.remove("text-dis-big");
-            articleWord.classList.add("text-dis-normal")
-        })
-
-        $("#big-btn").bind("click",function(){
-            articleWord.classList.remove("text-dis-normal");
-            articleWord.classList.add("text-dis-big") ;
-        })
-    }
-
-    function press_support(artid){
-        console.log(artid)
-    }
-</script>
 {% endblock %}
 
 {#核心页面部分#}
@@ -48,7 +46,7 @@
                                         <small id="release-date">{{ article_info.update_time }}</small>
                         </span>
                         <span class="right-info">
-                            字号： <small><span class="glyphicon glyphicon-font text-info size-edit" id="nor-btn"></small>
+                            字号： <small><span class="glyphicon glyphicon-font text-info size-edit" id="nor-btn"></span></small>
                             <span class="glyphicon glyphicon-font text-info size-edit" id="big-btn">&nbsp;</span>
                         </span>
 
@@ -66,40 +64,65 @@
 
                 <div class="comment-range">
                     <div class="comment-supports-total">
-                        <span class="glyphicon glyphicon-comment"><small> 1</small></span>
-                        <span class="glyphicon glyphicon-thumbs-up" onclick="press_support({{ article_info.article_id }})"><small> 1</small></span>
-
+                        <span class="comment-supports"><span class="glyphicon glyphicon-comment"></span>
+                              <small id="comment-count">1</small></span>
+                        <span class="comment-supports"><span class="glyphicon glyphicon-thumbs-up" id="like-btn"></span>
+                              <small id="support-count">{{ like_count }}</small></span>
+                        <div class="clear-box"></div>
                     </div>
                     <div class="main-upline"></div>
                     <h4>有疑问 找专家</h4>
-                    <div class="comment-form">
-                        <div class="form-group">
-                            <form action="/user/sendComment" method="post">
-                                <textarea class="form-control" name="content" id="content"></textarea>
-                                <input id="submit-comment" type="submit"
-                                       class="btn btn-primary pull-right" value="提 问 ">
-                            </form>
 
-                            <div class="clear-box"></div>
-                        </div>
-                      </div>
+                    <div id="app">
+
+                    {% verbatim %}
+
+                    <cmt-box></cmt-box>
                     <ul class="list-group">
-                        <a class="list-group-item list-group-item-action">
+                        <li class="list-group-item list-group-item-action"
+                            v-for="(item,index) in list" :key="item.id">
                             <div>
-                                <span class="text-info">嘿嘿1 &nbsp;
-                                    <small class="text-muted">第 1 条评论</small> </span>
-                                <span class="right-info text-muted">2020-01-09  17:49</span>
+                                <span class="text-info">{{ item.user }} &nbsp;
+                                    <small class="text-muted">第 {{ index+1 }} 条评论</small> </span>
+                                <span class="right-info text-muted">{{ item.id }}</span>
                             </div>
                             <p>
-                                你好啊！我的祖国
+                                {{item.content}}
                             </p>
-                        </a>
+                        </li>
+
+
+
                         <a class="list-group-item list-group-item-action">
                             <p class="text-center">
                                 感谢您的使用，已经没有内容了
                             </p>
                         </a>
                     </ul>
+
+
+                    <template id="tmp1">
+                        <div class="comment-form">
+                            <div class="form-group">
+                                <form action="/user/sendComment" method="post">
+                                    <textarea class="form-control" name="content" id="content">
+
+                                    </textarea>
+                                    <input id="submit-comment" type="submit" @click.prevent="postcomment"
+                                           class="btn btn-primary pull-right" value="提 问 ">
+                                </form>
+
+                                <div class="clear-box"></div>
+                            </div>
+                        </div>
+                    </template>
+
+
+                    {% endverbatim %}
+                    </div>
+
+
+
 
                 <div class="main-bottom text-center">
 {#                        <small>#}
@@ -166,4 +189,98 @@
         </div>
 
 
+
+<script type="text/javascript">
+    $(function(){
+        bind_words_size()
+        check_has_like()
+        $("#like-btn").bind('click',press_support)
+
+    });
+
+    function bind_words_size(){
+        var articleWord = $("#article-text")[0];
+        $("#nor-btn").bind("click",function(){
+            articleWord.classList.remove("text-dis-big");
+            articleWord.classList.add("text-dis-normal")
+        })
+
+        $("#big-btn").bind("click",function(){
+            articleWord.classList.remove("text-dis-normal");
+            articleWord.classList.add("text-dis-big") ;
+        })
+    }
+    function check_has_like(){
+        var is_press = '{{ result }}'
+        if(is_press == 'True')
+            $("#like-btn").addClass('has-press');
+    }
+
+    function press_support(){
+        var btn = this
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/article/pressSupport?artid=" + "{{ artid }}",
+            data: "",
+            async: false,
+            success: function (res) {
+                if(res.code == -1){
+                    alert(res.msg)
+                    return;
+                }
+
+                if(res.code == 0)
+                    btn.classList.remove('has-press');
+                else
+                    btn.classList.add('has-press');
+                $('#support-count').html(res.count);
+
+            }
+        })
+
+
+
+    }
+    var commentBox = {
+        data(){
+            return {
+                user: '',
+                content: ''
+            }
+        },
+        template: '#tmp1',
+        methods: {
+            postcomment(){
+                var comment = {id:Date.now(),user: "张三", content: this.content}
+                this.list.unshift(comment)
+                this.content = ""
+            }
+
+        }
+
+    }
+
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list:[
+                {id:Date.now(),user: '李白', content:'天生我才必有用!'},
+                {id:Date.now(),user: '匿名', content:'你好啊！我的祖国'}
+
+            ]
+        },
+        components: {
+            'cmt-box': commentBox
+        },
+        methods: {
+            {#postcomment(){#}
+            {#    var comment = {id: Date.now(),user: "张三", content: this.content}#}
+            {#    this.list.unshift(comment)#}
+            {#    this.content = ""#}
+            {#}#}
+        }
+    })
+</script>
 {% endblock %}

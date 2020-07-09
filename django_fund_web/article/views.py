@@ -1,10 +1,13 @@
+import time
+
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
 from article.mappers import Article_mapper
 from django_redis import get_redis_connection
+from tools import contants
 
 r = get_redis_connection('likes')
 
@@ -43,6 +46,16 @@ def do_article_info(request,type,artid):
     """
     article_info = Article_mapper.select_by_artId(artid)
     type_name = Article_mapper.get_title_by_type(article_info.get("article_type"))
+    # 获取点赞信息
+    like_count =  r.hget('all_like_count',artid)
+    like_count = int(like_count.decode()) if like_count else 0
+    uname = request.session.get('username',None)
+    result = None
+    if uname and like_count > 0:
+        key_au = artid + '::' + uname
+        result = r.hget('user_like_article',key_au)
+        result = result.decode() if like_count else 0
+
     return render(request,"article/article_info.html",locals())
 
 
@@ -54,7 +67,7 @@ def query_title_parent(request,type):
    :param artid:
    :return:
    """
-    print('222')
+
     type = "survey" if type == "art_page" else type
     re_dict = {}
     re_dict['parent_title'] = Article_mapper.query_article_parent()
@@ -81,5 +94,37 @@ def publish_comment(request):
     return HttpResponse("")
 
 def press_support(request):
-    user_id = request.session["uid"]
-    article_id = request.GET.get('article_id')
+    uname = request.session.get('username')
+    if not uname:
+        re_data = {'code':-1,'msg':'请登录！'}
+        return JsonResponse(re_data)
+    
+    article_id = request.GET.get('artid')
+    key_au = article_id + '::' + uname
+    count = r.hget('article_like_count',key_au)
+
+    status = r.hget('user_like_article',key_au)
+    status = status.decode() if status else None
+    print(status)
+    code = None
+    # status存在三种情况 None 0 1
+    if not status or status == '0':
+        # 设置点赞状态
+        r.hset('user_like_article',key_au,contants.LIKE_STATUS)
+        # 点赞数自增1
+        r.hincrby('all_like_count',article_id,1)
+        code = 1
+    else:
+        r.hset('user_like_article', key_au, contants.LIKE_CANCEL_STATUS)
+        r.hincrby('all_like_count', article_id, -1)
+        code = 0
+
+
+
+
+    re_data = {'code':code,'count':r.hget('all_like_count',article_id).decode()}
+    return JsonResponse(re_data)
+
+
+
+    

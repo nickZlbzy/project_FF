@@ -26,7 +26,7 @@ class Fund_filter_mapper:
         # 使用 exists的方式优化 in 查询语句
         re_sql = " WHERE EXISTS (SELECT id FROM t_fund_filter t2 WHERE t2.id=t1.id"
         if f_name:
-            re_sql += " AND locate('%s',t2.f_name)" % f_name
+            re_sql += " AND instr(t2.f_name,'%s') > 0"% f_name
         if is_oc:
             re_sql += " AND t2.is_oc=%s" % is_oc
         if is_eq:  # in (1,2)语句处理方法

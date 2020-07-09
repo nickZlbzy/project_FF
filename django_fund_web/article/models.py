@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from base.BaseModel import BaseModel
 
@@ -63,3 +65,33 @@ class Article_info_model(BaseModel):
 
     def get_next_id(self):
         pass
+
+
+class User_like_article(models.Model):
+    article_id = models.CharField('文章id',max_length=16)
+    username = models.CharField('用户名',max_length=32)
+    status = models.BooleanField('点赞状态')
+    create_time = models.DateTimeField('创建时间',auto_now_add=True)
+    update_time = models.DateTimeField('修改时间',auto_now=True)
+
+
+    class Meta:
+        db_table = 't_user_like_article'
+        verbose_name = '用户点赞表'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return "文章id:%s ,用户名:%s ,创建时间:%s " % (self.article_id,self.username,
+                  self.ctime)
+
+class Article_like_comment(models.Model):
+    article_id = models.CharField('文章id', max_length=16, primary_key=True)
+    like_count = models.IntegerField('评论数量',default=0)
+    comment_count = models.IntegerField('评论数量',default=0)
+    update_time = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        db_table = 't_like_count'
+        verbose_name = '点赞评论总数'
+        verbose_name_plural = verbose_name

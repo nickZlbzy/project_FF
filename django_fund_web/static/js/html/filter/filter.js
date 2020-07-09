@@ -74,7 +74,7 @@ function table_list_fun(data){
     $("#fund-tbody").html(fund_content)
 
 }
-//加载分页栏方法  (bug未解决)
+//加载分页栏方法
 function create_pagination(page){
      // console.log(page.page_range)
     console.log(page)

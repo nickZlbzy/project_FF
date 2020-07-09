@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 
 import scrapy
 from Cxfund.items import CxfundLevelItem, CxfundContentItem
@@ -37,6 +38,7 @@ class CourseSpider(RedisSpider):
                 yield scrapy.Request(url=item['url'],meta={'item':item},callback=self.get_two)
 
     def get_two(self,response):
+        time.sleep(5)
         meta_item1 = response.meta['item']
 
         list_titles = response.xpath('//div[@class="catalog2"]/a')

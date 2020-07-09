@@ -33,7 +33,7 @@ $(function(){
             alert("敬请期待!")
         })
         $(".tags").bind("click",function(){
-            window.open("http://www.tmooc.cn/","_blank");
+            window.open("http://www.baidu.com/","_blank");
         })
 
 
@@ -65,7 +65,7 @@ function get_title_address(sel_name){
         success:function(data){
             if(data){
 
-                creeateButtonSelect(sel_name,data)
+                createButtonSelect(sel_name,data)
             }
         }
     })
@@ -73,7 +73,7 @@ function get_title_address(sel_name){
 
 
 // 加载下拉菜单方法
-function creeateButtonSelect(sel_name,text_url_data){
+function createButtonSelect(sel_name,text_url_data){
     // var str_select ="#"+sel_name+" ul"
     var ulContent = "";
     $.each(text_url_data,function(key,value){

@@ -4,7 +4,9 @@ import random
 
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-from .task import send_active_mail, send_short_verify
+
+from tools.sms_code import Sms_verify
+from .task import send_active_mail
 
 from django.urls import reverse
 
@@ -201,9 +203,8 @@ def mobile_verify(request):
     if request.method == "GET":
         mobile = request.GET.get("phone")
         if mobile:
-            code = send_short_verify.delay(mobile)
+            code = Sms_verify.send(mobile)
             if code:
-                print(code)
                 key = 'sms:%s'%mobile
                 code_m = Utils.make_md5s(code)
                 r.set(key,code_m)
