@@ -54,7 +54,7 @@ def do_article_info(request,type,artid):
     if uname and like_count > 0:
         key_au = artid + '::' + uname
         result = r.hget('user_like_article',key_au)
-        result = result.decode() if like_count else 0
+        result = result.decode() if result else 0
 
     return render(request,"article/article_info.html",locals())
 

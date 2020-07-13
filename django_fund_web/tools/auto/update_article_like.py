@@ -46,9 +46,7 @@ def update_article_like_count(conn,cursor):
         if not s1:
             cursor.execute(sql_insert,(artId,count,time.gmtime()))
         elif s1[1] != int(count):
-            print(s1)
-            print(type(s1[1]))
-            cursor.execute(sql_update.format(count, time.gmtime(), artId))
+            cursor.execute(sql_update,(count, time.gmtime(), artId))
 
 
 

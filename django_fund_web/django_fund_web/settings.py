@@ -208,3 +208,6 @@ ALIPAY_KEY_DIRS = os.path.join(BASE_DIR,"static/pay/key_file/")
 # 保存一天登陆状态
 SESSION_COOKIE_AGE = 60*60*24
 
+# 静态资源配置
+STATIC_ROOT = '/Users/nick/PycharmProjects/fProject/fund_static/static'
+

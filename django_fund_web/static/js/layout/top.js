@@ -20,7 +20,7 @@ $(function(){
             alert("敬请期待!")
         })
 
-        $('#jump_manager_home').bind("click",function(){
+        $('#jump_forum_home').bind("click",function(){
             alert("敬请期待!")
         })
         $('#jump_article_home').bind("click",function(){

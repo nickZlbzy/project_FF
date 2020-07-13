@@ -1,0 +1,500 @@
+   27  python3 manage.py shell
+   28  python3 manage.py shell
+   29  redis-cli
+   30  mysql -uroot -p
+   31  redis-cli
+   32  python3 manage.py demo06_capture.py 
+   33  python3 manage.py demo06_capture.py
+   34  history
+   35  history >log.txt
+   36  mysql -uroot - p
+   37  mysql -uroot -p
+   38  python3 manage.py migrate
+   39  python3 manage.py migrate
+   40  redis-cli
+   41  ls
+   42  cd PycharmProjects/
+   43  cd fProject/django_fund_web/
+   44  ;s
+   45  ls
+   46  python3 manage.py runserver
+   47  python3 manage.py shell
+   48  python3 manage.py shell
+   49  python3 manage.py makemigrations
+   50  python3 manage.py migrate
+   51  python3 manage.py migrate
+   52  python3 manage.py makemigrations
+   53  python3 manage.py migrate
+   54  history > log.txt
+   55  python3 manage.py migrate
+   56  python3 manage.py makemigrations
+   57  python3 manage.py makemigrations
+   58  python3 manage.py migrate
+   59  python3 manage.py migrate
+   60  python3 manage.py makemigrations
+   61  python3 manage.py migrate
+   62  python3 manage.py makemigrations
+   63  python3 manage.py migrate
+   64  python3 manage.py makemigrations
+   65  python3 manage.py migrate
+   66  python3 manage.py migrate
+   67  python3 manage.py migrate
+   68  python3 manage.py migrate
+   69  python3 manage.py makemigrations
+   70  python3 manage.py makemigrations
+   71  python3 manage.py makemigrations
+   72  python3 manage.py makemigrations
+   73  python3 manage.py makemigrations
+   74  python3 manage.py migrate
+   75  python3 manage.py makemigrations
+   76  python3 manage.py makemigrations
+   77  python3 manage.py makemigrations
+   78  python3 manage.py migrate
+   79  python3 manage.py makemigrations
+   80  python3 manage.py migrate
+   81  python3 manage.py migrate
+   82  python3 manage.py migrate
+   83  python3 manage.py migrate
+   84  python3 manage.py migrate
+   85  python3 manage.py migrate
+   86  python3 manage.py migrate
+   87  python3 manage.py runserver
+   88  python3 manage.py shell
+   89  python3 manage.py shell
+   90  python3 manage.py shell
+   91  python3 manage.py runserver
+   92  python3 manage.py runserver
+   93  python3 manage.py runserver
+   94  python3 manage.py shell
+   95  python3 manage.py runserver
+   96  python3 manage.py shell
+   97  python3 manage.py runserver
+   98  mysql -uroot -p
+   99  python3 demo06_capture.py 
+  100  python3 demo06_capture.py 
+  101  redis-cli
+  102  redis-cli
+  103  cd PycharmProjects/
+  104  ls
+  105  cd fProject
+  106  cd django_fund_web/
+  107  ls
+  108  python3 manage.py runserver
+  109  cd ..
+  110  git status
+  111  git add .
+  112  git commit -m 'course'
+  113  git push
+  114  python3 manage.py runserver
+  115  cd django_fund_web/
+  116  python3 manage.py runserver
+  117  git add .
+  118  git commit -m '123'
+  119  git push
+  120  python3 manage.py runserver
+  121  python3 manage.py runserver
+  122  python3 demo06_capture.py 
+  123  redis-cli
+  124  cd PycharmProjects/fProject/django_fund_web/
+  125  python3 manage.py runserver
+  126  python3 manage.py runserver
+  127  celery -A django_fund_web worker -l info
+  128  cd PycharmProjects/fProject/django_fund_web/
+  129  python3 manage.py runserver
+  130  redis-cli
+  131  python3 manage.py runserver
+  132  su nick
+  133  python3 demo06_capture.py 
+  134  python3 demo06_capture.py 
+  135  python3 demo06_capture.py 
+  136  su nick
+  137  python3 demo06_capture.py 
+  138  cd PycharmProjects/fProject/django_fund_web/
+  139  celery -A django_fund_web worker -l info
+  140  cd
+  141  cd nick
+  142  ls
+  143  cd course/
+  144  ls
+  145  cd python_course/
+  146  ls
+  147  cd nick
+  148  ls
+  149  cd month0
+  150  cd month05
+  151  ls
+  152  cd code
+  153  jupyter notebook
+  154  jupyter notebook
+  155  cd PycharmProjects/
+  156  cd fProject
+  157  ;s
+  158  cd django_fund_web/
+  159  python3 manage.py runserver
+  160  pip3 install seaborn -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  161  pip3 install xlrd -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  162  pip3 install xlrd -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  163  python3 demo06_capture.py
+  164  redis cli
+  165  redis-cli
+  166  python3 demo06_capture.py 
+  167  python3 demo06_capture.py 
+  168  python3 demo06_capture.py
+  169  python3 demo06_capture.py
+  170  ls
+  171  cd PycharmProjects/
+  172  ls
+  173  cd Fp
+  174  cd fProject
+  175  cd django_fund_web/
+  176  python3 manage.py makemigrations
+  177  python3 manage.py migtate
+  178  python3 manage.py migrate
+  179  redis-cli
+  180  mysql -uroot -p
+  181  /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea ; exit;
+  182  /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea ; exit;
+  183  python3 manage.py migrate
+  184  cd
+  185  python3 demo06_capture.py 
+  186  cd /Users/nick/Library/Preferences/
+  187  ls
+  188  cd IdeaIC2019.2/
+  189  ls
+  190  cd options/
+  191  ls
+  192  cd ..
+  193  ls
+  194  ls -a
+  195  ls -l
+  196  cd
+  197  python3 demo06_capture.py 
+  198  redis -cli
+  199  redis-cli
+  200  crontab -e
+  201  python3 manage.py runserver
+  202  mysql -uroot -p
+  203  mysql -uroot -p
+  204  crontab -e
+  205  crontab -e
+  206  crontab -e
+  207  crontab -e
+  208  crontab -e
+  209  sudo launchctl list | grep cron
+  210  crontab -e
+  211  /usr/local/bin
+  212  /url/local
+  213  cd /usr/local/bin
+  214  ls
+  215  python3 
+  216  crontab -e
+  217  crontab -e
+  218  crontab -e
+  219  crontab -e
+  220  python3 demo06_capture.py 
+  221  python3 demo06_capture.py 
+  222  python3 demo06_capture.py 
+  223  mysql -uroot -p
+  224  cd PycharmProjects/
+  225  ls
+  226  cd fProject
+  227  ls
+  228  cd django_fund_web/
+  229  python3 manage.py makemigrations
+  230  python3 manage.py migrate
+  231  python3 manage.py makemigrations
+  232  python3 manage.py makemigrations
+  233  python3 manage.py makemigrations
+  234  python3 manage.py migrate
+  235  python3 manage.py makemigrations
+  236  python3 manage.py migrate
+  237  python3 manage.py migrate
+  238  python3 manage.py makemigrations
+  239  python3 manage.py migrate
+  240  python3 manage.py makemigrations
+  241  python3 manage.py migrate
+  242  select * from django_migrations \G
+  243  select * from django_migrations \G
+  244  show tables;
+  245  show tables;
+  246  python3 manage.py migrate
+  247  redis-cli
+  248  cd
+  249  cd /etc/
+  250  ls
+  251  redis-cli
+  252  scrapy runspider /Users/nick/course/python_course/nick/month04/day09/Sina/Sina/spiders/sina.py 
+  253  scrapy runspider sina.py 
+  254  python3 manage.py runserver
+  255  python3 demo06_capture.py 
+  256  mysql -uroot -p
+  257  mysql -uroot -p
+  258  redis-cli
+  259  python3 demo06_capture.py 
+  260  mysql -uroot -p
+  261  redis-cli
+  262  mysql -uroot -p
+  263  python3 demo06_capture.py 
+  264  crontab -e
+  265  cd PycharmProjects/
+  266  cd fProject/django_fund_web/
+  267  python3 manage.py runserver
+  268  cd /usr/local/
+  269  ls
+  270  cd var
+  271  ls
+  272  cd ..
+  273  cd lib
+  274  l
+  275  ls
+  276  cd /usr/local/bin
+  277  ls
+  278  cd /usr/local/bin
+  279  cd redis-
+  280  cd cd ..
+  281  ls
+  282  cd ..
+  283  ls
+  284  cd redis-5.0.7/
+  285  ls
+  286  cat dump.rdb
+  287  ls
+  288  ls
+  289  vi redis.conf 
+  290  pyton3 demo06_capture.py 
+  291  python3 demo06_capture.py 
+  292  redis-server 26379
+  293  redis-server --port 26379
+  294  cd..
+  295  cd /
+  296  cd /usr/local
+  297  ls
+  298  cd etc
+  299  ls
+  300  cd
+  301  cd /usr/local/
+  302  ls
+  303  cd redis-5.0.7/
+  304  ls
+  305  vi redis.conf 
+  306  cat dump.rdb 
+  307  ls
+  308  vi sentinel.conf 
+  309  redis-cli
+  310  cd PycharmProjects/
+  311  ls
+  312  cd fProject
+  313  ls
+  314  cd django_fund_web/
+  315  python3 manage.py runserver
+  316  mysql -uroot - p
+  317  mysql -uroot -p
+  318  cd PycharmProjects/fProject
+  319  ls
+  320  cd django_fund_web/
+  321  ls
+  322  python3 manage.py runserver
+  323  redis-cli
+  324  mysql -uroot -p
+  325  crontab -e
+  326  crontab -e
+  327  /usr/local/bin/python3 /Users/nick/PycharmProjects/fProject/django_fund_web/tools/auto/update_article_like.py
+  328  /usr/local/bin/python3 /Users/nick/PycharmProjects/fProject/django_fund_web/tools/auto/update_article_like.py
+  329  ps aux|grep 'redis'
+  330  redis-server port 20001 deamonize yes --protected-mode no
+  331  redis-server --port 20001 deamonize yes --protected-mode no
+  332  redis-server --port 8889 deamonize yes --protected-mode no
+  333  ps aux|grep 'redis'
+  334  ps aux|grep 'redis'
+  335  redis-cli 2001
+  336  redis-cli --port 2001
+  337  redis-cli 6379
+  338  redis-cli -p2001
+  339  redis-cli -p 2001
+  340  redis-server --port 8889 --deamonize yes --protected-mode no
+  341  redis-server --port 8889 --deamonize yes --protected-mode no
+  342  redis-server --port 8889 --daemonize yes --protected-mode no
+  343  ps aux|grep 'redis'
+  344  redis-server --port 8889 --daemonize yes --protected-mode no
+  345  redis-server
+  346  redis-server --port 2001
+  347  python3 demo06_capture.py 
+  348  python3 demo06_capture.py 
+  349  ipython3 
+  350  scrapy startproject meituan
+  351  cd meituan/
+  352  scrapy genspider sz.meituan.com/meishi/
+  353  scrapy genspider binfo sz.meituan.com/meishi
+  354  redis-cli
+  355  python3 demo06_capture.py 
+  356  ls
+  357  cd
+  358  cd /usr/local/
+  359  ls
+  360  cd bin
+  361  ls
+  362  cd ..
+  363  ls
+  364  cd ..
+  365  ls
+  366  cd ..
+  367  ls
+  368  udo /usr/local/Cellar/nginx/1.17.7/
+  369  cd /usr/local/Cellar/nginx/1.17.7/
+  370  ls
+  371  cd bin
+  372  ls
+  373  cd
+  374  nginx -v
+  375  nginx -v
+  376  ls
+  377  cd /usr/local
+  378  ls
+  379  cd var
+  380  ls
+  381  cd /local/etc
+  382  ls
+  383  cd /usr/local/etc
+  384  ls
+  385  cd nginx/
+  386  ls
+  387  vi nginx.cof
+  388  vi nginx.conf
+  389  python3 demo06_capture.py 
+  390  python3 demo06_capture.py 
+  391  cd PycharmProjects/
+  392  ls
+  393  cd fProject
+  394  ls
+  395  cd django_fund_web/
+  396  python3 manage.py runserver
+  397  cd 
+  398  python3 demo06_capture.py 
+  399  crontab -e
+  400  /usr/local/bin/python3 /Users/nick/PycharmProjects/fProject/django_fund_web/tools/auto/update_article_like.py
+  401  mysql -urrot -p
+  402  mysql -uroot -p
+  403  /usr/local/bin/python3 /Users/nick/PycharmProjects/fProject/django_fund_web/tools/auto/update_article_like.py
+  404  mysql -uroot -p
+  405  cd PycharmProjects/
+  406  ls
+  407  cd fProject
+  408  cd fProject
+  409  ls
+  410  cd django_fund_web/
+  411  python3 manage.py runserver
+  412  npm -v
+  413  node 
+  414  node
+  415  port npm
+  416  brew -v
+  417  brew install node
+  418  cd
+  419  sudo pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  420  sudo pip3 install pygame  -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  421  node
+  422  ipython
+  423  node -V
+  424  node -v
+  425  npm -v
+  426  npm install -g @vue/cli
+  427  vue -v
+  428  vue -V
+  429  CD
+  430  ls
+  431  cd course/
+  432  ls
+  433  cd vue
+  434  ls
+  435  mkdir project_vue
+  436  ls
+  437  cd project_vue/
+  438  vue create nick-project
+  439  cd nick-project/
+  440  ls
+  441  cat README.md 
+  442  ls
+  443  cd package.json 
+  444  npm run serve
+  445  npm run serve
+  446  npm run serve
+  447  npm run serve
+  448  npm run serve
+  449  npm install vuex --save
+  450  npm run serve
+  451  python3 demo06_capture.py 
+  452  redis -cli
+  453  redis-cli
+  454  cd PycharmProjects/
+  455  ls
+  456  cd fProject
+  457  ls
+  458  cd django_fund_web/
+  459  python3 manage.py runserver
+  460  redis-cli
+  461   python3 demo06_capture.py 
+  462  0
+  463  cd PycharmProjects/
+  464  ls
+  465  cd fProject
+  466  ls
+  467  cd django_fund_web/
+  468  ls
+  469  python3 manage.py runserver
+  470  node
+  471  ifconfig
+  472  ipconfig
+  473  ping 192.168.1.105
+  474  redis-cli
+  475  python3 demo06_capture.py 
+  476  redis-cli
+  477  cd PycharmProjects/
+  478  ls
+  479  cd fProject
+  480  ls
+  481  cd django_fund_web/
+  482  ls
+  483  python3 manage.py runserver
+  484  shutdown
+  485  sudo shutdown
+  486  sudo shutdown 0
+  487  sudo shutdown 
+  488  ping 172.18.168.96
+  489  ping 120.79.178.190
+  490  redis-cli
+  491  sudo ssh 120.79.178.190
+  492  ssh root@120.79.178.190
+  493  wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+  494  ssh root@120.79.178.190
+  495  ssh root@120.79.178.190
+  496  ssh root@120.79.178.190
+  497  yum install mysql-community-server
+  498  ssh root@120.79.178.190
+  499  python3 demo06_capture.py 
+  500  $ pip3 freeze > package_list.txt
+  501  $ pip3 freeze
+  502  $ pip freeze
+  503  cd PycharmProjects/
+  504  ls
+  505  cd fProject
+  506  ls
+  507  cd django_fund_web/
+  508  ls
+  509  cd django_fund_web/
+  510  ls
+  511  pwd
+  512  sudo uwsgi.ini  --ini uwsgi.ini
+  513  pwd
+  514  cd ..
+  515  sudo uwsgi.ini  --ini uwsgi.ini
+  516  sudo uwsgi.ini --ini uwsgi.ini
+  517  sudo pip3 install uwsgi
+  518  sudo uwsgi.ini --ini uwsgi.ini
+  519  cd django_fund_web/
+  520  sudo uwsgi.ini --init uwsgi.ini
+  521  sudo uwsgi.ini --ini uwsgi.ini 
+  522  ls
+  523  sudo uwsgi.ini --ini uwsgi.ini
+  524  sudo uwsgi.ini --ini uwsgi.ini
+  525  log > history.txt
+  526  history > log.txt
