@@ -3,135 +3,9 @@
 {#头部css,js部分#}
 {% block head_range %}
 <title>个人中心</title>
+<link rel="stylesheet" type="text/css" href="/static/css/html/user/personal.css">
+<script type="text/javascript" src="/static/js/html/user/personal.js"></script>
 <style type="text/css">
-.title{
-    margin: 1vw 0 1.5vw 1vw;
-}
-.personal-range{
-    {#border: 1px solid blue;#}
-    padding:1vw;
-}
-.tl-input{
-    width:100px;
-}
-.info-tb th,.info-tb td{
-    padding: 0.3vw 0.75vw;
-}
-.top-left-part,.top-right-part{
-    height:17vw;
-    border: 1px solid #bbb;
-    box-shadow: 2px 2px 4px 2px rgba(255,255,0,0.5), -10px 10px 10px 10px rgba(255,255,255,0.5);
-    padding: 1vw;
-}
-.top-left-part{
-    float:left;
-    width:33%;
-}
-.top-right-part{
-    float:right;
-    width:62%;
-}
-.middle-part{
-    margin-top: 20px;
-}
-{#以下是风险测评结果页所有style#}
-#re_result_title{
-    font-size: 1.5vw;
-    color:#343a40;
-    position: relative;
-    text-align: center;
-}
-.re_result_div-1{
-    vertical-align:middle;
-    height: 20vh;
-    position: relative;
-}
-.re_result_div0{
-    display: inline-block;
-    width: 55vw;
-    height: 20vh;
-    position:absolute;
-    bottom: 0;
-
-
-}
-.re_result_div1_1{
-    margin:0 auto;
-    font-size:0px;
-    margin-bottom: 3vh;
-    margin-top: 3vh;
-    padding-top: 3vh;
-}
-.re_result_div1_2{
-    margin:0 auto;
-    font-size:0px;
-    padding-top: 3vh;
-    margin-bottom: 3vh;
-}
-.re_result_div2{
-    width:9vw;
-    height: 3vh;
-    /* margin-right: 1vw; */
-    font-size: 1.1vw;
-    display: inline-block;
-    text-align: left;
-}
-.re_result_div3{
-    width: 6vw;
-    height: 2vw;
-    text-align: center;
-    line-height: 2vw;
-    font-size: 1.2vw;
-    display: inline-block;
-    border:1px solid lightskyblue;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-.re_result_div4{
-    margin-top: 12vh;
-    margin-bottom: 10vh;
-    text-align: center;
-}
-.re_return_input{
-    background-color: lightskyblue;
-    width:7vw;
-    height: 3.5vh;
-    border: 1px solid black;
-    text-align: center;
-}
-.select_level{
-    background-color:red;
-}
-.t-list-order{
-    border:1px solid darkblue;
-}
-.t-list-order th,.t-list-order td{
-    min-width: 9vw;
-    padding:0.5vw;
-}
-.t-list-order th:first-child,.t-list-order td:first-child{
-    min-width: 3vw;
-    text-align: center;
-}
-
-#user-btn1,#user-btn2{
-    cursor: pointer;
-    padding: 7px;
-    border-radius: 4px;
-}
-#list-order{
-    max-height:35vw;
-    overflow: auto;
-    display: none;
-}
-.select-color{
-    background-color: rgba(211,211,211,0.6);
-}
-.pay-jump {
-    cursor: pointer;
-    color:#337ab7;
-}
-
 </style>
 <script type="text/javascript">
 $(function(){
@@ -139,121 +13,13 @@ $(function(){
         alert('{{ msg }}');
     {% endif %}
 
-    $('#nickname_modify').bind('click',function(){
-        var value = $('#nickname').val()
-        var reg = new RegExp(" ","g")
-        nickname = value.replace(reg,"")
-        $('#nickname').val(nickname)
-        if(nickname && nickname.length>0)
-            $('#ui-form').submit()
-        else
-            return false;
-
-    })
-    var ability = "{{ user.ability }}"
-    var preference = "{{ user.preference }}"
+    var ability = "{{ user.ability }}";
+    var preference = "{{ user.preference }}";
     if(preference && ability){
         set_eva(parseInt(ability),parseInt(preference))
     }
-    $('#user-btn1').bind('click',function(){
-        $("#user-info").show()
-        $("#list-order").hide()
-        $("#user-btn2").addClass('select-color')
-        $("#user-btn1").removeClass('select-color')
-    })
-    $('#user-btn2').bind('click',function(){
-        $("#user-info").hide()
-        $("#list-order").show()
-        $("#user-btn1").addClass('select-color')
-        $("#user-btn2").removeClass('select-color')
 
-    })
-
-
-
-})
-
-function set_eva(ability,preference){
-    var ability_id,preference_id;
-
-    if(ability>19.2)
-        ability_id="re_bear5"
-    else if(ability>14.4)
-        ability_id="re_bear4"
-    else if(ability>9.6)
-        ability_id="re_bear3"
-    else if(ability>4.8)
-        ability_id="re_bear2"
-    else
-        ability_id="re_bear1"
-
-    if(preference>19.2)
-        preference_id="re_prefer5"
-    else if(preference>14.4)
-        preference_id="re_prefer4"
-    else if(preference>9.6)
-        preference_id="re_prefer3"
-    else if(preference>4.8)
-        preference_id="re_prefer2"
-    else
-        preference_id="re_prefer1"
-    $("#"+ability_id).addClass("select_level");
-    $("#"+preference_id).addClass("select_level");
-
-}
-
-function buy_fund2(self){
-    $.confirm({
-        title: '确认',
-        content: '即将跳转到支付页面',
-        type: 'red',
-        icon: 'glyphicon glyphicon-question-sign',
-        buttons: {
-            ok: {
-                text: '确认',
-                btnClass: 'btn-primary',
-                action: function() {
-                    aliPayment(self)
-                }
-            },
-            cancel: {
-                text: '取消',
-                btnClass: 'btn-primary'
-            }
-        }
-    });
-}
-
-function aliPayment(self){
-
-    var parent = $(self).parent().parent();
-    var amount = parseFloat(parent.children('.amount').text());
-        // 测试功能暂定数量为100
-    var order_code = parent.children('.order_code').text()
-    var fund_code = parent.children('.fund_code').text();
-    // var csrf = $('input[name="csrfmiddlewaretoken"]').val();
-    // console.log(csrf)
-    var post_data = {"fund_code":fund_code,"order_code":order_code,
-        "amount":amount};
-
-    $.ajax({
-        url:"/payment/jump2/",
-        type:"post",
-        dataType:"json",
-        headers: {
-            "X-CSRFToken": getCsrfFromCookie("csrftoken")
-        },
-        // contentType:"application/json",
-        data:JSON.stringify(post_data),
-        success:function(data){
-            if(data.code==200)
-                window.location = data.pay_url;
-            else
-                alert(data.msg)
-        }
-    })
-
-}
+});
 </script>
 {% endblock %}
 
@@ -293,9 +59,16 @@ function aliPayment(self){
             </form>
         </div>
         <div class="top-right-part">
-            {% if not user.ability or not user.preference %}
-                <span>您当前的投资风险系数<b style="color:#dc3545">未知</b>,是否立即进行
-              <a href="/user/evaluation" style="color:#dc3545">风险评估</a>？</span>
+            {% if not user.is_active %}
+                <h3 style="color:coral;text-align: center;">验证邮箱已发出，请你登录邮箱进行验证</h3>
+                <br>
+                <h4 style="margin-left: -3vw;text-align: center">未收到验证邮件？ &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" id="send-btn"
+                            class="btn btn-warning search-btn ">重新发送邮件</button>
+                </h4>
+
+            {% elif not user.ability or not user.preference %}
+                <h4>当前投资风险系数<b style="color: orangered;">未知</b>，是否立即进行
+              <a href="/user/evaluation" style="color:#dc3545;text-decoration: underline;">风险评估</a>？</h4>
             {% else %}
                 <div id="re_result_title"> 测评结果 </div>
 

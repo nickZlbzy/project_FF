@@ -111,6 +111,26 @@ class Fund_filter_mapper:
                 re_list.append(fund_dict)
         return re_list
 
+    @staticmethod
+    def select_wonder_fund():
+        sql = "select f_code, f_name, " \
+              "(select a.type_name from t_fund_type a where a.t_id=f_type_id) as t_name " \
+              "from t_fund_filter order by interest desc limit 1,15"
+
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            re = cursor.fetchall()
+        re_list = []
+        if re:
+            for item in re:
+                fund_dict = {}
+                fund_dict["f_code"] = item[0]
+                fund_dict["f_name"] = item[1]
+                fund_dict["type_name"] = item[2]
+                re_list.append(fund_dict)
+        return re_list
+
+
 class Fund_type_mapper:
     @staticmethod
     def get_valid_by_name(type_name):

@@ -31,11 +31,11 @@ class dictManager(admin.ModelAdmin):
 
 @admin.register(Title_url_model)
 class cateManager(admin.ModelAdmin):
-    list_display = ['title','url','type','parent_id','sort']
+    list_display = ['id','title','url','type','module','parent_id','sort']
     list_display_links = ['title','url']
-    list_filter = ['type','parent_id']
+    list_filter = ['type','module','parent_id']
     search_fields = ['type', 'title']
-    list_editable = ['sort']
+    list_editable = ['parent_id','sort']
 
 
 @admin.register(Sync_code)

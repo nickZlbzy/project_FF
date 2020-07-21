@@ -11,4 +11,5 @@ urlpatterns=[
     url(r'^personal$',views.personal_center),
     url(r'^evaluation$',views.envaluation),
     url(r'^activation$',views.users_active),
+    url(r'^send_email_again$',views.send_email_again),
 ]

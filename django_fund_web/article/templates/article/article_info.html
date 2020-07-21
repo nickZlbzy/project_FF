@@ -28,6 +28,9 @@
 .has-press{
     border:1px solid red;
 }
+.type_a{
+    color:#333333;
+}
 </style>
 
 {% endblock %}
@@ -35,7 +38,7 @@
 {#核心页面部分#}
 {% block page_main %}
     <div class="middle container-fluid">
-            <h5>基金研究 > {{ type_name }} > 正文</h5>
+        <h5>基金研究 > <a href="{{ type_info.url }}" class="type_a">{{ type_info.title }}</a> > 正文</h5>
             <div class="main-upline"></div>
             <div class="col-md-8 col-xs-8  col-sm-8">
                 <div class="content-range">
@@ -72,12 +75,13 @@
                     </div>
                     <div class="main-upline"></div>
                     <h4>有疑问 找专家</h4>
+                    <div class="comment-part">
+                     {% verbatim %}
+                    <div id="app1">
 
-                    <div id="app">
 
-                    {% verbatim %}
+                    <cmt-box @func="addList"></cmt-box>
 
-                    <cmt-box></cmt-box>
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-action"
                             v-for="(item,index) in list" :key="item.id">
@@ -90,9 +94,6 @@
                                 {{item.content}}
                             </p>
                         </li>
-
-
-
                         <a class="list-group-item list-group-item-action">
                             <p class="text-center">
                                 感谢您的使用，已经没有内容了
@@ -101,11 +102,16 @@
                     </ul>
 
 
-                    <template id="tmp1">
+
+
+
+                    </div>
+
+                     <template id="tmp1">
                         <div class="comment-form">
                             <div class="form-group">
                                 <form action="/user/sendComment" method="post">
-                                    <textarea class="form-control" name="content" id="content">
+                                    <textarea class="form-control" name="content" id="content" v-model="content">
 
                                     </textarea>
                                     <input id="submit-comment" type="submit" @click.prevent="postcomment"
@@ -116,13 +122,8 @@
                             </div>
                         </div>
                     </template>
-
-
-                    {% endverbatim %}
-                    </div>
-
-
-
+               {% endverbatim %}
+                </div>
 
                 <div class="main-bottom text-center">
 {#                        <small>#}
@@ -192,8 +193,8 @@
 
 <script type="text/javascript">
     $(function(){
-        bind_words_size()
-        check_has_like()
+        bind_words_size();
+        check_has_like();
         $("#like-btn").bind('click',press_support)
 
     });
@@ -211,8 +212,7 @@
         })
     }
     function check_has_like(){
-        var is_press = '{{ result }}'
-        console.log(is_press)
+        var is_press = '{{ result }}';
         if(is_press == "1")
             $("#like-btn").addClass('has-press');
     }
@@ -239,14 +239,13 @@
 
             }
         })
-
-
-
     }
+
+
     var commentBox = {
         data(){
             return {
-                user: '',
+                user : '',
                 content: ''
             }
         },
@@ -254,33 +253,30 @@
         methods: {
             postcomment(){
                 var comment = {id:Date.now(),user: "张三", content: this.content}
-                this.list.unshift(comment)
-                this.content = ""
+                {#这里绑定的属性名为标签中的@属性，值为父组件中的方法名#}
+                this.$emit('func',comment)
+
             }
-
         }
-
-    }
-
+    };
 
     var vm = new Vue({
-        el: '#app',
+        el: '#app1',
         data: {
             list:[
                 {id:Date.now(),user: '李白', content:'天生我才必有用!'},
                 {id:Date.now(),user: '匿名', content:'你好啊！我的祖国'}
 
-            ]
+            ],
+            user:""
         },
         components: {
-            'cmt-box': commentBox
+            'cmt-box':commentBox
         },
         methods: {
-            {#postcomment(){#}
-            {#    var comment = {id: Date.now(),user: "张三", content: this.content}#}
-            {#    this.list.unshift(comment)#}
-            {#    this.content = ""#}
-            {#}#}
+            addList(data){
+                this.list.unshift(data);
+            }
         }
     })
 </script>

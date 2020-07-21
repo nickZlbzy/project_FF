@@ -29,6 +29,7 @@ class Title_url_model(BaseModel):
     url = CharField("路径",max_length=80, default="")
     title = CharField("标题", max_length=50)
     type = CharField("类型", max_length=20, db_index=True)
+    module = CharField("所属模块", max_length=20, db_index=True, default="")
     sort = IntegerField("排序", default=0)
     parent_id = IntegerField("父标题id", default=0)
 
@@ -36,6 +37,7 @@ class Title_url_model(BaseModel):
         db_table = 't_title_url'
         verbose_name = '标题路径对应表'
         verbose_name_plural = verbose_name
+        ordering = ('parent_id', 'sort',)
 
     def __str__(self):
         return 'title=%s, url=%s, type=%s, parent_id=%s>' \

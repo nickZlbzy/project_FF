@@ -24,6 +24,10 @@ body{
     height:0;
     clear: both;
 }
+li{
+    list-style-type:none;
+    padding:3px 0;
+}
 #core_range{
     width:75vw;
     height:auto;
@@ -71,11 +75,19 @@ hr{
     height:0.5vw;
     background-color: red;
 }
-.st_a:hover{
+.st_a:hover,.dd_a:hover{
     color:Firebrick;
     transition: all 0.2s linear;
     cursor: pointer;
 }
+.sta_status{
+    color:Firebrick;
+    transition: all 0.2s linear;
+    background-color: #FFF ;
+    border-radius: 2px;
+}
+
+
 .label_selable:hover{
     background-color: rgba(210, 210,210,0.8);
     cursor: pointer;
@@ -113,7 +125,9 @@ hr{
 
 .search_web{
     float:right;
+
 }
+
 .search_range{
     box-sizing: border-box;
     margin-top: 0.6vw;
@@ -122,18 +136,32 @@ hr{
     border-radius: 1vw;
     box-shadow: rgba(99, 94, 102, 0.637) 1px 0.5px 0.5px 1px;
     line-height:1.55vw;
+    position: relative;
 }
-.search_range label{
-    /* margin-right: 0.8vw; */
-    cursor: pointer;
-    text-align: center;
-    padding:0.1vw 0;
-    margin:0.2vw 0;
+.select_btn input[type="radio"] + label {
+    /*content: "\25e4"; !*不换行空格*!*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
     width:3.5vw;
     font-weight: normal;
+    padding:0.1vw 0;
+    margin:0.2vw 0;
+    cursor: pointer;
+    text-align: center;
+
 }
-.search_range label:last-child{
+.select_btn input[type="radio"]:checked + label {
+    background-color: rgba(210, 210,210,0.8);
+    background-clip: content-box;
+
+}
+.select_btn input[type="radio"] + label:last-child{
     margin-right: 1.2vw;
+}
+input[name="select_type"] {
+    display:none;
+    /*visibility: hidden;*/
 }
 .search_in{
     height:2vw;
@@ -153,13 +181,19 @@ hr{
 #select_1:focus{
     width:16vw;
 }
-input[name="select_type"]{
-    display:none;
+#search_drop_list{
+    display: none;
+    position: absolute;
+    right:30vw;
 }
+
 .drop-menu-edit{
-    width:19.5vw;
+    display: block;
+    width:22.5vw;
+    min-height: 8vh;
     max-height:280px;
     overflow: auto;
+    font-size:13px;
 }
 
 .drop-menu-edit li{
@@ -169,13 +203,21 @@ input[name="select_type"]{
 .drop-menu-edit li:hover{
     background-color: rgba(200,200,200,0.7) ;
 }
-.top_navigation_bar{
-    box-sizing: border-box;
-    height:2.6vw;
-    background-color: #DBDBDB;
-    border:0.04vw solid rgb(212, 201, 201);
+.dropdown-edit{
+    /*display: none;*/
+
 }
 
+
+#top_navigation_bar{
+    box-sizing: border-box;
+    height:auto;
+    background-color: #DBDBDB;
+
+}
+.top_navigation_title{
+    border:0.04vw solid rgb(212, 201, 201);
+}
 .nav_bar,.nav_bar_bt{
     box-sizing: border-box;
     float:left;
@@ -184,9 +226,9 @@ input[name="select_type"]{
     width:12vw;
     text-align: center;
     /* line-height=hight-padding*2 - border*2 */
-    line-height: 2vw;
+    line-height: 2.46vw;
     height:2.6vw;
-    padding:0.25vw;
+    padding:0.02vw;
     border:0.05vw solid rgb(212, 201, 201);
     border-radius: 0.2vw;
     cursor: pointer;
@@ -196,6 +238,14 @@ input[name="select_type"]{
     width:100%;
     height:100%;
 }
+.nav_text:hover{
+    color:Firebrick;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    background-color: #FFF ;
+    border-radius: 2px;
+}
+
 .nav_bar_bt{
     position: relative;
     border:0;
@@ -222,7 +272,7 @@ input[name="select_type"]{
     transition: all 0.3s linear;
 }
 .bar_triangle{
-    margin-left:0.12vw;
+    margin-left:0.2vw;
     display: inline-block;
     width:0;
     border:0.3vw solid transparent;
@@ -232,11 +282,31 @@ input[name="select_type"]{
 .bar_triangle_in{
     position: absolute;
     top: -0.3vw;
-    left: -0.16vw;
+    right: -0.16vw;
     width:0;
     border:0.16vw solid transparent;
     border-top-color: #FFF;
 }
 .container-fluid{
     padding: 0;
+}
+
+#drop_down_nav_content{
+
+    background-color: #fff;
+
+}
+.nav_list_title{
+
+    display: none;
+    min-height: 65px;
+    padding:0.3vw;
+    border-bottom: 1px solid #eee;
+}
+.drop_down_list > li{
+    margin-left:0.4vw;
+    max-width: 11vw;
+}
+.dd_a:hover{
+    text-decoration: underline;
 }

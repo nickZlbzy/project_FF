@@ -1,7 +1,10 @@
 .home_div{
     margin:2vw 0;
 }
-
+.gridItem td{
+    /*text-align: center;*/
+    padding: 0.25vw 0.15vw;
+}
 
 .re_submit_div{
     height: 5.5vw;
@@ -33,10 +36,7 @@
     height:7.5vw;
 }
 
-li{
-    list-style-type:none;
-    padding:3px 0;
-}
+
 .logo-img{
     width:27vw;
 }

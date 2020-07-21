@@ -23,6 +23,3 @@ class ArticleLevelManager(admin.ModelAdmin):
     search_fields = ['lid', 'title']
     list_editable = ['sort']
 
-
-
-admin.site.register(Article_model)

@@ -11,7 +11,7 @@
 }
 .u-from{
     width:20vw;
-    margin: 44px auto 0;
+    margin: 30px auto 0;
 }
 .u-from tr{
     height:42px;
@@ -28,7 +28,7 @@
 }
  /* widtweb设置文本框的长度 */
 #left-image{
-    margin-top:8vh;
+    margin-top:25px;
 }
 
 #right-image{
@@ -57,7 +57,8 @@ $(function(){
     $("#username").bind("blur",checkUsername);
     $("#phone").bind("blur",checkPhone);
     $("#email").bind("blur",checkEmail);
-    $(".password-in").bind("blur",checkPwd);
+    $("#pwd1").bind("blur",check_password);
+    $("#pwd2").bind("blur",checkPwd);
     $("#send-btn").bind("click",send_mobile);
     $("#mobile-code").bind("blur",check_verify_code);
 
@@ -183,6 +184,8 @@ function send_mobile(){
     })
 }
 
+
+
 function check_verify_code(){
     var phone_num = $('#phone').val();
     var verify_code = $('#mobile-code').val();
@@ -233,6 +236,18 @@ function check_submit(){
     $("#reg_form").submit();
 }
 
+
+function check_password(){
+    var pwd = $('#pwd1').val();
+    var reg = /^\w{6,20}$/;
+    if(reg.test(pwd)){
+       $('#password-icon').html(icon_correct);
+    }else{
+        $('#password-icon').html(icon_error);
+    }
+
+}
+
 var b = false;
 function checkPwd(){
     var pwd1 = $('#pwd1').val();
@@ -247,7 +262,7 @@ function checkPwd(){
     if(b && pwd1 || pwd2){
         if(reg.test(pwd1) && pwd1 == pwd2){
             $('#pwd-icon').html(icon_correct);
-            $('#password-icon').html("");
+            {#$('#password-icon').html("");#}
         }else{
             $('#pwd-icon').html(icon_error);
             result = false;
@@ -266,14 +281,13 @@ function checkPwd(){
     <div class="middle container-fluid">
         <div class="col-md-3 hidden-xs  hidden-sm">
             <div class="image-box" id="left-image" style="">
-                <img src="/static/images/jin.png">
+                <img src="/static/images/homeimg.jpg">
             </div>
         </div>
 
         <div class="col-md-6 col-xs-6  col-sm-6">
-            <h1 style="color:crimson;text-align: center;margin-top: 10px;">欢 迎 注 册 </h1>
+            <h3 style="color:blue;text-align: left;padding-top: 5px;">注册新用户</h3>
             <div class="u-from">
-
                 <form id="reg_form" action="/user/register" method="post">
                     {% csrf_token %}
                     <table>
@@ -294,7 +308,7 @@ function checkPwd(){
                         <td>确认密码:&nbsp;</td>
                         <td><input class="password-in" id="pwd2" type="password"
                                   name="password2" placeholder="请再次输入密码"></td>
-                        <td>&nbsp;<i id="pwd-icon"></i></td>
+                        <td>&nbsp;<i id="pwd-icon"><span style="color:red">*</span></i></td>
                     </tr>
 
                     <tr>
@@ -332,7 +346,7 @@ function checkPwd(){
         </div>
         <div class="col-md-3 col-xs-6  col-sm-6">
             <div class="image-box" id="right-image"  style="">
-                <img src="/static/images/qian.jpeg">
+                <img src="/static/images/jin.png">
             </div>
         </div>
 

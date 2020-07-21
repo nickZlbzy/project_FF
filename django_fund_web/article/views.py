@@ -45,7 +45,8 @@ def do_article_info(request,type,artid):
     :return:
     """
     article_info = Article_mapper.select_by_artId(artid)
-    type_name = Article_mapper.get_title_by_type(article_info.get("article_type"))
+    type_info = Article_mapper.get_title_by_lid(article_info.get("level_id"))
+    print(type_info.get('url'))
     # 获取点赞信息
     like_count =  r.hget('all_like_count',artid)
     like_count = int(like_count.decode()) if like_count else 0
@@ -68,10 +69,11 @@ def query_title_parent(request,type):
    :return:
    """
 
-    type = "survey" if type == "art_page" else type
+    level_id = "survey" if type == "art_page" else type
     re_dict = {}
     re_dict['parent_title'] = Article_mapper.query_article_parent()
-    list_title = Article_mapper.query_type_article(type)
+    print(re_dict['parent_title'][0])
+    list_title = Article_mapper.query_type_article(level_id)
     list_title_page = Paginator(list_title,12)
     cur_page=request.GET.get('page',1)
     try:
@@ -81,7 +83,7 @@ def query_title_parent(request,type):
 
     re_dict['list_title_page'] = list_title_page
     re_dict['page'] = page
-    re_dict['type'] = type
+    re_dict['type'] = level_id
 
     return render(request, "article/article_index.html", re_dict)
 

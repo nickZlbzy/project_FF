@@ -21,9 +21,21 @@ $(function(){
     <div class="col-md-2 col-xs-3  col-sm-3">
         <div class="left_bar_nav">
             <ul>
-            {% for key,value in parent_title.items %}
-                <li onclick="window.open('{{ key }}','_self')">{{ value }}</li>
+            {% for item in parent_title %}
+{#                {% if not type and forloop.first  %}#}
+{#                    <li class="present_title" onclick="window.open('{{ item.url }}','_self')">{{ item.title }}</li>#}
+{#                    <li onclick="window.open('{{ item.url }}','_self')">{{ item.title }}</li>#}
+                {% if type == item.lid %}
+                    <li class="present_title" onclick="window.open('{{ item.url }}','_self')">{{ item.title }}</li>
+                {% else %}
+                    <li onclick="window.open('{{ item.url }}','_self')">{{ item.title }}</li>
+                {% endif %}
             {% endfor %}
+
+{#            {% for key,value in parent_title.items %}#}
+{##}
+{##}
+{#            {% endfor %}#}
             </ul>
 
         </div>

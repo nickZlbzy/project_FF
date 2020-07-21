@@ -59,14 +59,7 @@ def register(request):
             render(request, "user/register.html", locals())
 
         # TODO 发送激活邮件
-        random_num = str(int((random.uniform(0,1)*9+1)*1000))
-        code_str = username + '_' + random_num
-        code_str_bs = base64.urlsafe_b64encode(code_str.encode())
-        # 将随机码存储到redis里。 可以存储1-3天
-        r.set('email_active:%s' % username, random_num)
-        active_url = "http://127.0.0.1:8000/user/activation?code=%s" % (code_str_bs.decode())
-        # 发邮件
-        send_active_mail.delay(email, active_url)
+        send_email_verify(username,email)
 
         request.session["username"] = username
         request.session["uid"] = user.id
@@ -203,7 +196,7 @@ def mobile_verify(request):
     if request.method == "GET":
         mobile = request.GET.get("phone")
         if mobile:
-            code = Sms_verify.send(mobile)
+            code = Sms_verify.tencent_send(mobile)
             if code:
                 key = 'sms:%s'%mobile
                 code_m = Utils.make_md5s(code)
@@ -232,7 +225,7 @@ def mobile_verify(request):
         else:
             return JsonResponse({"code":10110,"msg":"验证码输入错误!"})
 
-
+@logging_check
 def personal_center(request):
     if request.method == "GET":
         try:
@@ -240,10 +233,12 @@ def personal_center(request):
         except KeyError as e:
             print(e)
             return redirect('/user/login')
-        list_order = user.fund_payment_model_set.all()
-        for item in list_order:
-            sname = pro_dict.get_from_dict("pay_status",item.status)
-            item.status_name = sname if sname else ""
+
+        if user.is_active:
+            list_order = user.fund_payment_model_set.all()
+            for item in list_order:
+                sname = pro_dict.get_from_dict("pay_status", item.status)
+                item.status_name = sname if sname else ""
 
         return render(request,"user/personal.html",locals())
     elif request.method == "POST":
@@ -311,5 +306,27 @@ def envaluation(request):
 
 
 
+def send_email_verify(username,email):
+    random_num = str(int((random.uniform(0, 1) * 9 + 1) * 1000))
+    code_str = username + '_' + random_num
+    code_str_bs = base64.urlsafe_b64encode(code_str.encode())
+    # 将随机码存储到redis里。 可以存储1-3天
+    r.set('email_active:%s' % username, random_num)
+    # active_url = "http://127.0.0.1:8080/user/activation?code=%s" % (code_str_bs.decode())
+    active_url = "http://www.nickzlbzy.com.cn/user/activation?code=%s" % (code_str_bs.decode())
+    # 发邮件
+    send_active_mail.delay(email, active_url)
 
+def send_email_again(request):
+    if request.method == "GET":
+        try:
+            user = User_profile_model.objects.get(id=request.session['uid'])
+        except KeyError as e:
+            print(e)
+            return redirect('/user/login')
 
+        if user.is_active:
+            return JsonResponse({"code": 10114})
+        else:
+            send_email_verify(user.username,user.email)
+            return JsonResponse({"code": 200,"msg":"发送成功！"})

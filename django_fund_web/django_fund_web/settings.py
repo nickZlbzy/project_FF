@@ -27,7 +27,7 @@ SECRET_SALT = "asdqwe"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -209,5 +209,5 @@ ALIPAY_KEY_DIRS = os.path.join(BASE_DIR,"static/pay/key_file/")
 SESSION_COOKIE_AGE = 60*60*24
 
 # 静态资源配置
-STATIC_ROOT = '/Users/nick/PycharmProjects/fProject/fund_static/static'
+STATIC_ROOT = '/Users/nick/PycharmProjects/fund_static/static'
 
