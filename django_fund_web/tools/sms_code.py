@@ -62,8 +62,7 @@ class Sms_verify:
             # 您也可以直接在代码中写入密钥对，但需谨防泄露，不要将代码复制、上传或者分享给他人
             # CAM 密钥查询：https://console.cloud.tencent.com/cam/capi
 
-            cred = credential.Credential("AKIDtISKwSjQZR3SQAPuviV1HFvdrtihnBhw",
-                                         "FBE6g0GsBDDeoiLgkDQMzPbEUSAbkc7N")
+            cred = credential.Credential("secretId","secretKey")
             verify_code = str(int((random.uniform(0, 1) * 9 + 1) * 100000))
             phone = '+86' + phone_num
             # cred = credential.Credential(
