@@ -43,9 +43,21 @@ class Article_mapper:
     @staticmethod
     def query_by_kind(kind,pagesize=10):
         re = Article_level_model.objects.filter(module=kind).order_by('sort')
+        re_dict = {}
+        if re:
+            for item in re:
+                dic={}
+                dic["title"]=item.title
+                dic['childs']=[]
+                for item2 in item.info.all()[:pagesize]:
+                    dic_info={}
+                    dic_info['url'] = item2.url
+                    dic_info['title'] = item2.title
+                    dic['childs'].append(dic_info)
+                re_dict[item.kind] = dic
+        return re_dict
+        # return {item.kind:{"title":item.title,"childs":item.info.all()[:pagesize]} for item in re} if re else ""
 
-
-        return {item.kind:{"title":item.title,"childs":item.info.all()[:pagesize]} for item in re} if re else ""
 
 
 

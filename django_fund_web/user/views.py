@@ -84,7 +84,7 @@ def users_active(request):
     print('username:',username)
     old_data =  r.get('email_active:%s'%username)
     if not old_data:
-        result = {'code':10115,'error':'Your code is wrong !'}
+        result = {'code':10115,'error':'Your code is formerly !'}
         return HttpResponse(result['error'])
     if rcode != old_data.decode():
         result = {'code': 10116, 'error': 'Your code is wrong !!'}
@@ -96,7 +96,7 @@ def users_active(request):
         return HttpResponse(result['error'])
     user.is_active = True
     user.save()
-    r.delete('email_active_%s' % username)
+    r.delete('email_active:%s' % username)
 
     result = {'code': 200, 'msg': "邮箱激活成功！"}
     return HttpResponse(result['msg'])
@@ -307,13 +307,19 @@ def envaluation(request):
 
 
 def send_email_verify(username,email):
+    """
+    发送确认邮件
+    :param username:
+    :param email:
+    :return:
+    """
     random_num = str(int((random.uniform(0, 1) * 9 + 1) * 1000))
     code_str = username + '_' + random_num
     code_str_bs = base64.urlsafe_b64encode(code_str.encode())
     # 将随机码存储到redis里。 可以存储1-3天
-    r.set('email_active:%s' % username, random_num)
-    # active_url = "http://127.0.0.1:8080/user/activation?code=%s" % (code_str_bs.decode())
-    active_url = "http://www.nickzlbzy.com.cn/user/activation?code=%s" % (code_str_bs.decode())
+    r.set('email_active:%s' % username, random_num,60*60*24)
+    active_url = "http://127.0.0.1:8080/user/activation?code=%s" % (code_str_bs.decode())
+    # active_url = "http://www.nickzlbzy.com.cn/user/activation?code=%s" % (code_str_bs.decode())
     # 发邮件
     send_active_mail.delay(email, active_url)
 
