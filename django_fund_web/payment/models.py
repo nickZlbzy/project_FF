@@ -1,7 +1,4 @@
-from django.db import models
-
-# Create your models here.
-from base.BaseModel import BaseModel
+from base.BaseModel import *
 from user.models import User_profile_model
 
 

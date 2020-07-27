@@ -13,14 +13,14 @@ $(function(){
     $('#user-btn1').bind('click',function(){
         $("#user-info").show();
         $("#list-order").hide();
-        $("#user-btn2").addClass('select-color');
-        $("#user-btn1").removeClass('select-color');
+        $("#user-btn1").addClass('select-color');
+        $("#user-btn2").removeClass('select-color');
     });
     $('#user-btn2').bind('click',function(){
         $("#user-info").hide();
         $("#list-order").show();
-        $("#user-btn1").addClass('select-color');
-        $("#user-btn2").removeClass('select-color');
+        $("#user-btn2").addClass('select-color');
+        $("#user-btn1").removeClass('select-color');
 
     })
 

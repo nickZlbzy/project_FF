@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="/static/images/jj_icon.png" rel="icon" type="image/x-ico">
+
+{# 页面引用静态资源方式 #}
+<link rel="stylesheet" type="text/css" href="/static/css/layout/post.css">
+
+{% block head_range %}
+<title>睿选基金网</title>
+
+{% endblock %}
+</head>
+<body>
+    {% include "post_lay/top.html" %}
+    <div id="core_range">
+        <div class="page_main">
+             {# 重写主界面代码 #}
+            {% block page_main %}
+                <br><br><br>
+                <h2 style="text-align: center;">板块空缺中。。。</h2>
+            {% endblock %}
+
+        </div>
+        {% include "post_lay/bottom.html" %}
+    </div>
+
+</body>
+</html>

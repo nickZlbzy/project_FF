@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^filter/', include('filter.urls')),
     url(r'^user/', include('user.urls')),
     url(r'^payment/', include('payment.urls')),
+    url(r'^post/', include('post.urls')),
 ]

@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 from base.BaseModel import BaseModel
 
+class Fund_info_model(BaseModel):
+    pass
+
+
 
 class Fund_filter_model(BaseModel):
     f_code = models.CharField("编号",max_length=20)

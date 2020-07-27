@@ -27,8 +27,8 @@ $(function(){
 {% block page_main %}s
 
 <div class="personal-range">
-    <h3 class="title text-primary"><span id="user-btn1">个人中心</span> &nbsp;&nbsp;/
-        &nbsp;&nbsp; <span id="user-btn2" class="select-color">订单管理</span></h3>
+    <h3 class="title text-primary"><span id="user-btn1" class="select-color">个人中心</span> &nbsp;&nbsp;/
+        &nbsp;&nbsp; <span id="user-btn2">订单管理</span></h3>
     <div id="user-info">
         <div class="top-left-part">
             <form id="ui-form" action="/user/personal" method="post">
@@ -55,6 +55,11 @@ $(function(){
                     <td><input id="nickname" class="tl-input" type="text" name="nickname" value="{{ user.nickname }}"/></td>
                     <td><button id="nickname_modify">修 改</button></td>
                 </tr>
+                <tr>
+                    <td>账号状态:</td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </table>
             </form>
         </div>
@@ -62,9 +67,9 @@ $(function(){
             {% if not user.is_active %}
                 <h3 style="color:coral;text-align: center;">验证邮箱已发出，请你登录邮箱进行验证</h3>
                 <br>
-                <h4 style="margin-left: -3vw;text-align: center">未收到验证邮件？ &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" id="send-btn"
+                <h5 style="margin-left: -3vw;text-align: center;color:#666">未收到验证邮件？ &nbsp;&nbsp;&nbsp;&nbsp; <button type="button" id="send-btn"
                             class="btn btn-warning search-btn ">重新发送邮件</button>
-                </h4>
+                </h5>
 
             {% elif not user.ability or not user.preference %}
                 <h4>当前投资风险系数<b style="color: orangered;">未知</b>，是否立即进行
