@@ -17,7 +17,7 @@ class Post_bar_model(BaseModel):
 
     class Meta:
         db_table = 't_post_bar'
-        verbose_name = '瑞选贴吧表'
+        verbose_name = '基金吧表'
         verbose_name_plural = verbose_name
         ordering = ['t_sort', 'sort']
 
@@ -26,9 +26,9 @@ class Post_bar_model(BaseModel):
 
 
 class Post_title_model(BaseModel):
-    theme = models.CharField("标题",max_length=50,db_index=True)
+    theme = models.CharField("主题",max_length=50,db_index=True)
     author = models.OneToOneField(User_profile_model)
-    b_id = models.ForeignKey(Post_bar_model,related_name='bar')
+    b_id = models.IntegerField('贴吧id')
     post_type = models.SmallIntegerField('帖子类型')
     url = models.CharField("路径", max_length=50)
     comment_count = models.IntegerField('评论数',default=0)
@@ -49,7 +49,7 @@ class Post_title_model(BaseModel):
         return "主题:%s ,基金编号:%s ,作者:%s " % (self.theme,self.bar_code, self.author)
 
 class Post_comment_model(BaseModel):
-    p_id = models.IntegerField('帖子id')
+    p_id = models.ForeignKey(Post_title_model, related_name='pid')
     content = models.CharField("评论内容",max_length=150,db_index=True)
     author = models.OneToOneField(User_profile_model)
     reply_count = models.IntegerField('回复数', default=0)

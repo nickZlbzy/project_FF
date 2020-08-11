@@ -21,7 +21,11 @@ body{
     border-top:0.45vw solid red;
 }
 .clear-box{
-    height:0;
+    height:1px;
+    clear: both;
+}
+.clear-10{
+    height:0.8vw;
     clear: both;
 }
 li{
@@ -115,9 +119,16 @@ hr{
     float:left;
     line-height:4.5vw;
 }
-.top_advertising img,.top_logo img{
+.top_advertising{
+    height: auto;
+}
+.top_logo img{
     height: 97.5%;
     cursor: pointer;
+}
+.top_advertising img{
+    cursor: pointer;
+    width: 100%;
 }
 .user_range span{
     padding-left: 1.5vw;
@@ -127,7 +138,6 @@ hr{
     float:right;
 
 }
-
 .search_range{
     box-sizing: border-box;
     margin-top: 0.6vw;
@@ -213,7 +223,6 @@ input[name="select_type"] {
     box-sizing: border-box;
     height:auto;
     background-color: #DBDBDB;
-
 }
 .top_navigation_title{
     border:0.04vw solid rgb(212, 201, 201);
