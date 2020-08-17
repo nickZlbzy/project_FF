@@ -15,6 +15,15 @@ from tools.get_pagination import get_pagination
 from tools.logging_check import logging_check
 
 
+
+def fund_detail_page(request,code):
+    # code = request.GET.get("code")
+    fund_info = Fund_filter_mapper.select_fund_by_code(code)
+    if fund_info:
+        return render(request,"fund_info/fund_info.html",locals())
+
+
+
 @logging_check
 def fund_filter_page(request):
     """

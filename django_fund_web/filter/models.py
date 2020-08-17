@@ -9,7 +9,7 @@ class Fund_info_model(BaseModel):
 
 
 class Fund_filter_model(BaseModel):
-    f_code = models.CharField("编号",max_length=20)
+    f_code = models.CharField("编号",max_length=20,db_index=True)
     f_name = models.CharField("基金名称",max_length=50,db_index=True)
     company_id = models.IntegerField("公司id", db_index=True)
     is_oc = models.IntegerField("is_开闭", default=1)

@@ -12,6 +12,8 @@ from tools.utils import Utils
 from django.views.generic.base import View
 import ssl
 
+from user.models import User_profile_model
+
 ssl._create_default_https_context = ssl._create_unverified_context
 
 app_private_key_string = open(settings.ALIPAY_KEY_DIRS + 'app_private_key.pem').read()
@@ -75,13 +77,20 @@ class OrderProcessingView(MyAliPay):
         amount = json_obj.get('amount')
         fund_code = json_obj.get('fund_code')
         order_code = Utils.get_sync("ali_pay")
-        if "uid" in request.session:
-            uid = request.session['uid']
-            Fund_payment_model.objects.create(order_code=order_code,fund_code=fund_code,
-                          price=price,total=count,amount=amount,uid_id=uid)
-            return JsonResponse({'code':200, 'pay_url':self.get_trade_url(order_code, int(amount))})
-        else:
-            return JsonResponse({'code': 20101, 'msg':'请登录!'})
+        print("session_is_active:", request.session["is_active"])
+        if not "uid" in request.session:
+            return JsonResponse({'code': 20101, 'msg': '请登录!'})
+        if not request.session.get('is_active',False):
+            user = User_profile_model.objects.filter(uid=request.session['uid'])
+            if not user or not user.is_active:
+                return JsonResponse({'code': 20103, 'msg': '账号未激活!!'})
+
+        uid = request.session['uid']
+        Fund_payment_model.objects.create(order_code=order_code,fund_code=fund_code,
+                      price=price,total=count,amount=amount,uid_id=uid)
+        return JsonResponse({'code':200, 'pay_url':self.get_trade_url(order_code, int(amount))})
+
+
 
 class OrderCountinueView(MyAliPay):
 

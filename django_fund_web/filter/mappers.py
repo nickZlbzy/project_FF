@@ -130,6 +130,15 @@ class Fund_filter_mapper:
                 re_list.append(fund_dict)
         return re_list
 
+    @staticmethod
+    def select_fund_by_code(code):
+        try:
+            fund_info = Fund_filter_model.objects.get(is_active=1,f_code=code)
+        except:
+            return 0
+        return fund_info
+
+
 
 class Fund_type_mapper:
     @staticmethod

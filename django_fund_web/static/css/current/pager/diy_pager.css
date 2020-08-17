@@ -1,0 +1,74 @@
+/* 自定义分页控件 */
+.diy_pager{
+    padding: 15px 0 15px 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.diy_paging_default{
+    box-sizing: content-box;
+    font-size: 14px;
+    color:#464646;
+    display: inline-block;
+    height:20px;
+   
+}   
+.list_page a{        
+    padding:1.5px 6px;
+    color: #039;
+}
+.diy_paging_default .list_page a:hover{
+    
+    background-color: rgb(209,225,252);        
+    text-decoration: none;
+}
+.diy_paging_default> .page_jump{
+    margin: 0 5px;
+}
+.diy_paging_default> .page_jump input{
+    width:40px;
+    padding:0 4px;
+    border: 1px solid #464646;
+    height:100%;
+}
+.ensure_btn{
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    width: 40px;
+    color: #4394fe;
+    border:1px solid #4394fe;
+    cursor: pointer;
+    margin-left:8px;
+}
+a.page_on {
+    background-color:  rgb(81, 149, 233);
+    color:#fff;
+    cursor: default;
+}
+
+/* 简洁版样式 */
+.diy_paging_min{
+    font-size: 12px;
+    color:#464646;
+    display: inline-block;
+    height:17px;
+}
+.diy_paging_min .list_page a{
+    font-family: Verdana;
+    padding:1px 4px;
+}
+.diy_paging_min> .page_jump input{
+    width:30px;
+    padding:0 4px;
+    border: 1px solid #464646;
+    height:100%;
+}
+.diy_paging_min .ensure_btn{        
+    line-height: 17px;  
+    margin-left:5px;      
+}
+a.min_page_on {
+    font-family: Verdana;
+    font-weight: 700;
+    color:#222;
+}

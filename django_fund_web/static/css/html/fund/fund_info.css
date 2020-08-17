@@ -1,0 +1,386 @@
+ dl,dt{
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+.page_main{
+    font-size: 12px;
+    font-family: arial,"Hiragino Sans GB",simsun,sans-serif;
+}
+.page_main a{
+    color:#039;
+    font-size: 12px;
+    font-family: arial,"Hiragino Sans GB",simsun,sans-serif;
+}
+.page_main a:hover{
+    text-decoration: none;
+
+}
+.main_top_tag a{
+    font-size: 13px;
+}
+.main_top_tag a:hover{
+    font-size: 13px;
+    color: rgb(230,41,40);
+}
+
+.main_top_tag{
+    display: inline-block;
+    margin-bottom: 0.3vw;
+    height:2vw;
+    line-height: 2vw;
+}
+.main_top_adver img{
+    width: 100%;
+    cursor: pointer;
+}
+.main_history_bar{
+    font-size: 13px;
+    padding-right:0.5vw;
+    height:2vw;
+    line-height: 2vw;
+    /* white-space: nowrap; */
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.2vw 0;
+}
+.main_history_bar a{
+    margin-right: 2px;
+}
+.main_history_bar a:hover{
+    text-decoration: underline;
+    color: rgb(230,41,40);
+}
+
+/* info_content */
+.fund_info_tab{
+    height:40px;
+    color:white;
+    background-color: #4372ba;;
+    line-height: 40px;
+}
+.info_title{
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: normal;
+}
+.title_right_bar{
+    margin-right:6vw;
+}
+.title_right_bar a{
+    margin-right: 0.5vw;
+    color:#333;
+    font-size: 13px;
+}
+a.fund_post_btn{
+    color: #FFF;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    height:20px;
+    line-height: 20px;;
+}
+a.add_optional_btn, a.add_contrast_btn{
+    position: relative;
+    text-align: center;
+    width:75px;
+    display: inline-block;
+    padding: 0 5px 0 25px;
+    background-color: #FFF;
+    height:20px;
+    line-height: 22px;;
+}
+.my_icon_post{
+    position: absolute;
+    left:0;
+    display: inline-block;
+    width:18px;
+    height:16px;
+    background: url('/static/images/img2/jj_ball.png') no-repeat;
+    background-position: -46px -362px;
+}
+.my_icon_con, .my_icon_opt{
+    position: absolute;
+    left:5px;
+    top:2px;
+    display: inline-block;
+    width:16px;
+    height:16px;
+    background-image: url('/static/images/img2/jj_ball.png');
+    background-repeat: no-repeat;
+}
+.my_icon_opt{
+    background-position: -90px -80px;
+}
+.my_icon_con{
+    background-position: -90px -60px;
+}
+.ps_blue{
+
+    height:32px;
+    line-height: 32px;
+    color: #333;
+    font-size: 12px;
+    text-indent: 10px;
+    background: #f2f9ff;
+    border: 1px solid #cce0ff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ps_blue em{
+    margin-right: 5px;
+}
+
+/* 基础信息部分 */
+.basic_info{
+    display: flex;
+    height:255px;
+    border:1px solid #cce0ff;
+    border-top: 0;
+}
+.fund_info_content{
+    flex:5.5;
+    padding:0.8vw;
+    position: relative;
+}
+.fund_payment{
+    flex:4;
+}
+.dataOfFund{
+    overflow: hidden;
+    padding-bottom: 0.7vw;
+    border-bottom: 1px dotted gray;
+}
+.dataOfFund>dl{
+    padding-left: 0.6vw;
+    width:13vw;
+    float: left;
+}
+.dataOfFund>dl:not(:last-child) dt,.dataOfFund>dl:not(:last-child) .data_nums{
+    border-right: 1px solid gray;
+}
+.tips{
+    display: none;
+    width: 330px;
+    position: absolute;
+    left:14px;
+    top:0;
+    font-size: 12px;
+    padding:4px 6px;
+    background: #fff7eb;
+    border: 1px solid #f3d098;
+    color:#333;
+    text-align: left;
+    word-break:break-all;
+}
+#info_tips{
+    position: relative;
+
+}
+.data_nums{
+    height:34px;
+    margin-bottom: 23px;
+}
+.data_nums dl{
+    float: left;
+    display: block;
+}
+.data_nums dl:first-child{
+    transform: translateY(6px);
+    font-size: 26px;
+}
+.fundZdf span{
+    margin-top: 1px;
+    display: block;
+    font-size: 14px;
+    height:16px;
+    padding-left: 0.2vw;
+}
+.ui_num{
+    font-size: 16px;
+}
+.color_red{
+    color:red;
+}
+.color_green{
+    color:green;
+}
+.gz_up, .gz_down{
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    width: 16px;
+    height: 20px;
+    margin-top: 12px;
+    margin-left: 5px;
+    background-repeat: no-repeat;
+}
+.gz_up{
+    background-position: 0 -381px;
+}
+.in_num{
+    font-size: 16px;
+    margin-left: 0.4vw;
+}
+.bgOfFund{
+    padding: 10px 0;
+}
+.bgOfFund tr td{
+    padding-bottom: 6px;
+    line-height: 18px;
+    height:24px;
+}
+.bgOfFund tr td:first-child{
+    width:13vw;
+    max-width: 13vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.bgOfFund tr td:nth-child(2){
+   width: 16vw;
+}
+.bgOfFund tr td:nth-child(3){
+    width:10vw;
+}
+.left_side{
+    position: absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:14px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-repeat: no-repeat;
+    background-position: -283px -53px;
+    border-right: 1px solid #e5e5e5;
+}
+.opt_long_sp{
+    display: inline-block;
+}
+.right_pay_header{
+    height:36px;
+    line-height: 36px;
+    color: #333;
+    font-size: 12px;
+    text-indent: 1.4vw;
+    background: #f2f9ff;
+    border-bottom: 1px  #cce0ff;;
+}
+.right_pay_header em{
+    margin-right: 5px;
+}
+.payment_status span{
+    margin-right: 0.7vw;
+}
+.comparePrice{
+    text-decoration: line-through;
+}
+.payment_way_content{
+    padding: 0.6vw 1.5vw 0;
+}
+.input_money{
+    height:40px;
+    line-height: 40px;
+    margin:0.6vw 0 0.35vw;
+}
+#money_account{
+    height:38px;
+    width: 12vw;
+    font-size:16px;
+    padding: 0 0.3vw;
+}
+.payment_way{
+    box-sizing: content-box;
+    height:44px;
+    display: table;
+    border-collapse:separate;
+    border-spacing: 0.5vw 0;
+    padding-bottom:5px;
+}
+.payment_way span{
+    display: table-cell;
+    vertical-align: middle;
+    margin-right: 0.6vw;
+}
+.payment_way span:first-child{
+    transform: translateY(5px);
+    cursor: pointer;
+}
+.btn01{
+    height:40px;
+    width:118px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color:#fff;
+    cursor: pointer;
+}
+.btn01:hover{
+    opacity: 0.8;
+}
+.immediately{
+    background-color: #FF4400;
+}
+.investment_plan{
+    background-color: #FF9933;
+}
+.investment_plan p{
+    margin: 0;
+}
+
+.investment_plan .text_p2{
+    font-size: 12px;
+}
+.btn02{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    width:70px;
+    height:40px;
+    border: 1px solid ;
+    color: #4070b8;
+    background-color: #f2f7ff;
+    border: 1px solid #cce0ff;
+    cursor: pointer;
+}
+.btn02:hover{
+    background-color: #FFF;
+    opacity: 0.9;
+    border-color: #333;
+}
+.fund_worth{
+    height:370px;
+    border:1px solid #cce0ff;
+    margin-bottom: 15px;
+}
+
+/* 基金净值 */
+.fund_worth_header{
+    box-sizing: content-box;
+    background-color: #F8F8FA;
+    border-bottom: 1px solid #d4d4d4;
+    height:38px;
+    line-height: 38px;
+}
+.fund_worth_header .tabs{
+    padding:0 0.4vw;
+    color:#333;
+    font-size: 14px;
+}
+.money_help{
+    height: 20px;
+    padding:1px 0 5px;
+}
+.check_money{
+    height:14px;
+    padding-left: 61px;
+    display: none;
+}
+.check_money em{
+    margin-right: 5px;
+}
+#money_predict{
+    height:14px;
+    display: none;
+}

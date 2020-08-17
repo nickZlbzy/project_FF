@@ -117,7 +117,8 @@ $(function(){
                     <td><span tag="">
                         <input type="checkbox" name="fund_{{ item.f_code }}"/></span>
                     </td>
-                    <td class="msDataText" style="cursor: pointer;"><a target="_blank">{{ item.f_code }}</a></td>
+                    <td class="msDataText" style="cursor: pointer;"><a href="/filter/fundinfo/{{ item.f_code }}" target="_self">
+                        {{ item.f_code }}</a></td>
                     <td class="msDataText">{{ item.f_name }}</td>
                     <td class="msDataText" style="color:orangered;">{{ item.type_name }}</td>
                 </tr>

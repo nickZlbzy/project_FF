@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>404.html</title>
-</head>
-<body>
-    <h2>我是404页面未找到！</h2>
-</body>
-</html>
+{% extends "post_lay/middle.html" %}
+
+{#头部title，css，js部分#}
+{% block head_range %}
+{#自定义标题栏名称#}
+<title>404</title>
+{#css#}
+<style type="text/css"></style>
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+{#页面核心代码部分#}
+{% block page_main %}
+
+<h1>404!未找到</h1>
+
+{% endblock %}

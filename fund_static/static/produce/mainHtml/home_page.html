@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>睿选基金网</title>
+    <link href="./images/jj_icon.png" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="./static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="./static/js/base/jquery-3.4.1.js"></script>
+    <script src="./static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/top.js"></script>
+    <style type="text/css">    
+        .search_in{
+            background-image: url('images/search.png');
+        }       
+        .page_main{
+            /* border:1px solid goldenrod; */
+            min-height:45vw;
+            margin: 0 1.5vw;
+        }
+        .div0{display: inline-block;}
+        .div1{
+            width: 32%;
+            /* height: 680px; */
+            /* border: 2px solid red; */
+            margin-left: 10px; 
+            margin-bottom: 150px; 
+            float: left;
+        }
+        .div2{
+            width: 42%;
+            /* height: 680px; */
+            /* border: 2px solid blueviolet; */
+            /* margin-right:25%; */
+        }
+        .div3{
+            width: 22%;
+            /* height: 680px; */
+            /* border: 2px solid red; */
+            /* margin-top: 0px; */
+            float:right;
+        }
+        .c1{
+            /* text-align:center; */
+            /* margin-right:2px; */
+            list-style-type: None;
+        }
+        /* .table1{
+            width: 30%;
+            height: 100%;
+        } */
+        .table1{
+            /* width: 30%;
+            height: 25px; */
+            /* width="100%"; */
+            align:"center";
+        }
+        .t1{
+                width:100%;
+                border-collapse:collapse;
+            }
+        .title{
+                color: #666666;
+                font:13px;
+            }
+        a{
+                color: #333333;
+                font-size:16px;  
+        }
+        .insert-div{
+            padding:1vw 12% 0;          
+        }
+        .insert-div h4{
+            color:#555;
+            /* font-size:15px;  */
+                   
+        }        
+        .insert-div>*{
+            float:right;
+            margin-right:20px;
+        }
+        .jump-filter-btn> .btn-img{
+                height:112px;                
+        }
+       
+    </style>
+    <script type="application/javascript">        
+        window.onload = function () {
+             //页面加载完成后执行内容
+            //  window.open("{{ url_for('fund_filter', filename='') }}","_blank");
+        };
+          
+
+    </script>
+</head>
+<body>  
+<div id="core_range">
+        <div id="page_top">
+            <div class="top_row1">
+                
+                <span>睿选基金---您的基金专家</span>
+                <div class="top_tags">
+                    <div class="tags">黄页<div class="bar_triangle"><div class="bar_triangle_in"></div></div></div> 
+                    <div class="tags">睿选中国</div>
+                    <div class="tags">睿选产品</div>                       
+                    <div class="tags st_a">历年大事件</div>   
+                </div>           
+            </div>
+            <div class="top_row2">
+                <div class="top_logo">
+                    <img src="./images/logo.gif">
+                </div>
+                <div class="user_range">
+                    <span>游客</span>
+                    <span>
+                    <span class="st_a">
+                        <a href="register.html" target="_blank" text-decoration: none;>登录</a>
+                        </span>
+                </div>
+                <div class="search_web">
+                    <div class="search_range">
+                        <form action="" method="POST"   enctype="multipart/form-data">
+                        <span class="search_in"> 
+                            <input type="text" id="select_1" maxlength="28"/>
+                        </span>
+                        <span>
+                                <label class="label_selable check_label"">
+                                    <input value="s1" name="select_type" type="radio" checked>基金</label>
+                                <label class="label_selable">
+                                    <input value="s2" name="select_type" type="radio">公司</label>
+                                <label class="label_selable">
+                                    <input value="s3" name="select_type" type="radio">文章</label>
+                        </span>
+                        
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="top_advertising">
+                <img src="./images/jj_ad.gif" alt="">
+            </div>
+            <div class="top_navigation_bar">         
+                <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">首页</a> </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="article.html">文章</a>  </span></div>
+                <div class="nav_bar"><span class="nav_text st_a"><a href="main-filter.html">组合管理</a> </span></div>
+                <div class="nav_bar_bt" id="fund_tools">
+                    <button type="button" class="btn my-btn1 st_a">基金工具</button>
+                    <button type="button" class="btn dropdown-toggle my-btn2" 
+                    style="position:absolute;" data-toggle="dropdown" 
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>    
+                    <ul class="dropdown-menu">
+
+                    </ul>
+                </div>   
+            <div class="nav_bar"><span class="nav_text st_a"><a href="home_page.html">ETFs</a> </span></div>
+            <div class="nav_bar"><span class="nav_text st_a"><a href="study_article.html">投资学堂</a> </span></div>                 
+         </div>
+        </div>
+  <div class="page_main">
+    <div class="div0 div1 ">
+                <div class="areaOuter clearfix">
+                        <div class="areaInner">
+                            <div class="areaLeft screenA">
+                                <h4 class="borderT5">最新发布 2019/10/31</h4>
+                                <!-- <div class="blank5"></div>
+                                <div id="news">
+        
+                                        <ul class="topline">
+                                            <li class="title"><h2><a href="/article/AR00008913" target="_blank">新基金观察（201909）公募ETF发展如火如荼 9月投资者入市意愿增强</a></h2></li><li class="summary">9月新成立基金118只，募集规模合计1712.78亿元，创下年内月度发行数量和募集规模的最高水平。</li>
+                                        </ul>
+                                        
+                                        <ul class="topline">
+                                            <li class="title"><h2><a href="/article/AR00008912" target="_blank">开放式基金业绩月评（201909）：股、债基金普涨 重仓TMT基金领跑</a></h2></li><li class="summary">在9月的结构性行情下，公募基金表现出较好韧性，各晨星中国基金指数悉数上涨。</li>
+                                        </ul>
+                                        
+                                        <ul class="topline">
+                                            <li class="title"><h2><a href="/article/AR00008911" target="_blank">QDII基金业绩月评（201909）：全球股市暂回暖 QDII基金业绩继续分化</a></h2></li><li class="summary">QDII基金9月的业绩整体持续分化，商品基金业绩表现较差，债券型基金整体温和上涨，股票型基金和混合型基金9月份业绩则...</li>
+                                        </ul>
+                                        
+                                        <ul class="topline">
+                                            <li class="title"><h2><a href="/article/AR00008907" target="_blank">Morningstar 晨星基金投资者风险等级评估方法（2019年9月）</a></h2></li><li class="summary">按照《证券期货投资者适当性管理办法》以及《基金募集机构投资者适当性管理实施指引（试行）》的规定...</li>
+                                        </ul>
+                                        
+                                        <div class="blank10"></div>
+                                         -->
+                                        
+                                <div class="blank5"></div>
+                                <a href="/research/new">更多文章>></a>
+                                
+                            </div>
+    
+                                    <!-- <h4 class="borderT5">公募基金研究</h4>
+                                    <ul class="midlist">
+                                        <li><a class="p" href="/research/fundreport" target="_blank">基金报告</a></li>
+                                       
+                                        <li><a class="p" href="/portfolio/" target="_blank">组合管理器</a></li>
+                                        <li><a href="/watchlist/" target="_blank">观察列表</a></li>
+                                        <li><a href="/quickrank/default.aspx" target="_blank">基金筛选器</a></li>
+                                    
+                                        <li><a class="p" href="/topholding/default.aspx" target="_blank">基金重仓股</a></li>
+                                        <li><a class="p" href="/fundmanagers/default.aspx" target="_blank">基金经理</a></li>
+                                        <li><a class="p" href="/fundcompany/default.aspx" target="_blank">基金公司</a></li>
+                                        <li><a href="/research/fundschool" target="_blank">基金学堂</a></li>
+                                    </ul>
+                                    <div class="blank10"></div>
+                                    <h4 class="borderT5">对冲基金研究</h4>
+                                    <ul class="midlist">
+                                        <li><a href="/research/hedgefund/" target="_blank">研究报告</a></li>
+                                        
+                                        <li><a href="/hedgefund/selector/default.aspx" target="_blank">对冲基金筛选器</a></li>
+                                        <li><a href="/hedgefund/manager/default.aspx" target="_blank">对冲基金经理</a></li>
+                                        <li><a href="/hedgefund/company/default.aspx" target="_blank">对冲基金公司</a></li>
+                                        <li><a href="/research/hedgefund/CA00007002" target="_blank">新手必读</a></li>
+                                    </ul> -->
+                                    <div class="blank10"></div>
+                                    <h4 class="borderT5">文章专栏</h4>
+                                    <ul class="midlist c1" >
+                                        <li><a href="/research/macro" target="_blank">宏观报告</a></li>
+                                        <li><a href="/research/institution" target="_blank">机构视点</a></li>
+                                        <li><a href="/research/market" target="_blank">市场盘点</a></li>
+                                        <li><a href="/research/abroad" target="_blank">海外市场</a></li>
+                                        <li><a href="/research/expert" target="_blank">理财札记</a></li> 
+                                    </ul>
+                                </div>
+
+                                <div class="blank10"></div>
+                                <h4 class="borderT5">热门基金</h4>
+                                <div id="hotfund" class="simplelist">
+                                    <div class="clearfix colbar"><span class="col2left">基金</span><span class="col2right">今年回报率</span></div>
+                                    <a href="/quicktake/F0000003WF" class="clearfix" target="_blank"><span class="hot3number1">1</span><span class="hot3left">广发稳健增长混合</span><span class="hot3right">0.30%</span></a><a href="/quicktake/F0000003YF" class="clearfix" target="_blank"><span class="hot3number1">2</span><span class="hot3left">兴全趋势投资混合(LOF)</span><span class="hot3right">1.87%</span></a><a href="/quicktake/0P0000P5UD" class="clearfix" target="_blank"><span class="hot3number1">3</span><span class="hot3left">易方达消费行业股票</span><span class="hot3right">-1.41%</span></a><a href="/quicktake/F0000004AI" class="clearfix" target="_blank"><span class="hot3number2">4</span><span class="hot3left">易方达中小盘混合</span><span class="hot3right">-1.69%</span></a><a href="/quicktake/0P0001606X" class="clearfix" target="_blank"><span class="hot3number2">5</span><span class="hot3left">招商中证白酒指数分级</span><span class="hot3right">-2.14%</span></a>
+                                </div>
+                            </div>
+                       
+              
+    </div>  
+
+    <div class="div0 div2">
+       <div class="insert-div">
+            <div class="jump-filter-btn">               
+                    <img class="btn-img" src="./images/filter_btn.jpg" />                    
+                </div>
+            <h4 style="">基金速查</h4> 
+            <div class="clear-box"></div>
+       </div>
+        
+       
+          <form action=""> 
+            <table  class="t1" id="ctl00_cphMain_gridResult" >
+                <tr>
+                    <td colspan="5" ><h3>优选基金</h3>
+                </td>
+                </tr>
+                <tr class="header">
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                    <th class="gridHeaderText" scope="col">
+                        <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$Symbol')">代码</a></th>
+                        <th class="gridHeaderText" scope="col">
+                            <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$FundName')">基金名称</a></th>
+                            <th class="gridHeaderText" scope="col">
+                                <a href="javascript:__doPostBack('ctl00$cphMain$gridResult','Sort$CategoryName')">基金分类</a></th>
+                </tr>
+        
+                <tr class="gridItem">
+                <td style="width:20px;">
+                    <span id="ctl00_cphMain_gridResult_ctl02_lblRowNo">1</span>
+                    </td>
+                <td style="width:22px;">
+                    <span tag="0P0001606X|招商中证白酒指数分级">
+                        <input id="ctl00_cphMain_gridResult_ctl02_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl02$chkFund" />
+                    </span></td>
+                <td class="msDataText" style="width:60px;"><a href="/quicktake/0P0001606X" target="_blank">161725</a></td>
+                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P0001606X" target="_blank">招商中证白酒指数分级</a></td>
+                <td class="msDataText">股票型基金</td>
+                
+            </tr>
+                <tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl03_lblRowNo">2</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P0001696E|信达澳银新能源产业股票"><input id="ctl00_cphMain_gridResult_ctl03_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl03$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P0001696E" target="_blank">001410</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P0001696E" target="_blank">信达澳银新能源产业股票</a>
+                                </td>
+                                <td class="msDataText">股票型基金</td>
+                                
+                            </tr>
+                <tr class="gridItem"></tr>
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl04_lblRowNo">3</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P000101GW|海富通内需热点混合"><input id="ctl00_cphMain_gridResult_ctl04_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl04$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P000101GW" target="_blank">519056</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P000101GW" target="_blank">海富通内需热点混合</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                                
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl05_lblRowNo">4</span>
+                                </td><td style="width:22px;">
+                                    <span tag="F0000003ZX|景顺长城新兴成长混合"><input id="ctl00_cphMain_gridResult_ctl05_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl05$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/F0000003ZX" target="_blank">260108</a></td>
+                                    <td class="msDataText" style="width:150px;"><a href="/quicktake/F0000003ZX" target="_blank">景顺长城新兴成长混合</a>
+                                    </td><td class="msDataText">激进配置型基金</td>
+                                        
+                                    </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl06_lblRowNo">5</span>
+                                </td><td style="width:22px;">
+                                    <span tag="F0000003XA|景顺长城鼎益混合(LOF)"><input id="ctl00_cphMain_gridResult_ctl06_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl06$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/F0000003XA" target="_blank">162605</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/F0000003XA" target="_blank">景顺长城鼎益混合(LOF)</a>
+                                </td><td class="msDataText">激进配置型基金</td>
+                                
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl07_lblRowNo">6</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P0000P5UD|易方达消费行业股票"><input id="ctl00_cphMain_gridResult_ctl07_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl07$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P0000P5UD" target="_blank">110022</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P0000P5UD" target="_blank">易方达消费行业股票</a></td>
+                                <td class="msDataText">股票型基金</td>
+                                
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl08_lblRowNo">7</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P0000YEN5|汇添富消费行业混合"><input id="ctl00_cphMain_gridResult_ctl08_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl08$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P0000YEN5" target="_blank">000083</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P0000YEN5" target="_blank">汇添富消费行业混合</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                               
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl09_lblRowNo">8</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00013WJV|嘉实新兴产业股票"><input id="ctl00_cphMain_gridResult_ctl09_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl09$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00013WJV" target="_blank">000751</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00013WJV" target="_blank">嘉实新兴产业股票</a></td>
+                                <td class="msDataText">股票型基金</td>
+                                
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl10_lblRowNo">9</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P000147K8|国泰国证食品饮料行业指数分级"><input id="ctl00_cphMain_gridResult_ctl10_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl10$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P000147K8" target="_blank">160222</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P000147K8" target="_blank">国泰国证食品饮料行业指数分级
+                                </a></td><td class="msDataText">股票型基金</td>
+                                
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl11_lblRowNo">10</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P0000Z3OV|汇添富中证主要消费ETF"><input id="ctl00_cphMain_gridResult_ctl11_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl11$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P0000Z3OV" target="_blank">159928</a>
+                                </td><td class="msDataText" style="width:150px;"><a href="/quicktake/0P0000Z3OV" target="_blank">汇添富中证主要消费ETF
+                                </a></td><td class="msDataText">股票型基金</td>
+                               
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl12_lblRowNo">11</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00015U43|鹏华中证酒指数分级"><input id="ctl00_cphMain_gridResult_ctl12_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl12$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00015U43" target="_blank">160632</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00015U43" target="_blank">鹏华中证酒指数分级</a></td>
+                                <td class="msDataText">股票型基金</td>
+                                
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl13_lblRowNo">12</span>
+                                </td><td style="width:22px;">
+                                    <span tag="F0000004AI|易方达中小盘混合"><input id="ctl00_cphMain_gridResult_ctl13_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl13$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/F0000004AI" target="_blank">110011</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/F0000004AI" target="_blank">易方达中小盘混合</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                              
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl14_lblRowNo">13</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00015WGK|华安媒体互联网混合"><input id="ctl00_cphMain_gridResult_ctl14_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl14$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00015WGK" target="_blank">001071</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00015WGK" target="_blank">华安媒体互联网混合</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl15_lblRowNo">14</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P000180P4|东方红沪港深灵活配置混合"><input id="ctl00_cphMain_gridResult_ctl15_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl15$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P000180P4" target="_blank">002803</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P000180P4" target="_blank">东方红沪港深灵活配置混合</a>
+                                </td><td class="msDataText">沪港深混合型基金</td></tr>
+                            <!-- <tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl16_lblRowNo">15</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P000179WG|中欧明睿新常态混合A"><input id="ctl00_cphMain_gridResult_ctl16_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl16$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P000179WG" target="_blank">001811</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P000179WG" target="_blank">中欧明睿新常态混合A</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl17_lblRowNo">16</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00015HFT|汇添富中证主要消费ETF联接"><input id="ctl00_cphMain_gridResult_ctl17_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl17$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00015HFT" target="_blank">000248</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00015HFT" target="_blank">汇添富中证主要消费ETF联接</a></td>
+                                <td class="msDataText">股票型基金</td>
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl18_lblRowNo">17</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00016WFU|中欧时代先锋股票A"><input id="ctl00_cphMain_gridResult_ctl18_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl18$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00016WFU" target="_blank">001938</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00016WFU" target="_blank">中欧时代先锋股票A</a></td>
+                                <td class="msDataText">股票型基金</td>
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl19_lblRowNo">18</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P0000RU7I|银河创新成长混合"><input id="ctl00_cphMain_gridResult_ctl19_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl19$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P0000RU7I" target="_blank">519674</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P0000RU7I" target="_blank">银河创新成长混合</a></td>
+                                <td class="msDataText">激进配置型基金</td>
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl20_lblRowNo">19</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00017M4H|前海开源沪港深优势精选灵活配置混合"><input id="ctl00_cphMain_gridResult_ctl20_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl20$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00017M4H" target="_blank">001875</a></td>
+                                <td class="msDataText" style="width:150px;">
+                                    <a href="/quicktake/0P00017M4H" target="_blank">前海开源沪港深优势精选灵活配置混合</a></td>
+                                    <td class="msDataText">沪港深混合型基金</td>
+                                   
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl21_lblRowNo">20</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00018K1N|前海开源鼎裕债券C"><input id="ctl00_cphMain_gridResult_ctl21_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl21$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00018K1N" target="_blank">003255</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00018K1N" target="_blank">前海开源鼎裕债券C</a></td>
+                                <td class="msDataText">激进债券型基金</td>
+                                
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl22_lblRowNo">21</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P000133JS|嘉实中证主要消费ETF"><input id="ctl00_cphMain_gridResult_ctl22_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl22$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P000133JS" target="_blank">512600</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P000133JS" target="_blank">嘉实中证主要消费ETF</a></td>
+                                <td class="msDataText">股票型基金</td>
+                                
+                            </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl23_lblRowNo">22</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00018J2L|中欧医疗健康混合C">
+                                        <input id="ctl00_cphMain_gridResult_ctl23_chkFund" type="checkbox" 
+                                        name="ctl00$cphMain$gridResult$ctl23$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;">
+                                    <a href="/quicktake/0P00018J2L" target="_blank">003096</a></td>
+                                    <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00018J2L" target="_blank">
+                                        中欧医疗健康混合C</a></td><td class="msDataText">激进配置型基金</td>
+                                       
+                
+                                        </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl24_lblRowNo">23</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00018J2K|中欧医疗健康混合A">
+                                        <input id="ctl00_cphMain_gridResult_ctl24_chkFund" type="checkbox" 
+                                        name="ctl00$cphMain$gridResult$ctl24$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;">
+                                    <a href="/quicktake/0P00018J2K" target="_blank">003095</a></td><td class="msDataText" style="width:150px;">
+                                        <a href="/quicktake/0P00018J2K" target="_blank">中欧医疗健康混合A</a></td><td class="msDataText">激进配置型基金</td>
+                                        
+                                </tr><tr class="gridAlternateItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl25_lblRowNo">24</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00018K1M|前海开源鼎裕债券A"><input id="ctl00_cphMain_gridResult_ctl25_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl25$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00018K1M" target="_blank">003254</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00018K1M" target="_blank">前海开源鼎裕债券A</a></td>
+                                <td class="msDataText">激进债券型基金</td>
+                                
+                            </tr><tr class="gridItem">
+                    <td style="width:20px;">
+                                    <span id="ctl00_cphMain_gridResult_ctl26_lblRowNo">25</span>
+                                </td><td style="width:22px;">
+                                    <span tag="0P00014JA5|鹏华养老产业股票"><input id="ctl00_cphMain_gridResult_ctl26_chkFund" type="checkbox" name="ctl00$cphMain$gridResult$ctl26$chkFund" /></span>
+                                </td><td class="msDataText" style="width:60px;"><a href="/quicktake/0P00014JA5" target="_blank">000854</a></td>
+                                <td class="msDataText" style="width:150px;"><a href="/quicktake/0P00014JA5" target="_blank">鹏华养老产业股票</a></td>
+                                <td class="msDataText">股票型基金</td>
+                               
+                            </tr> -->
+            </table>
+            </form>  
+    </div>
+    <div class="div0 div3">
+        <div><h4> 目录</h4>
+           
+                <span>初级系列</span>
+                <ul  class="c1">
+                    <li><a href="/school/fund/course.aspx?level=CA00005004&section=AR00001912" cat="CA00005004" num="1.1" next="1.2">1.1 什么是基金</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005005&section=AR00001915" cat="CA00005005" num="1.2" next="1.3">1.2 几种基金类型</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005006&section=AR00001920" cat="CA00005006" num="1.3" next="1.4">1.3 什么是基金的单位净值？</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005007&section=AR00001922" cat="CA00005007" num="1.4" next="2.1">1.4 如何计算基金的总回报率</a></li>
+                </ul>
+            </div>
+            <div class="level2">
+                <span>中级系列</span>
+                <ul  class="c1">
+                    <li><a href="/school/fund/course.aspx?level=CA00005008&section=AR00001926" cat="CA00005008" num="2.1" next="2.2">2.1 购买基金前五问</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005009&section=AR00001932" cat="CA00005009" num="2.2" next="2.3">2.2 关注你的风险承受能力</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005010&section=AR00001935" cat="CA00005010" num="2.3" next="2.4">2.3 如何衡量基金的过往风险</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005011&section=AR00001938" cat="CA00005011" num="2.4" next="2.5">2.4 如何选择业绩评级基准</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005012&section=AR00001942" cat="CA00005012" num="2.5" next="2.6">2.5 为什么要关注基金经理</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005013&section=AR00001944" cat="CA00005013" num="2.6" next="2.7">2.6 你了解基金的费用吗</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005014&section=AR00001948" cat="CA00005014" num="2.7" next="3.1">2.7 如何选择新基金</a></li>
+                </ul>
+            </div>
+            <div class="level3">
+                <span>高级系列</span>
+                <ul class="c1">
+                    <li><a href="/school/fund/course.aspx?level=CA00005015&section=AR00001954" cat="CA00005015" num="3.1" next="3.2">3.1 如何构建您的基金组合</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005016&section=AR00001964" cat="CA00005016" num="3.2" next="3.3">3.2 基金组合应避开的八个误区</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005017&section=AR00001966" cat="CA00005017" num="3.3" next="3.4">3.3 检查投资组合的步骤</a></li>
+                    <li><a href="/school/fund/course.aspx?level=CA00005018&section=AR00001971" cat="CA00005018" num="3.4" next="">3.4 组合调整的注意事项</a></li>
+                </ul>
+            </div>
+
+    </div>
+
+     
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+        <div class="page_bottom">
+            <div class="content_range">
+            <div class="wrapper">
+                    <div class="declare">郑重声明：睿选基金网发布此信息目的在于传播更多信息，
+                        与本网站立场无关。睿选基金网不保证该信息（包括但不限于文字、视频、音频、
+                        数据及图表）全部或者部分内容的准确性、真实性、完整性、有效性、及时性、原
+                        创性等。相关信息并未经过本网站证实，不对您构成任何投资决策建议，据此操作
+                        ，风险自担。</div>
+                  
+                    <div class="cpright">
+                    <p style="margin: 10px 0 0; padding: 0px;"><a style="cursor: pointer;" id="foot_sethome" target="_self">
+                        将睿选基金网设为上网首页吗？</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="foot_setfavor" style="cursor: pointer;" target="_self">将睿选基金网添加到收藏夹吗？</a></p>
+                    <p><a target="_blank" href="http://www.baidu.com/">
+                        关于我们</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                            资质证明</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                研究中心</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                    联系我们</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                        安全指引</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                            免责条款</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                                隐私条款</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                                    风险提示函</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                                        意见建议</a><span>|</span><a target="_blank" href="http://www.baidu.com/">
+                                                            在线客服</a></p>
+                    <p class="cp"> 睿选基金客服热线：95077&nbsp;/&nbsp;4008888888</p>
+                    <p class="cp"> 客服邮箱：<a target="_blank" href="mailto:2363831533@qq.com">2363831533@qq.com</a></p>
+                    <p class="cp">人工服务时间：工作日 7:30-21:30 双休日 9:00-21:30</p>   
+                    <p class="cp">  郑重声明：<a target="_blank" href="http://www.baidu.com/" class="footFundCertLink">
+                        睿选基金系证监会批准的基金销售机构[000008888]</a>。睿选基金网所载文章、数据仅供参考，使用前请核实，风险自负。 </p>
+                      
+                    <p>中国证监会深圳监管局网址：<a href="http://www.csrc.gov.cn/pub/shenzhen/">www.csrc.gov.cn/pub/shenzhen</a></p>
+            
+                   
+  
+                </div>
+
+      
+        </div>
+        </div>
+    </div>
+</body>
+</html>

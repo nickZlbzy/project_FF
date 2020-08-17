@@ -5,18 +5,181 @@
 {#自定义标题栏名称#}
 <title>基金吧</title>
 {#css#}
+<link rel="stylesheet" type="text/css" href="/static/css/html/post/post_home.css">
 <style type="text/css"></style>
 <script type="text/javascript">
-$(function(){
 
-})
 </script>
 {% endblock %}
 
 {#页面核心代码部分#}
 {% block page_main %}
-<br><br><br>
-<h2 style="text-align: center;">板块空缺中。。。</h2>
+{% verbatim %}
+<div id="post_home_app">
+<div class="mid_select_div">
 
+    <div class="left_div">
+        <img src="/static/images/img2/jj_barlogo.png">
+    </div>
+    <div class="mid_div" id="t_search">
+        <div class="t_search_title">
+            <span class="select_bar">
+                <input value="s1" id="bca1" name="select_type" type="radio" checked>
+                <label for="bca1">搜股吧</label>
+                <input value="s2"  id="bca2" name="select_type" type="radio">
+                <label for="bca2">搜作者</label>
+                <input value="s3"  id="bca3" name="select_type" type="radio">
+                <label for="bca3">搜内容</label>
+            </span>
+        </div>
+        <div class="search_in_div">
+            <div class="search_in_text">
+                <input type="text" id="search_text" maxlengspan="20" autocomplete="off"
+                    placeholder="请输入编号或关键字"/>
+            </div>
+
+            <div id="search_in_btn">股吧搜索</div>
+        </div>
+    </div>
+    <div class="right_div" id="hot_list">
+        <label>热门：</label> <span><a>君正集团吧ha</a></span> <span><a>金达威吧</a></span> <span><a>省广集团吧</a></span>
+    </div>
+</div>
+<div class="cl10"></div>
+<div class="mid_top_div">
+    <post-hot></post-hot>
+</div>
+
+
+<div class="cl10"></div>
+<div class="mid_top_adver_logo">
+    <img class="mid_logo_01" src="/static/images/img2/jj_advertising04.gif">
+</div>
+<div class="cl10"></div>
+<div class="post_content_range" id="post_range">
+    <div class="post_table_bar">
+        <div class="left_title">基金吧总版</div>
+        <div class="fund_hot">
+            热门基金话题：
+            <a href="#"> ＃这些作者屡屡获奖 你关注到＃ </a>
+            <a href="#"> ＃大盘震荡起伏 你是选择加仓＃ </a>
+            <a href="#"> ＃8月开门红 你看好接下来的＃ </a>
+        </div>
+        <div class="right_more">
+            <a href="#" class="right_a">更多基金话题 ></a>
+        </div>
+    </div>
+    <div class="post_list_content">
+        <div class="t_header even_row">
+            <span class="nor"><label>点击</label></span>
+            <span class="nor"><label>回复</label></span>
+            <span class="sub"><label>标题</label></span>
+            <span class="aut"><label>作者</label></span>
+            <span class="date"><label>发表日期</label></span>
+            <span class="upda"><label>最后更新</label></span>
+        </div>
+        <ul class="t_content_list">
+            <li>
+                <cite class="nor">10669</cite>
+                <cite class="nor">34</cite>
+                <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
+                <cite class="aut">基金小助理</cite>
+                <cite class="date">08-03</cite>
+                <cite class="upda">08-03 20:55</cite>
+            </li>
+            <li class="even_row">
+                <cite class="nor">10669</cite>
+                <cite class="nor">34</cite>
+                <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
+                <cite class="aut">基金小助理</cite>
+                <cite class="date">08-03</cite>
+                <cite class="upda">08-03 20:55</cite>
+            </li>
+        </ul>
+        <div class="cl0"></div>
+    </div>
+
+    <div class="t_page_list" id="t_page_list">
+        <span class="page_left_part">共有帖子数 2 篇</span>
+        <span class="page_right_part">共 2 页</span>
+        <div id="page-nav">
+            <ul id="fund_pagination" class="pagination" class="table-page-nav">
+                <li>
+                <a href="#t-fund_filter-form" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(1)">1</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(2)">2</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(3)">3</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(4)">4</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(5)">5</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(6)">6</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(7)">7</a></li>
+                <li><a href="#t-filter-form" onclick="query_fund_fun(8)">8</a></li>
+                <li>
+                <a href="#t-fund_filter-form" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<!-- 页面组件 -->
+<template id="post_tmp01">
+   <div>
+        <div class="top_hottitle">热门基金吧</div>
+        <div class="mid_top_list">
+            <ul class="list_title">
+                <li v-for="(item,index) in hot_bars" :key="item.url">
+                    <a :href=item.url>{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+{% endverbatim %}
+
+<script>
+
+Vue.component('postHot',{
+    template: '#post_tmp01',
+    data: function(){
+        return{
+            hot_bars:""
+        }
+    },
+    created() {
+         this.query_hot_bars();
+    },
+    methods: {
+        query_hot_bars(){
+            this.$http.get('/post/bar/hotBars').then(function(result){
+
+                    this.hot_bars=result.data.data;
+                    console.log(this.hot_bars);
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        }
+    }
+});
+
+var post_app1 = new Vue({
+    el: '#post_home_app',
+    data: {},
+    methods: {
+
+    }
+});
+
+
+</script>
 
 {% endblock %}

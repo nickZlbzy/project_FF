@@ -1,0 +1,283 @@
+{% extends "post_lay/middle.html" %}
+
+{#头部title，css，js部分#}
+{% block head_range %}
+{#自定义标题栏名称#}
+<title>基金吧</title>
+{#css#}
+<link rel="stylesheet" type="text/css" href="/static/css/html/post/post_bar.css">
+<link rel="stylesheet" type="text/css" href="/static/css/current/pager/diy_pager.css">
+<style type="text/css"></style>
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+{#页面核心代码部分#}
+{% block page_main %}
+<div id="post_bar_app">
+<div class="mid_select_div">
+    <div class="left_div">
+        <a href="/post/home"><img src="/static/images/img2/jj_barlogo.png"></a>
+    </div>
+    <div class="mid_div" id="t_search">
+        <div class="t_search_title">
+            <span class="select_bar">
+                <input value="s1" id="bca1" name="select_type" type="radio" checked>
+                <label for="bca1">搜股吧</label>
+                <input value="s2"  id="bca2" name="select_type" type="radio">
+                <label for="bca2">搜作者</label>
+                <input value="s3"  id="bca3" name="select_type" type="radio">
+                <label for="bca3">搜内容</label>
+            </span>
+        </div>
+        <div class="search_in_div">
+            <div class="search_in_text">
+                <input type="text" id="search_text" maxlengspan="20" autocomplete="off"
+                    placeholder="请输入编号或关键字"/>
+            </div>
+
+            <div id="search_in_btn">股吧搜索</div>
+        </div>
+    </div>
+    <div class="right_div" id="hot_list">
+        <label>热门：</label> <span><a>君正集团吧ha</a></span> <span><a>金达威吧</a></span> <span><a>省广集团吧</a></span>
+    </div>
+</div>
+<div class="cl10"></div>
+<div class="mid_top_info">
+    <div class="stock_header">
+        <div class="stock_head_info">
+            <p class="stock_p1">
+                <span class="stock_name">{{ bar_info.name }}</span>
+                <span class="stokc_code">
+                    <a href="#">001618.of</a> | <span id="jj_type">联接基金</span>
+                </span>
+                <span class="opt_btn">
+                    <a class="follow_btn" href="#">加关注</a>
+                    <a class="payment_btn" href="#">购 买</a>
+                </span>
+                <span class="payment_discount">
+                    申购费率：<span class="comparePrice">1.20%</span>
+                    <span class="nowPrice color_red">0.12%</span>&nbsp;
+                    <span><b class="color_red">1</b>折</span>
+                </span>
+            </p>
+            <p class="stock_p2">盘中估值：
+                <span class="gz_num color_red">1.3472</span>
+                <span class="color_red gz_rate">0.01%</span>
+                <span>单位净值（<span>2020-08-07</span>）1.3470</span> -
+                <span>状态：<a href="#">暂停申购</a> </span>
+                <span>基金经理：<a href="#">陈甄璞</a>,<a href="#">陈宇庭</a></span>
+                <span>管理人：<a href="#">广发基金</a></span>
+            </p>
+            <p class="stock_p3">F10档案：<span class="f10_more">更多<em class="icon icon_addmore"></em></span></p>
+        </div>
+
+    </div>
+</div>
+<div class="cl10"></div>
+{% verbatim %}
+<div class="post_content_range" id="post_range">
+    <div class="post_left_part">
+        <div class="post_list_table">
+            <div class="post_table_bar">
+                <div class="left_title select_on">全部</div>
+                <div class="left_title">公告</div>
+                <div class="fund_hot">
+                    查看关于<span>招商基金</span>公司的全部讨论
+                </div>
+                <div class="sort_tab">排序：<span id="sort_type">评论时间
+                    <em class="icon icon_dropdown"></em></span></div>
+                <div class="right_more">
+                    <a href="#" class="right_a">发新帖</a>
+                </div>
+            </div>
+            <div class="post_list_content">
+                <div class="t_header even_row">
+                        <span class="nor"><label>点击</label></span>
+                        <span class="nor"><label>回复</label></span>
+                        <span class="sub"><label>标题</label></span>
+                        <span class="aut"><label>作者</label></span>
+                        <span class="date"><label>日期</label></span>
+
+                </div>
+                <ul class="t_content_list">
+                    <li>
+                        <cite class="nor">10669</cite>
+                        <cite class="nor">34</cite>
+                        <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
+                        <cite class="aut">基金小助理</cite>
+
+                        <cite class="upda">08-03 20:55</cite>
+                    </li>
+                    <li class="even_row">
+                        <cite class="nor">10669</cite>
+                        <cite class="nor">34</cite>
+                        <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
+                        <cite class="aut">基金小助理</cite>
+
+                        <cite class="upda">08-03 20:55</cite>
+                    </li>
+                </ul>
+                <div class="cl0"></div>
+            </div>
+            <div class="diy_pager">
+                <div class="diy_paging_default">
+                    <span class="list_page">
+                        <a class="page_text_btn" data-page="1" onclick="query_page(1)">首页</a>
+                        <a class="page_text_btn" data-page="2" onclick="query_page(2)">上一页</a>
+                        <a data-page="1" onclick="query_page(1)">1</a>
+                        <a data-page="2" onclick="query_page(2)">2</a>
+                        <a class="page_on" data-page="3" onclick="query_page(3)">3</a>
+                        <a data-page="4" onclick="query_page(4)">4</a>
+                        <a data-page="5" onclick="query_page(5)">5</a>
+                        <a data-page="6" onclick="query_page(6)">6</a>
+                        <a data-page="7" onclick="query_page(7)">7</a>
+                        <a class="page_text_btn" data-page="4" onclick="query_page(4)">下一页</a>
+                        <a class="page_text_btn" data-page="7" onclick="query_page(7)">尾页</a>
+                         共<span class="page_total_num">7</span>页
+                    </span>
+                    <span class="page_jump">
+                        跳转至&nbsp;<input type="text">&nbsp;页
+                    </span>
+                    <span class="ensure_btn">
+                        确定
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cl10"></div>
+        <div class="send_theme_form">
+            <div class="form-group" id="send_comment_group">
+
+                <div class="send_header">
+                    <span class="form_header_span">
+                        <!-- <em class="icon icon_comment"></em>&nbsp; -->
+                        发表新主题
+                    </span>
+                    <span class="form_header_right">请&nbsp;
+                        <a href="#">登录</a>&nbsp;|&nbsp;<a href="#">注册</a>
+                    </span>
+                    <span class="form_header_user">
+                        作者：<a href="#" class="u_nick">张三是个男的啊</a>&nbsp;<a href="#">退出</a>
+                    </span>
+                </div>
+                <div id="app_send">
+                    <send-bar></send-bar>
+                </div>
+
+                <div class="clx"></div>
+            </div>
+        </div>
+        <div class="page_left_bottom">
+            郑重声明：用户在社区发表的所有资料、言论等仅代表个人观点，与本网站立场无关，
+            不对您构成任何投资建议。用户应基于自己的独立判断，自行决定证券投资并承担相应风险。
+        </div>
+    </div>
+    <div class="post_right_part">
+        <div class="right_diamond_unit">
+            <p class="diamond_title">
+                <span class="diamond_title_text">基金估值</span>
+            </p>
+            <div class="diamond_content">
+                <img src="/static/images/img2/320007.png">
+                <div class="diamond_select_01">
+                    <input class="select_code" type="text" placeholder="代码\简拼">
+                    <input class="select_btn" type="button" name="" id="" value="查询">
+                </div>
+            </div>
+        </div>
+        <div class="cl10"></div>
+        <div class="right_diamond_unit">
+            <p class="diamond_title">
+                <span class="diamond_title_text">缺省</span>
+            </p>
+            <div class="diamond_content">
+                <img src="/static/images/img2/320007.png">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<template id="post_temp03">
+<div>
+    <form action="/user/sendComment" method="post">
+        <div class="send_form_title">
+            <input id="t_title" type="text" name="title" autocomplete="off"
+            placeholder="请输入标题" maxlength="40" v-model="title">
+            <span class="text_count_span">
+                <span id="text_count">{{ t_length }}</span>/<span class="color_red">40</span></span>
+        </div>
+
+        <div class="send_comment_text">
+            <textarea class="form-control in_longtext" name="content" id="t_content" v-model="content"></textarea>
+        </div>
+
+        <div class="comment_opt_btns">
+            <span class="left_tools">您正在输入的内容已自动保存
+                <span id="auto_save_time">22:22:58</span>
+                <em class="icon icon_delete"></em>
+            </span>
+            <input id="submit-theme" type="submit" @click.prevent="publishTheme"
+                class="btn btn-warning pull-right" value="发 布">
+        </div>
+
+    </form>
+</div>
+
+</template>
+
+{% endverbatim %}
+
+<!-- 页面组件 -->
+
+
+<script>
+
+Vue.component('sendBar',{
+    template: '#post_temp03',
+    data: function(){
+        return{
+            title: "",
+            content: "",
+            t_length: 0
+        }
+    },
+    methods: {
+        publishTheme(){
+
+            this.$http.post('/post/bar/publish',{"data":{'b_code':'{{ bar_info.code }}',
+                            'content':this.content,
+                            "title":this.title}},{emulateJSON:true}).then(result =>{
+                console.log(result);
+
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        }
+    },
+    watch: {
+        'title.length': function(newVal, oldVal){
+            this.t_length = newVal? newVal:0;
+        }
+    }
+})
+
+var postBarApp = new Vue({
+    el: '#post_bar_app',
+    data: {
+
+    },
+    methods: {
+
+    }
+});
+
+</script>
+{% endblock %}

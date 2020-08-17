@@ -1,0 +1,139 @@
+.icon{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+.icon_ps_blue{
+    width: 14px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: 0 -302px;
+    transform: translateY(-2px);
+}
+.icon_tell{
+    width: 14px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -165px -52px;;
+    transform: translateY(-2px);
+}
+.icon_fund_grow{
+    width: 15px;
+    height: 13px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -322px -256px;
+    transform: translateY(-2px);
+}
+.icon_in_error{
+    width: 15px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: 0 -355px;
+    transform: translateY(-2px);
+}
+.icon_calculate{
+    width: 30px;
+    height: 30px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: 0 -140px;
+    transform: translateY(-2px);
+}
+.icon_tools_agility{
+    width: 15px;
+    height: 15px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -322px -89px;
+    transform: translateY(-2px);
+}
+.icon_tools_reback{
+    width: 15px;
+    height: 15px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -322px -129px;
+    transform: translateY(-2px);
+}
+.icon_tools_fast{
+    width: 15px;
+    height: 15px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -323px -173px;
+    transform: translateY(-2px);
+}
+.icon_tools_change{
+    width: 12px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_infoicon.png);
+    background-position: -323px -215px;
+    transform: translateY(-1px);
+}
+
+.icon_hot_search{
+    width: 14px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -108px -362px;
+}
+.icon_like{
+    width: 14px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -206px -362px;;
+}
+.icon_share{
+    width: 13px;
+    height: 13px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -315px -362px;;
+}
+.icon_collect{
+    width: 14px;
+    height: 13px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -248px -362px;;
+}
+.icon_talk{
+    width: 18px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -258px -344px;
+}
+.icon_comment{
+    width: 15px;
+    height: 14px;
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -78px -362px;
+}
+.icon_write{
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -313px -277px;
+    width: 19px;
+    height: 18px;
+}
+.icon_addmore{
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -414px -198px;
+    width: 8px;
+    height: 8px;
+    transform: translateY(-2px);
+}
+.icon_dropup{
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -371px -134px;
+    width: 8px;
+    height: 6px;
+    transform: translateY(-2px);
+}
+.icon_dropdown{
+    background-image: url(/static/images/img2/jj_ball.png);
+    background-position: -371px -128px;
+    width: 8px;
+    height: 6px;
+    transform: translateY(-2px);
+}
+.icon_delete{
+    background-image: url(/static/images/img2/jj_sendjcon.png);
+    background-position: -170px -130px;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-1px);
+}

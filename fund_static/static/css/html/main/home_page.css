@@ -1,0 +1,47 @@
+.home_div{
+    margin:2vw 0;
+}
+
+
+.re_submit_div{
+    height: 5.5vw;
+}
+.eva-demo{
+    padding:1.5vw 0.5vw;
+}
+#eva-btn{
+    width:11vw;
+    height:5.5vw;
+    font-size:21px;
+}
+
+.insert-div{
+    padding:0.8vw 0;
+}
+.insert-div h4{
+    color:#555;
+    /* font-size:15px;  */
+}
+.insert-div>*{
+    float:right;
+    margin-right:20px;
+}
+.jump-filter-btn{
+    cursor: pointer;
+}
+.jump-filter-btn> .btn-img{
+    height:7.5vw;
+}
+
+
+.logo-img{
+    width:27vw;
+}
+.article-link-title{
+    margin:1.5vw 0;
+}
+.title{
+    border-top:0.45vw solid lightgray;
+    padding: 3px 0;
+    color:#222;
+}

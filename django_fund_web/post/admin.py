@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from post.models import Post_bar_model, Post_title_model, Post_comment_model
+from tools.utils import Utils
 
 
 @admin.register(Post_bar_model)
@@ -12,6 +13,25 @@ class postBarManager(admin.ModelAdmin):
     list_filter = [ 'b_type','kind',]
     search_fields = ['b_code', 'name']
     list_editable = ['sort','t_sort']
+
+
+    def save_model(self, request, obj, form, change):
+
+        if not change:
+            obj.create_user=request.user.username
+        else:
+
+            obj.update_user=request.user.username
+        if not obj.b_code:
+            obj.b_code=Utils.get_sync("post_bar")
+        obj.url= "/post/bar/" + obj.b_code
+        obj.save()
+
+
+
+
+
+
 
 @admin.register(Post_title_model)
 class postTitleManager(admin.ModelAdmin):

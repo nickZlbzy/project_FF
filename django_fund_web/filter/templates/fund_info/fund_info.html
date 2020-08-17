@@ -1,0 +1,232 @@
+{% extends "layout/middle.html" %}
+
+{#头部title，css，js部分#}
+{% block head_range %}
+{#自定义标题栏名称#}
+<title>睿选基金网</title>
+{#css#}
+<link rel="stylesheet" type="text/css" href="/static/css/html/fund/fund_info.css">
+
+<style type="text/css"></style>
+<script type="text/javascript">
+$(function(){
+    document.getElementById('general_top_img').style.display="none";
+    document.getElementById('date_now').innerHTML = new Date().Format('yyyy-MM-dd');
+    document.getElementById('date_now2').innerHTML = new Date().Format('yyyy-MM-dd');
+
+    $("#money_account").bind('blur',check_money);
+})
+Date.prototype.Format = function(fmt){ //author: meizz
+    var redate = this.getDate();
+    switch(this.getDay()){
+        case 6:
+            redate -= 1;break;
+        case 0:
+            redate -= 2;break;
+    }
+
+    var o = {
+        "M+" : this.getMonth()+1,                 //月份
+        "d+" : redate,                    //日
+        "h+" : this.getHours(),                   //小时
+        "m+" : this.getMinutes(),                 //分
+        "s+" : this.getSeconds(),                 //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt))
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    for(var k in o)
+        if(new RegExp("("+ k +")").test(fmt))
+    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+    return fmt;
+};
+
+function aliPayment(){
+    console.log($("#fund_val").html());
+    var price = parseFloat($("#fund_val").html());
+        // 测试功能暂定数量为100
+    var amount = $("#money_account").val();
+    if(amount<100){
+        return;
+    }
+    var count =  parseFloat(amount) /price;
+    var fund_code = $("#fund_code").html();
+    // var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+    // console.log(csrf)
+    var post_data = {"fund_code":fund_code,"price":price,"count":count,
+        "amount":amount};
+    $.ajax({
+        url:"/payment/jump/",
+        type:"post",
+        dataType:"json",
+        headers: {
+            "X-CSRFToken": getCsrfFromCookie("csrftoken")
+        },
+        // contentType:"application/json",
+        data:JSON.stringify(post_data),
+        success:function(data){
+            if(data.code==200)
+                window.location = data.pay_url;
+            else
+                alert(data.msg)
+        }
+    })
+}
+function check_money(){
+    if($("#money_account").val()==""){
+         $("#money_predict").hide();
+         $("#check_money").hide();
+    }else if($("#money_account").val()<100){
+        $("#check_money").show();
+        $("#money_predict").hide();
+    }else{
+        $("#money_predict").show();
+        $("#check_money").hide();
+    }
+}
+
+</script>
+{% endblock %}
+
+{#页面核心代码部分#}
+{% block page_main %}
+<div class="main_top">
+    <span class="main_top_tag">
+        <a href="/">瑞选基金网</a>&nbsp;>&nbsp;<a href="#">全部基金</a>&nbsp;>&nbsp;
+        <a href="">前海开源中航军工</a>
+    </span>
+    <div class="main_top_adver"><img src="/static/images/img2/jj_advertising04.gif"></div>
+    <div class="main_history_bar">您浏览过的基金：
+        <a href="#">前海开源中航军工</a>
+        <a href="#">银河创新成长混合</a>
+        <a href="#">交银趋势混合</a>
+    </div>
+</div>
+<div class="fund_info">
+    <div class="fund_info_tab">
+        <span class="info_title">{{ fund_info.f_name }}(<span id="fund_code">{{fund_info.f_code}}</span>)</span>
+        <div class="title_right_bar pull-right">
+            <a class="fund_post_btn" href="#"><em class="my_icon_post"></em>基金吧</a>
+            <a class="add_optional_btn" href="#"><em class="my_icon_opt"></em>加自选</a>
+            <a class="add_contrast_btn" href="#"><em class="my_icon_con"></em>加对比</a>
+        </div>
+    </div>
+    <div class="ps_blue"><em class="icon icon_ps_blue"></em>净值估算是按照基金历史定期报告公布的
+        持仓和指数走势预测当天净值。预估数值不代表真实净值，仅供参考，实际涨跌幅以基金净值为准。</div>
+    <div class="basic_info">
+
+        <div class="fund_info_content">
+            <div class="left_side"></div>
+            <div class="dataOfFund">
+            <dl>
+                <dt>净值估算<span id="date_now"></span>&nbsp;15:00
+                    <span class="icon icon_tell" id="info_tips">
+                        <span class="tips">净值估算每个交易日9：30-15：00盘中实时更新（QDII基金为海外交易时段）。</span>
+                    </span>
+                </dt>
+                <dd class="data_nums color_red">
+                    <dl class=""><span id="fund_val">{{ fund_info.unit_price }}</span></dl>
+                    <dl id="gz_icon" class="gz_up"></dl>
+                    <dl class="fundZdf">
+                        <span id="gz_gszze">+0.0449</span>
+                        <span id="gz_gszzl">+3.09%</span>
+                    </dl>
+                </dd>
+                <dd>近1月：<span class="ui_num color_red">32.13%</span></dd>
+                <dd>近1年：<span class="ui_num color_red">32.13%</span></dd>
+            </dl>
+            <dl>
+                <dt><a href="#">单位净值</a>&nbsp;(<span id="date_now2"></span>)</dt>
+                <dd class="data_nums">
+                    <dl class="color_red">1.5010
+                        <small class="in_num">3.16%</small></dl>
+
+                </dd>
+                <dd>近3月：<span class="ui_num color_red">48.17%</span></dd>
+                <dd>近3年：<span class="ui_num color_red">26.60%</span></dd>
+            </dl>
+            <dl>
+                <dt><a href="#">累计净值</a></dt>
+                <dd class="data_nums">
+                    <dl class="color_red">1.0150</dl>
+
+                </dd>
+                <dd>近6月：<span class="ui_num color_red">54.74%</span></dd>
+                <dd>成立来：<span class="ui_num color_red">5.36%</span></dd>
+            </dl>
+            </div>
+            <div class="bgOfFund">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>基金类型：<a href="#">股票指数</a> | 高风险</td>
+                            <td>基金规模：<span>6.04亿元（2020-06-30）</span></td>
+                            <td>基金经理：<a href="#">黄玥</a></td>
+                        </tr>
+                        <tr>
+                            <td>成立日：<span>2015-03-30</span></td>
+                            <td>管理人：<span><a href="#">前海开源基金</a></span></td>
+                            <td>基金评级：<span>暂无评级</span></td>
+                        </tr>
+                        <tr>
+                            <td>跟踪标的：<span>中证中航军工主题指数</span></td>
+                            <td>跟踪误差：<span>0.15%</span></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="fund_payment">
+            <div class="right_pay_header"><em class="icon icon_fund_grow"></em>证监会批准的首批独立基金销售机构</div>
+            <div class="payment_way_content">
+                <div class="payment_status">
+                    交易状态：<span>暂停申购</span><span>暂停赎回</span>
+                </div>
+                <div class="payment_discount">
+                    购买手续费：<span class="comparePrice">1.20%</span>
+                    <span class="nowPrice">0.12%</span>&nbsp;
+                    <span><b class="color_red">1</b>折</span>
+                </div>
+                <div class="input_money">
+                    金 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 额：
+                    <input id="money_account" type="text" placeholder="100元起购">&nbsp;元
+                </div>
+                <div class="money_help">
+                    <div class="check_money color_red" id="check_money">
+                        <em class="icon icon_in_error"></em>单笔最低投资金额为：
+                        <span>100.00元</span></div>
+                    <div id="money_predict">预计购买费用：<span>0.16</span>元(费率
+                        <span>0.12%</span>，节省<b class="color_red">0元</b>)</div>
+                </div>
+
+                <div class="payment_way">
+                    <span class="icon icon_calculate"></span>
+                    <span class="btn01 immediately" onclick="aliPayment()">立即购买</span>
+                    <span class="btn01 investment_plan">
+                        <p class="text_p1">定投</p>
+                        <p class="text_p2">10元起投</p>
+                    </span>
+                    <span class="btn02">免费开户</span>
+                </div>
+                <div class="tools_group">
+                    <span><em class="icon icon_tools_agility"></em></span>
+                    <span><em class="icon icon_tools_reback"></em></span>
+                    <span><em class="icon icon_tools_fast"></em></span>
+                    <span><em class="icon icon_tools_change"></em></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cl10"></div>
+    <div class="fund_worth">
+        <div class="fund_worth_header">
+            <span class="tabs">单位净值走势</span>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

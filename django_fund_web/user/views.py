@@ -99,7 +99,7 @@ def users_active(request):
     r.delete('email_active:%s' % username)
 
     result = {'code': 200, 'msg': "邮箱激活成功！"}
-    return HttpResponse(result['msg'])
+    return redirect("/user/personal")
 
 
 
@@ -135,8 +135,16 @@ def login(request):
         # 判断是否记住了密码
 
         if "username" in request.COOKIES and "uid" in request.COOKIES:
+            try:
+                user = User_profile_model.objects.get(username=request.COOKIES["username"])
+            except Exception:
+                request.delete_cookie('username')
+                result = {'code': 10201, 'error': '用户不存在 !!'}
+                return HttpResponse(result['error'])
             request.session["username"] = request.COOKIES["username"]
             request.session["uid"] = request.COOKIES["uid"]
+            request.session["nickname"] = user.nickname if user.nickname else user.username
+            request.session["active"] = user.is_active
             return redirect(path_from)
 
         request.session["login_from"] = path_from
@@ -172,8 +180,8 @@ def login(request):
         if 'isSave' in request.POST.keys():
             resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
             resp.set_cookie("username",username,contants.COOKIES_KEEP_TIME)
-            resp.set_cookie("is_active", user.is_active, contants.COOKIES_KEEP_TIME)
-            resp.set_cookie("nickname",nickname,contants.COOKIES_KEEP_TIME)
+            # resp.set_cookie("is_active", user.is_active, contants.COOKIES_KEEP_TIME)
+            # resp.set_cookie("nickname",nickname,contants.COOKIES_KEEP_TIME)
         return resp
 
 
@@ -318,7 +326,7 @@ def send_email_verify(username,email):
     code_str_bs = base64.urlsafe_b64encode(code_str.encode())
     # 将随机码存储到redis里。 可以存储1-3天
     r.set('email_active:%s' % username, random_num,60*60*24)
-    active_url = "http://127.0.0.1:8080/user/activation?code=%s" % (code_str_bs.decode())
+    active_url = "http://127.0.0.1:8000/user/activation?code=%s" % (code_str_bs.decode())
     # active_url = "http://www.nickzlbzy.com.cn/user/activation?code=%s" % (code_str_bs.decode())
     # 发邮件
     send_active_mail.delay(email, active_url)

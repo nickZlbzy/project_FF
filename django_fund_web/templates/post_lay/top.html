@@ -1,8 +1,5 @@
 <script type="application/javascript">
-    $(function () {
 
-
-    })
 </script>
 
 <header id="header">
@@ -10,12 +7,33 @@
         <div class="top_left_part">
             <span class="top_left_text"><a href="/">瑞选基金网</a></span> |
             <span class="top_left_text"><a href="/post/home">基金吧</a></span>
-
         </div>
         <div class="top_right_part">
-            <span class="top_right_text">你好，欢迎来基金吧！
-                <a href="/user/login">登录</a> / <a href="/user/register">注册</a>
-            </span>
+        {# 判断是否已经登录#}
+            {% if request.session.username %}
+                <div class="user_info_msg">
+                    <ul class="info_msg_bar">
+                        <li class="info_msg_unit top_right_text">
+                            <a href="/user/personal">
+                                {% if request.session.nickname %}
+                                    {{ request.session.nickname }}
+                                {% else %}
+                                    {{ request.session.username }}
+                                {% endif %}
+                            </a>
+                            <em class="icon icon_dropup"></em>
+                            <ul class="slide_down">
+                                <li><a href="/user/personal">个人设置</a></li>
+                                <li><a href="/user/logout">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <div  class="top_right_text user_login_box">你好，欢迎来基金吧！
+                    <a href="/user/login">登录</a> / <a href="/user/register">注册</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </header>

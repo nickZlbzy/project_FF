@@ -19,6 +19,7 @@ def article_course_info(request,level,artid):
     :return:
     """
     if request.method == "GET":
+        # print("session_is_active:", request.session["is_active"])
         level = None if level == 'index' else level
         data = Article_mapper.query_cls_all(level)
         info = ""
@@ -120,9 +121,6 @@ def press_support(request):
         r.hset('user_like_article', key_au, contants.LIKE_CANCEL_STATUS)
         r.hincrby('all_like_count', article_id, -1)
         code = 0
-
-
-
 
     re_data = {'code':code,'count':r.hget('all_like_count',article_id).decode()}
     return JsonResponse(re_data)

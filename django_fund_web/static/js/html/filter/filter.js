@@ -60,8 +60,8 @@ function table_list_fun(data){
     var fund_content = ""
     $.each(data[1],function(i,ele){
         fund_content += "<tr><td>"+ ((data[0].number-1)*data[0].page_size+1+parseInt(i)) +"</td>"
-                        + "<td><a onclick='buy_fund(this)' style='cursor: pointer;' >"+ ele.f_code +"</a></td>"
-                        + "<td>"+ ele.f_name +"</td>"
+                        + "<td><a href='/filter/fundinfo/" +ele.f_code +"' style='cursor: pointer;' >"+ ele.f_code +"</a></td>"
+                        + "<td><a href='/filter/fundinfo/" +ele.f_code +"' style='cursor: pointer;' >"+ ele.f_name +"</a></td>"
                         + "<td>"+ ele.type_name +"</td>"
                         + "<td>"+ ele.three_year_level +"</td>"
                         + "<td>"+ ele.five_year_level +"</td>"

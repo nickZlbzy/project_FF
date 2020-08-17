@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>睿选基金网</title>
+    <link href="./images/jj_icon.png" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="./static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script src="./static/js/base/jquery-3.4.1.js"></script>
+    <script src="./static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/top.js"></script>
+    <style type="text/css">    
+        .search_in{
+            background-image: url('images/search.png');
+        }       
+        #d1{       
+            width: 988px;
+            height: 400px;
+            background: url("{{ url_for('static', filename='./images/123.png') }}") no-repeat;
+            
+            /* border-top:1px solid transparent; */
+        }
+    </style>
+    <script type="application/javascript">        
+        window.onload = function () {
+             //页面加载完成后执行内容
+        };              
+    </script>
+</head>
+<body>  
+    <div id="core_range">
+        <div id="page_top">
+            <div class="top_row1">
+                <span>睿选基金---您的基金专家</span>
+                <div class="top_tags">
+                    <div class="tags">黄页<div class="bar_triangle"><div class="bar_triangle_in"></div></div></div> 
+                    <div class="tags">睿选中国</div>
+                    <div class="tags">睿选产品</div>                       
+                    <div class="tags st_a">历年大事件</div>   
+                </div>           
+            </div>
+            <div class="top_row2">
+                <div class="top_logo">
+                    <img src="./images/logo.gif">
+                </div>
+                <div class="user_range">
+                    <span>游客</span>
+                    <span class="st_a">登录</span>
+                </div>
+                <div class="search_web">
+                    <div class="search_range">
+                        <form action="" method="POST"   enctype="multipart/form-data">
+                        <span class="search_in"> 
+                            <input type="text" id="select_1" maxlength="28"/>
+                        </span>
+                        <span>
+                                <label class="label_selable check_label"><input value="s1" name="select_type" type="radio" checked>基金</label>
+                                <label class="label_selable"><input value="s2" name="select_type" type="radio">公司</label>
+                                <label class="label_selable"><input value="s3" name="select_type" type="radio">文章</label>
+                        </span>
+                        
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="top_advertising">
+                <img src="./images/jj_ad.gif" alt="">
+            </div>
+            <div class="top_navigation_bar">             
+                <div class="nav_bar"><span class="st_a">首页</span></div>
+                <div class="nav_bar"><span class="st_a"> 文章</span></div>
+                <div class="nav_bar"><span class="st_a">组合管理</span></div>
+                <div class="nav_bar_bt" id="fund_tools">
+                    <button type="button" class="btn my-btn1 st_a">基金工具</button>
+                    <button type="button" class="btn dropdown-toggle my-btn2" style="position:absolute;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>    
+                    <ul class="dropdown-menu">
+
+                    </ul>
+            </div>   
+            <div class="nav_bar"><span class="st_a">ETFs</span></div>
+            <div class="nav_bar"><span class="st_a">投资学堂</span></div>                 
+            </div>
+        </div>
+        <div class="page_main">
+                <div id="d1" style="">
+                    <div style="color: crimson;text-align: center;"><h1>欢 迎 登 录 睿 选 基 金</h1></div>
+                    
+                    <div style="color: red;">
+                        <div class="ul-from">
+                        <form action="/user/change_pwd" method="post" id="c_pwd">
+                        <table>
+                            <tr>
+                                <td>用户名:</td>
+                                <td><input type="text" id="username" name="username" placeholder="请输入用户名">
+                                    <span id="show"></span></td>
+                            </tr>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>邮箱:</td>
+                                <td><input type="email" name="email" placeholder="请输入邮箱"></td>
+                            </tr>
+                            <td>&nbsp;</td>
+                            <tr>
+                                <td>验证码</td>
+                                <td><input type="text" name="change_pwd" placeholder="请输入验证码"></td>
+                            </tr>
+                        </table> 
+                            <div class="sub-btns">
+                                    <!-- <input class="btn btn-default" type="submit" value="登录"> -->
+                                    <button type="submit" id="btn" class="btn btn-default">确定</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+    </div>
+    </div>
+    
+</body>
+</html>
