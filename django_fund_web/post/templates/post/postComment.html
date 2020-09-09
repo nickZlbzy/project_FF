@@ -1,0 +1,585 @@
+{% extends "post_lay/middle.html" %}
+
+{#头部title，css，js部分#}
+{% block head_range %}
+{#自定义标题栏名称#}
+<title>基金吧</title>
+{#css#}
+<link rel="stylesheet" type="text/css" href="/static/css/current/pager/diy_pager.css">
+<link rel="stylesheet" type="text/css" href="/static/css/html/post/post_comment.css">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+{#页面核心代码部分#}
+{% block page_main %}
+{% verbatim %}
+<div id="post_comment_app">
+<div class="mid_top_adver_logo">
+    <img class="mid_logo_01" src="/static/images/img2/jj_advertising02.gif">
+</div>
+<div class="cl10"></div>
+<post-seek></post-seek>
+<div class="cl20"></div>
+<div class="post_comment">
+    <div class="com_left_part">
+
+        <com-header :t_id="t_id" :page_data="page_data"
+                    :query_comment_list="query_comment_list"></com-header>
+
+
+        <div class="cl20"></div>
+        <!-- 评论列表 -->
+        <div class="list_comment_wrap">
+            <com-wrap :table_data="table_data" :page_data="page_data"
+                :query_comment_list="query_comment_list"></com-wrap>
+        </div>
+        <div class="cl10"></div>
+
+        <send-comment :u_name="u_name" :t_id="t_id"></send-comment>
+
+    </div>
+
+<div class="mid_right_part">
+        <div class="right_diamond_unit">
+            <p class="diamond_title">
+                <span class="diamond_title_text">基金估值</span>
+            </p>
+            <div class="diamond_content">
+                <img src="/static/images/img2/320007.png">
+                <div class="diamond_select_01">
+                    <input class="select_code" type="text" placeholder="代码\简拼">
+                    <input class="select_btn" type="button" name="" id="" value="查询">
+                </div>
+            </div>
+        </div>
+        <div class="cl10"></div>
+        <div class="right_diamond_unit">
+            <p class="diamond_title">
+                <span class="diamond_title_text">缺省</span>
+            </p>
+            <div class="diamond_content">
+                <img src="/static/images/img2/320007.png">
+
+            </div>
+        </div>
+
+        <div class="clx"></div>
+    </div>
+</div>
+</div>
+
+
+
+<template id="post_tmp05">
+<div class="comment_top">
+<div class="stock_header">
+    <div class="stock_head_info">
+        <p>
+            <span class="stock_name">{{ theme_info.b_name }}</span>
+            <span class="stokc_code">
+                <a href="#">{{ theme_info.bar }}.of</a> | <span id="jj_type">联接基金</span>
+            </span>
+            <span class="opt_btn">
+                <a class="follow_btn" href="#">加关注</a>
+                <a class="payment_btn" href="#">购 买</a>
+            </span>
+        </p>
+        <p class="stock_p2">申购费率： <span class="im_danger">0费率</span> 100元起</p>
+    </div>
+
+</div>
+<div class="list_page_bar">
+    <div class="top_pager">
+        <div class="diy_paging_min">
+            <span class="list_page">
+                <a class="page_text_btn" data-page="1" @click="query_comment_list()">首页</a>
+                <a class="page_text_btn" data-page="2" v-if="page_data.prev_num"
+                   @click="query_comment_list(page_data.prev_num)">上一页</a>
+                <a v-for="item in page_data.page_range" @click="query_comment_list(item)"
+                   :data-page=item :class="{'page_on':item == page_data.number}">{{ item }}</a>
+
+                <a class="page_text_btn" data-page="4" v-if="page_data.next_num"
+                   @click="query_comment_list(page_data.next_num)">下一页</a>
+                <a class="page_text_btn" :data-page="page_data.page_count"  @click="query_comment_list(page_data.page_count)">尾页</a>
+                 共<span class="page_total_num">{{ page_data.page_count }}</span>页
+            </span>
+            <span class="page_jump">
+                跳转至&nbsp;<input type="text" v-model="page_num">&nbsp;页
+            </span>
+            <span class="ensure_btn" @click="query_comment_list(page_num)">
+                确定
+            </span>
+        </div>
+        <div class="pager_right_sp pull-right">
+            <a :href=theme_info.b_url>返回{{ theme_info.b_name }}>></a>
+        </div>
+
+    <div class="page_total">现有<span class="text_total">71486</span>人阅读过该帖，
+        评论<span class="text_total">{{ page_data.total }}</span>条</div>
+    </div>
+
+
+</div>
+<div id="first_comment">
+    <div class="author_info_1st">
+        <div class="author_scul_1st">
+            <img :src=theme_info.userimg alt="">
+        </div>
+        <div class="author_info_content">
+            <p class="info_1st_p1">
+                <span class="uname_info"><a :href=theme_info.userurl>{{ theme_info.nickname }}</a> &nbsp;
+                    <small class="text-muted">影响力: 中</small> </span>
+                <span class="warn_post"><a href="#">举报</a></span>
+
+            </p>
+            <p class="info_1st_p2">
+                <span class="text-muted">{{ theme_info.c_time }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="comment_title">
+        {{ theme_info.theme }}
+    </div>
+    <div class="comment_body">
+        {{ theme_info.t_content }}
+    </div>
+    <div class="comment_tools">
+        <div class="comment_logo">
+            <em class="icon icon_write comment_ic"></em>
+            <a class="comment_btn" href="#toSendComment">评论</a>
+        </div>
+        <div class="tools_1st_right pull-right">
+            <span><em class="icon icon_share"></em>&nbsp;分享</span>
+            <span><em class="icon icon_collect"></em>&nbsp;收藏</span>
+            <span class="like_wrap">
+                <em class="icon icon_like"></em>&nbsp;
+                <span>314</span>
+            </span>
+        </div>
+    </div>
+    <div><a class="click_a" href="#">点击查看高增长股票</a></div>
+    <div class="comment_bottom">
+        郑重声明：用户在基金吧/财富号/股吧等社区发表的所有信息（包括但不限于文字、视频、音频、数据及图表）仅代表
+        个人观点，与本网站立场无关，不对您构成任何投资建议，据此操作风险自担。
+    </div>
+</div>
+</div>
+</template>
+
+<template id="post_tmp06">
+<div>
+    <div class="list_comment_header">
+        <span class="all_talk_btn">全部评论&nbsp;
+            <small class="all_count">({{ page_data.total }})</small>
+        </span>
+        <a href="#" class="only_author_btn">只看作者</a>
+        <div class="list_sort">
+            <span class="checked_st">最早评论</span>
+            <span class="spanon">最新评论</span>
+        </div>
+    </div>
+
+    <ul class="list-group">
+        <li class="comment_unit" v-for="(item,index) in table_data">
+
+            <div class="author_scul">
+                <img class="user_img" :src=item.userimg alt="">
+            </div>
+            <div class="comment_main">
+                <p class="info_p1 ">
+                    <span class="uname_info"><a :href=item.userurl>{{ item.nickname }}</a> &nbsp;
+                        <small class="text-muted">第{{ index+1 }}条评论</small> </span>
+                    <span class="warn_btn">举报本回复</span>
+                </p>
+                <div class="com_content">
+                    {{ item.content }}
+                </div>
+                <p class="info_p2">
+                    <span class="time_text">发表于：{{ item.create_time|dateFilter('yyyy-MM-dd hh:mm:ss') }}</span>
+                </p>
+                <div class="rec_comment" v-if="item.childs">
+                    <div class="rec_comment_unit" v-for="rec_item in item.childs">
+
+                        <p class="rec_p1">
+                            <span class="tools_1st_right pull-right">
+                                <span class="rec_like_wrap">
+                                    <em class="icon icon_like"></em>&nbsp;
+                                    <span>4</span>
+                                </span>
+                            </span>
+                            <a :href=rec_item.userurl>{{ rec_item.nickname }}</a>
+                            <span v-if="rec_item.revert_to" class="revert_span">
+                                <em class="icon icon_point_right"></em><a :href=rec_item.revert_userurl>{{ rec_item.revert_name }}</a>
+                            </span>：
+
+                        </p>
+                        <p>{{ rec_item.content }}</p>
+                        <p class="rec_tools_p">
+                            <span class="time_text">{{ rec_item.create_time|dateFilter('yyyy-MM-dd hh:mm:ss') }}</span>
+                            <a href="#toSendComment" class="t_revert_btn" data-uname="u_name"
+                                @click="revert(rec_item.parent_id, rec_item.nickname,rec_item.author)">回复</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="comment_list_tools">
+                    <div class="tools_1st_right pull-right">
+                        <span class="list_comment_btn" @click="revert(item.id,item.nickname)"><a href="#toSendComment">
+                            <em class="icon icon_talk"></em>&nbsp;评论</a></span>
+
+                        <span class="like_wrap">
+                            <em class="icon icon_like"></em>&nbsp;
+                            <span>314</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+    <div class="bottom_pager">
+        <div class="diy_paging_default">
+            <span class="list_page">
+                <a class="page_text_btn" data-page="1" @click="query_comment_list()">首页</a>
+                <a class="page_text_btn" data-page="2" v-if="page_data.prev_num"
+                   @click="query_comment_list(page_data.prev_num)">上一页</a>
+                <a v-for="item in page_data.page_range" @click="query_comment_list(item)"
+                   :data-page=item :class="{'page_on':item == page_data.number}">{{ item }}</a>
+
+                <a class="page_text_btn" data-page="4" v-if="page_data.next_num"
+                   @click="query_comment_list(page_data.next_num)">下一页</a>
+                <a class="page_text_btn" :data-page="page_data.page_count"  @click="query_comment_list(page_data.page_count)">尾页</a>
+                 共<span class="page_total_num">{{ page_data.page_count }}</span>页
+            </span>
+            <span class="page_jump">
+                跳转至&nbsp;<input type="text" v-model="page_num">&nbsp;页
+            </span>
+            <span class="ensure_btn" @click="query_comment_list(page_num)">
+                确定
+            </span>
+        </div>
+    </div>
+</div>
+</template>
+
+<template id="post_tmp07">
+<div class="send_comment_form">
+    <p id="toSendComment"></p>
+    <div class="user_group">
+        <div class="user_scur">
+            <img src="/static/images/userImg/43.jpg" v-if="u_name">
+            <img src="/static/images/userImg/1.jpeg" v-else>
+        </div>
+        <div class="user_info" v-if="u_name">
+            <a >{{ u_name }}</a>
+            <a href="/user/logout">退出</a>
+        </div>
+        <div class="user_begin" v-else>
+            <a href="/user/login">登录</a> |
+            <a href="/user/register">注册</a>
+        </div>
+    </div>
+    <div class="form-group" id="send_comment_group">
+        <div class="send_comment_tab">
+            <span class="tab_span">
+                <em class="icon icon_comment"></em>&nbsp;评论该主题
+            </span>
+            <span id="revert_flag" :class="[flag?'show':'hide']">回复 @{{ rev_name }}：
+                <em class="icon icon_cancel02" @click="revert_cancel"></em>
+            </span>
+        </div>
+        <div>
+            <form action="/post/sendComment" method="post">
+                <div class="send_comment_text">
+                    <textarea class="form-control in_longtext" name="content" id="content"
+                     v-model="content"></textarea>
+                </div>
+                <div class="comment_opt_btns">
+                    <input id="submit-comment" type="submit" @click.prevent="sendComment"
+                       class="btn btn-warning pull-right" value="发 布">
+                </div>
+            </form>
+        </div>
+
+
+        <div class="clx"></div>
+    </div>
+</div>
+</template>
+
+<template id="post_tmp08">
+<div class="mid_select_div">
+    <div class="left_div">
+        <a href="/post/home"><img src="/static/images/img2/jj_barlogo.png"></a>
+    </div>
+    <div class="mid_div" id="t_search">
+        <div class="t_search_title">
+            <span class="select_bar">
+                <input value="s1" id="bca1" name="select_type" type="radio" checked>
+                <label for="bca1">搜股吧</label>
+                <input value="s2" id="bca2" name="select_type" type="radio">
+                <label for="bca2">搜作者</label>
+                <input value="s3" id="bca3" name="select_type" type="radio">
+                <label for="bca3">搜内容</label>
+            </span>
+        </div>
+        <div class="search_in_div">
+            <div class="search_in_text">
+                <input type="text" id="search_text" maxlengspan="20" autocomplete="off"
+                    placeholder="请输入编号或关键字"/>
+            </div>
+
+            <div id="search_in_btn">股吧搜索</div>
+        </div>
+    </div>
+    <div class="right_div" id="hot_list">
+        <label><em class=""></em>
+            热门搜索：</label>
+        <p class="hotbar_p1">
+            <span v-for="item in seek_hot_titles.slice(0,3)">
+                <a :href=item.url >{{ item.name }}</a></span>
+        </p>
+        <p class="hotbar_p2">
+            <span v-for="item in seek_hot_titles.slice(3,8)">
+                <a :href=item.url >{{ item.name }}</a></span>
+        </p>
+
+    </div>
+</div>
+</template>
+
+{% endverbatim %}
+
+<script>
+
+
+Vue.component('postSeek',{
+    template: '#post_tmp08',
+    data: function(){
+        return{
+            seek_hot_titles: []
+        }
+    },
+    methods: {
+        query_hot_bars(count){
+            var url = '/post/bar/hotBars/' + count
+            this.$http.get(url).then(function(result){
+                this.seek_hot_titles=result.body.data;
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        }
+    },
+    created(){
+        this.query_hot_bars(7);
+
+    }
+
+});
+
+Vue.component('comHeader',{
+    template: '#post_tmp05',
+    data: function(){
+        return{
+            theme_info : "",
+            page_num : ""
+        }
+    },
+    methods: {
+        getTheme(){
+            var url = '/post/themes/' + this.t_id;
+            this.$http.post(url,{},{}).then(result =>{
+                if(result.body.code==200){
+                    this.theme_info = result.body.data;
+                    console.log(this.theme_info)
+                }else{
+                    alert(result.body.msg);
+                }
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+
+        }
+    },
+    props: {
+        t_id: {
+            type: String,
+            required:true
+        },
+        page_data: {
+            type: Object,
+            required:true
+        },
+        query_comment_list: {
+            type: Function,
+            required:true
+        }
+    },
+    created() {
+        this.getTheme()
+    }
+});
+
+Vue.component('comWrap',{
+    template: '#post_tmp06',
+    data: function(){
+        return{
+            page_num : ""
+        }
+    },
+    methods: {
+        revert(revert_id,revert_name,revert_user=""){
+            this.$parent.$emit('rev_info',revert_id,revert_name,revert_user)
+        }
+    },
+    props: {
+        table_data:{
+            type: Array,
+            required:true
+        },
+        page_data:{
+            type: Object,
+            required:true
+        },
+        query_comment_list: {
+            type: Function,
+            required:true
+        }
+    },
+    mounted(){
+
+    }
+});
+
+//发表评论
+Vue.component('sendComment',{
+    template: '#post_tmp07',
+    data: function(){
+        return{
+            content: "",
+            revert_list: [],
+            flag: false,
+            rev_name: ""
+        }
+    },
+    methods: {
+        sendComment(){
+            this.$http.post('/post/comments',{'t_id':this.t_id,
+                            'content':this.content,
+                            "revert_list":JSON.stringify(this.revert_list)},
+                {emulateJSON:true}).then(result =>{    //设置提交的内容为表单格式 emulateJSON:true
+                if(result.body.code==200){
+                    alert(result.body.msg);
+                    location.reload();
+                }else{
+                    alert(result.body.msg);
+                }
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        },
+        revert_cancel(){
+            this.revert_list = [];
+        }
+    },
+    props: {
+        u_name:{
+            type: String,
+            required:true
+        },
+        t_id:{
+            type: String,
+            required:true
+        }
+    },
+    inject: ['reload'],
+    mounted(){
+        this.$parent.$on('rev_info', (revert_id,revert_name,revert_user) => {
+            this.revert_list=[]
+            this.revert_list.push(revert_id);
+            this.revert_list.push(revert_user);
+            this.rev_name = revert_name;
+            console.log(this.rev_name,revert_user);
+        })
+    },
+    watch:{
+        'revert_list':function(newVal,oldVal){
+            this.flag = newVal.length? true:false;
+        }
+    }
+
+
+});
+
+Vue.filter('dateFilter',function(value,str){
+    return new Date(value).format(str);
+});
+
+var postCommentApp = new Vue({
+    el: '#post_comment_app',
+    data: {
+        u_name : "",
+        t_id : '{{ t_id }}',
+        table_data: [],
+        page_data: {},
+        isRouterAlive: true
+    },
+    provide(){ //刷新组件方法
+        return {
+            reload: this.reload
+        }
+    },
+    methods: {
+        query_comment_list(num){
+            var url = "/post/themes/" + this.t_id + "/" + (num ? num : 1);
+            this.$http.get(url).then(result =>{
+                if(result.body.code==200){
+                    this.table_data = result.body.data[1];
+                    this.page_data = result.body.data[0];
+                    console.log("t:",this.table_data)
+                }else{
+                    alert(result.body.msg);
+                }
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        },
+        get_uname(){
+            {% if request.session.username and request.session.nickname %}
+                return '{{ request.session.nickname }}';
+            {% else %}
+                return '{{ request.session.username }}';
+            {% endif %}
+        },
+        reload(){
+            this.isRouterAlive = false;
+            this.$nextTick(() => {
+                this.isRouterAlive = true;
+            })
+
+        },
+
+    },
+    created() {
+        this.u_name = this.get_uname();
+        this.query_comment_list()
+
+    }
+});
+
+</script>
+
+{% endblock %}

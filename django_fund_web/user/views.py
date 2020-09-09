@@ -12,7 +12,7 @@ from django.urls import reverse
 
 from django_redis import get_redis_connection
 
-from tools import contants, pro_dict
+from tools import contains, pro_dict
 from tools.logging_check import logging_check
 
 from tools.utils import Utils
@@ -178,8 +178,8 @@ def login(request):
             resp = HttpResponseRedirect("/index")
         # 检查用户是否　勾选了　'记住用户名',如果勾选，还需要在Cookies中存储　uid&username 过期时间为７天
         if 'isSave' in request.POST.keys():
-            resp.set_cookie("uid",user.id,contants.COOKIES_KEEP_TIME)
-            resp.set_cookie("username",username,contants.COOKIES_KEEP_TIME)
+            resp.set_cookie("uid", user.id, contains.COOKIES_KEEP_TIME)
+            resp.set_cookie("username", username, contains.COOKIES_KEEP_TIME)
             # resp.set_cookie("is_active", user.is_active, contants.COOKIES_KEEP_TIME)
             # resp.set_cookie("nickname",nickname,contants.COOKIES_KEEP_TIME)
         return resp
@@ -209,7 +209,7 @@ def mobile_verify(request):
                 key = 'sms:%s'%mobile
                 code_m = Utils.make_md5s(code)
                 r.set(key,code_m)
-                r.expire(key, contants.MOBILE_KEEP_TIME)
+                r.expire(key, contains.MOBILE_KEEP_TIME)
                 print("本次验证码:",code)
                 return JsonResponse({"code":200,"msg":"发送成功！"})
             return JsonResponse({"code": 10109, "msg": "发送失败！"})

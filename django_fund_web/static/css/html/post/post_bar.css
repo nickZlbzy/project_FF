@@ -476,8 +476,15 @@ a.page_on{
 
 
 .send_theme_form{
+    position: relative;
     overflow: hidden;
     padding:20px 10px 10px;
+}
+#toSendTheme{
+    position: absolute;
+    height:1px;
+    top:-105px;
+    left:0;
 }
 
 .form-group{
@@ -541,13 +548,11 @@ a.page_on{
 .u_nick{
     vertical-align: top;
     display: inline-block;
+    min-width: 38px;
     max-width: 62px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-.form_header_right{
-    display: none;
 }
 .form_header_user, .form_header_right{
     float: right;
@@ -569,3 +574,7 @@ a.page_on{
     margin-left: 5px;
     cursor: pointer;
 }
+#sort_cre{
+    display: none;
+}
+

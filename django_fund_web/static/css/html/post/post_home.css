@@ -166,6 +166,24 @@ input[name="select_type"] {
     border:1px solid #ccc;
     height:85px;
 }
+.mid_top_adver_logo{
+    box-sizing: border-box;
+    border:1px solid #ccc;
+    background: url(/static/images/img2/tt_btn01.gif) no-repeat 5px 5px;
+    padding:6px 0 2px 46px;
+    height: 85px;
+}
+.mid_top_adver_logo .l_item{
+    width:172px;
+    height:70px;
+    margin-left:12px;
+    display: inline-block;
+    cursor: pointer;
+}
+.mid_top_adver_logo .item img{
+    height:70px;
+}
+
 .mid_logo_01{
 
     width: 980px;
@@ -240,6 +258,13 @@ input[name="select_type"] {
     float: left;
     font-style:normal;
 }
+.t_span .bar_text{
+    color: #333;
+}
+.t_span .theme_text{
+    padding-left: 2px;
+    font-size:14px;
+}
 .nor{
     width:6.5%;
 }
@@ -271,24 +296,31 @@ input[name="select_type"] {
 }
 .t_page_list{
     background-color: rgb(229,239,253);
-
+    font-size:12px;
     height:75px;
     line-height: 75px;
 
 }
 .page_left_part{
+    width:13%;
     vertical-align:top;
     float:left;
     text-indent: 15px;
 }
 #page-nav{
-    width: 55%;
-    height:75px;
-    margin: 0 auto;
-
-
+    width: 74%;
+    margin:0 auto;
+    text-align: center;
+    height:100%;
 }
-.page_right_part{
-    float:right;
-    width: 22.5%;
+#fund_pagination{
+    height:35px;
+}
+#fund_pagination li{
+    vertical-align: top;
+}
+#page-nav .page_count{
+    line-height: 35px;
+    padding-left:15px;
+    height:35px;
 }

@@ -7,7 +7,7 @@ from django_redis import get_redis_connection
 
 from article.mappers import Article_mapper
 from filter.mappers import Fund_filter_mapper
-from tools.contants import *
+from tools.contains import *
 
 r = get_redis_connection()
 

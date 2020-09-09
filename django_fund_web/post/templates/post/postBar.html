@@ -16,34 +16,7 @@
 {#页面核心代码部分#}
 {% block page_main %}
 <div id="post_bar_app">
-<div class="mid_select_div">
-    <div class="left_div">
-        <a href="/post/home"><img src="/static/images/img2/jj_barlogo.png"></a>
-    </div>
-    <div class="mid_div" id="t_search">
-        <div class="t_search_title">
-            <span class="select_bar">
-                <input value="s1" id="bca1" name="select_type" type="radio" checked>
-                <label for="bca1">搜股吧</label>
-                <input value="s2"  id="bca2" name="select_type" type="radio">
-                <label for="bca2">搜作者</label>
-                <input value="s3"  id="bca3" name="select_type" type="radio">
-                <label for="bca3">搜内容</label>
-            </span>
-        </div>
-        <div class="search_in_div">
-            <div class="search_in_text">
-                <input type="text" id="search_text" maxlengspan="20" autocomplete="off"
-                    placeholder="请输入编号或关键字"/>
-            </div>
-
-            <div id="search_in_btn">股吧搜索</div>
-        </div>
-    </div>
-    <div class="right_div" id="hot_list">
-        <label>热门：</label> <span><a>君正集团吧ha</a></span> <span><a>金达威吧</a></span> <span><a>省广集团吧</a></span>
-    </div>
-</div>
+    <post-seek></post-seek>
 <div class="cl10"></div>
 <div class="mid_top_info">
     <div class="stock_header">
@@ -51,7 +24,7 @@
             <p class="stock_p1">
                 <span class="stock_name">{{ bar_info.name }}</span>
                 <span class="stokc_code">
-                    <a href="#">001618.of</a> | <span id="jj_type">联接基金</span>
+                    <a href="{{ bar_info.url }}">{{ bar_info.bid }}.of</a> | <span id="jj_type">联接基金</span>
                 </span>
                 <span class="opt_btn">
                     <a class="follow_btn" href="#">加关注</a>
@@ -81,91 +54,16 @@
 <div class="post_content_range" id="post_range">
     <div class="post_left_part">
         <div class="post_list_table">
-            <div class="post_table_bar">
-                <div class="left_title select_on">全部</div>
-                <div class="left_title">公告</div>
-                <div class="fund_hot">
-                    查看关于<span>招商基金</span>公司的全部讨论
-                </div>
-                <div class="sort_tab">排序：<span id="sort_type">评论时间
-                    <em class="icon icon_dropdown"></em></span></div>
-                <div class="right_more">
-                    <a href="#" class="right_a">发新帖</a>
-                </div>
-            </div>
-            <div class="post_list_content">
-                <div class="t_header even_row">
-                        <span class="nor"><label>点击</label></span>
-                        <span class="nor"><label>回复</label></span>
-                        <span class="sub"><label>标题</label></span>
-                        <span class="aut"><label>作者</label></span>
-                        <span class="date"><label>日期</label></span>
-
-                </div>
-                <ul class="t_content_list">
-                    <li>
-                        <cite class="nor">10669</cite>
-                        <cite class="nor">34</cite>
-                        <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
-                        <cite class="aut">基金小助理</cite>
-
-                        <cite class="upda">08-03 20:55</cite>
-                    </li>
-                    <li class="even_row">
-                        <cite class="nor">10669</cite>
-                        <cite class="nor">34</cite>
-                        <span class="sub t_span">[基金学校吧] 置顶 #大V访谈#下个阶段该如何布局？</span>
-                        <cite class="aut">基金小助理</cite>
-
-                        <cite class="upda">08-03 20:55</cite>
-                    </li>
-                </ul>
-                <div class="cl0"></div>
-            </div>
-            <div class="diy_pager">
-                <div class="diy_paging_default">
-                    <span class="list_page">
-                        <a class="page_text_btn" data-page="1" onclick="query_page(1)">首页</a>
-                        <a class="page_text_btn" data-page="2" onclick="query_page(2)">上一页</a>
-                        <a data-page="1" onclick="query_page(1)">1</a>
-                        <a data-page="2" onclick="query_page(2)">2</a>
-                        <a class="page_on" data-page="3" onclick="query_page(3)">3</a>
-                        <a data-page="4" onclick="query_page(4)">4</a>
-                        <a data-page="5" onclick="query_page(5)">5</a>
-                        <a data-page="6" onclick="query_page(6)">6</a>
-                        <a data-page="7" onclick="query_page(7)">7</a>
-                        <a class="page_text_btn" data-page="4" onclick="query_page(4)">下一页</a>
-                        <a class="page_text_btn" data-page="7" onclick="query_page(7)">尾页</a>
-                         共<span class="page_total_num">7</span>页
-                    </span>
-                    <span class="page_jump">
-                        跳转至&nbsp;<input type="text">&nbsp;页
-                    </span>
-                    <span class="ensure_btn">
-                        确定
-                    </span>
-                </div>
-            </div>
+            <list-table v-bind:b_id="b_id"></list-table>
         </div>
 
         <div class="cl10"></div>
         <div class="send_theme_form">
+            <p id="toSendTheme"></p>
             <div class="form-group" id="send_comment_group">
 
-                <div class="send_header">
-                    <span class="form_header_span">
-                        <!-- <em class="icon icon_comment"></em>&nbsp; -->
-                        发表新主题
-                    </span>
-                    <span class="form_header_right">请&nbsp;
-                        <a href="#">登录</a>&nbsp;|&nbsp;<a href="#">注册</a>
-                    </span>
-                    <span class="form_header_user">
-                        作者：<a href="#" class="u_nick">张三是个男的啊</a>&nbsp;<a href="#">退出</a>
-                    </span>
-                </div>
                 <div id="app_send">
-                    <send-bar></send-bar>
+                    <send-bar v-bind:u_name="u_name" v-bind:b_id="b_id"></send-bar>
                 </div>
 
                 <div class="clx"></div>
@@ -203,8 +101,22 @@
 </div>
 </div>
 
+<!-- 发布主题组件 -->
 <template id="post_temp03">
 <div>
+    <div class="send_header">
+        <span class="form_header_span">
+            <!-- <em class="icon icon_comment"></em>&nbsp; -->
+            发表新主题
+        </span>
+        <span class="form_header_user" v-if="u_name">
+            作者：<a href="#" class="u_nick">{{ u_name }}</a>&nbsp;<a href="/user/logout">退出</a>
+        </span>
+        <span class="form_header_right" v-else>请&nbsp;
+            <a href="/user/login">登录</a>&nbsp;|&nbsp;<a href="/user/register">注册</a>
+        </span>
+
+    </div>
     <form action="/user/sendComment" method="post">
         <div class="send_form_title">
             <input id="t_title" type="text" name="title" autocomplete="off"
@@ -220,16 +132,110 @@
         <div class="comment_opt_btns">
             <span class="left_tools">您正在输入的内容已自动保存
                 <span id="auto_save_time">22:22:58</span>
-                <em class="icon icon_delete"></em>
+                <em class="icon icon_dustbin"></em>
             </span>
-            <input id="submit-theme" type="submit" @click.prevent="publishTheme"
+            <input id="submit-theme" type="button" @click.prevent="publishTheme"
                 class="btn btn-warning pull-right" value="发 布">
         </div>
 
     </form>
 </div>
+</template>
+
+<!-- 帖子列表，分页组件 -->
+<template id="post_temp04">
+<div>
+    <div class="post_table_bar">
+        <div class="left_title select_on">全部</div>
+        <div class="left_title">公告</div>
+        <div class="fund_hot">
+            查看关于<span>招商基金</span>公司的全部讨论
+        </div>
+        <div class="sort_tab">排序：
+            <span id="sort_type" @click.capture="sort_handle(sort_type.code)" sort_type="0">
+                {{ sort_type.text }}<em class="icon icon_dropdown"></em></span>
+
+        </div>
+        <div class="right_more">
+            <a href="#toSendTheme" class="right_a">发新帖</a>
+        </div>
+    </div>
+    <div class="post_list_content">
+        <div class="t_header even_row">
+                <span class="nor"><label>点击</label></span>
+                <span class="nor"><label>回复</label></span>
+                <span class="sub"><label>标题</label></span>
+                <span class="aut"><label>作者</label></span>
+                <span class="date"><label>日期</label></span>
+        </div>
+        <ul class="t_content_list">
+            <li v-for="item in table_data">
+                <cite class="nor">10669</cite>
+                <cite class="nor">{{ item.comment_count }}</cite>
+                <span class="sub t_span"><a :href=item.url>{{ item.theme }}</a></span>
+                <cite class="aut">{{ item.author }}</cite>
+                <cite class="upda" v-if="sort_type.code">{{ item.create_time,"MM-dd hh:mm"|dateFilter }}</cite>
+                <cite class="upda" v-else>{{ item.update_time,"MM-dd hh:mm"|dateFilter }}</cite>
+
+            </li>
+
+        </ul>
+        <div class="cl0"></div>
+    </div>
+    <div class="diy_pager">
+        <div class="diy_paging_default">
+            <span class="total_pages">共有帖子数&nbsp;<label>{{ page_data.total }}</label>&nbsp;篇</span>
+            <span class="list_page">
+                <a class="page_text_btn" data-page="1" @click="query_post_list()">首页</a>
+                <a class="page_text_btn" data-page="2" v-if="page_data.prev_num"
+                   @click="query_post_list(page_data.prev_num)">上一页</a>
+                <a v-for="item in page_data.page_range" @click="query_post_list(item)"
+                   :data-page=item :class="{'page_on':item == page_data.number}">{{ item }}</a>
+
+                <a class="page_text_btn" data-page="4" v-if="page_data.next_num"
+                   @click="query_post_list(page_data.next_num)">下一页</a>
+                <a class="page_text_btn" :data-page="page_data.page_count"  @click="query_post_list(page_data.page_count)">尾页</a>
+                 共<span class="page_total_num">{{ page_data.page_count }}</span>页
+            </span>
+        </div>
+    </div>
+</div>
 
 </template>
+
+<template id="post_tmp08">
+<div class="mid_select_div">
+    <div class="left_div">
+        <a href="/post/home"><img src="/static/images/img2/jj_barlogo.png"></a>
+    </div>
+    <div class="mid_div" id="t_search">
+        <div class="t_search_title">
+            <span class="select_bar">
+                <input value="s1" id="bca1" name="select_type" type="radio" checked>
+                <label for="bca1">搜股吧</label>
+                <input value="s2"  id="bca2" name="select_type" type="radio">
+                <label for="bca2">搜作者</label>
+                <input value="s3"  id="bca3" name="select_type" type="radio">
+                <label for="bca3">搜内容</label>
+            </span>
+        </div>
+        <div class="search_in_div">
+            <div class="search_in_text">
+                <input type="text" id="search_text" maxlengspan="20" autocomplete="off"
+                    placeholder="请输入编号或关键字"/>
+            </div>
+
+            <div id="search_in_btn">股吧搜索</div>
+        </div>
+    </div>
+    <div class="right_div" id="hot_list">
+        <label>热门：</label>
+        <span v-for="item in seek_hot_titles">
+        <a :href=item.url>{{ item.name }}</a></span>
+    </div>
+</div>
+</template>
+
 
 {% endverbatim %}
 
@@ -237,7 +243,6 @@
 
 
 <script>
-
 Vue.component('sendBar',{
     template: '#post_temp03',
     data: function(){
@@ -249,12 +254,16 @@ Vue.component('sendBar',{
     },
     methods: {
         publishTheme(){
-
-            this.$http.post('/post/bar/publish',{"data":{'b_code':'{{ bar_info.code }}',
+           this.$http.post('/post/themes',{'b_id':this.b_id,
                             'content':this.content,
-                            "title":this.title}},{emulateJSON:true}).then(result =>{
-                console.log(result);
-
+                            "title":this.title},
+                {emulateJSON:true}).then(result =>{    //设置提交的内容为表单格式 emulateJSON:true
+                if(result.body.code==200){
+                    alert(result.body.msg);
+                    location.reload();
+                }else{
+                    alert(result.body.msg);
+                }
             }
             ).catch(function(error){
                 console.log('error');
@@ -262,20 +271,128 @@ Vue.component('sendBar',{
             })
         }
     },
+    props:{
+        u_name: {
+            type: String,
+            required:true
+        },
+        b_id: {
+            type: String,
+            required:true
+        }
+    },
+    created(){
+        //console.log(this.uname)
+    },
     watch: {
         'title.length': function(newVal, oldVal){
             this.t_length = newVal? newVal:0;
         }
     }
-})
+});
+
+Vue.component('listTable',{
+    template: '#post_temp04',
+    data: function(){
+        return {
+            table_data: "",
+            page_data: "",
+            pre_num: "",
+            sort_type: {
+                code : 0,
+                text : "评论时间"
+            }
+        };
+
+    },
+    methods: {
+        query_post_list(num){
+            var url="/post/bar/themes/" + this.b_id +"/"
+                + (this.sort_type.code ? -(num ? num:1):(num ? num:1));
+            this.$http.get(url).then(result =>{
+                if(result.body.code==200){
+                    this.table_data = result.body.data[1];
+                    this.page_data = result.body.data[0];
+                    this.pre_num = result.body.data[0].number;
+
+                }else{
+                    alert(result.body.msg);
+                }
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        },
+        sort_handle(code){
+            if(!code){
+                this.sort_type={"code":1,"text":"发布时间"};
+            }else{
+                this.sort_type={"code":0,"text":"评论时间"};
+            }
+            this.query_post_list(this.pre_num);
+        }
+    },
+    props:{
+        b_id: {
+            type: String,
+            required:true
+        }
+    },
+    filters: {
+        dateFilter(value,str){
+            return new Date(value).format(str);
+        }
+    },
+    created(){
+        this.query_post_list();
+
+    }
+});
+
+Vue.component('postSeek',{
+    template: '#post_tmp08',
+    data: function(){
+        return{
+            seek_hot_titles: []
+        }
+    },
+    methods: {
+        query_hot_bars(count){
+            var url = '/post/bar/hotBars/' + count
+            this.$http.get(url).then(function(result){
+                this.seek_hot_titles=result.body.data;
+            }
+            ).catch(function(error){
+                console.log('error');
+                console.log(error);
+            })
+        }
+    },
+    created(){
+        this.query_hot_bars(3);
+    }
+
+});
 
 var postBarApp = new Vue({
     el: '#post_bar_app',
     data: {
-
+        u_name : "",
+        b_id : '{{ bar_info.bid }}'
     },
     methods: {
+        get_uname(){
+            {% if request.session.username and request.session.nickname %}
+                return '{{ request.session.nickname }}'
+            {% else %}
+                return '{{ request.session.username }}'
+            {% endif %}
+        },
 
+    },
+    created(){
+        this.u_name = this.get_uname()
     }
 });
 

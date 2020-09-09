@@ -7,7 +7,7 @@ from django.shortcuts import render
 # Create your views here.
 from article.mappers import Article_mapper
 from django_redis import get_redis_connection
-from tools import contants
+from tools import contains
 
 r = get_redis_connection('likes')
 
@@ -113,12 +113,12 @@ def press_support(request):
     # status存在三种情况 None 0 1
     if not status or status == '0':
         # 设置点赞状态
-        r.hset('user_like_article',key_au,contants.LIKE_STATUS)
+        r.hset('user_like_article', key_au, contains.LIKE_STATUS)
         # 点赞数自增1
         r.hincrby('all_like_count',article_id,1)
         code = 1
     else:
-        r.hset('user_like_article', key_au, contants.LIKE_CANCEL_STATUS)
+        r.hset('user_like_article', key_au, contains.LIKE_CANCEL_STATUS)
         r.hincrby('all_like_count', article_id, -1)
         code = 0
 

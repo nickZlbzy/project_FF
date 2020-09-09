@@ -10,7 +10,7 @@ from django.shortcuts import render
 
 from filter.mappers import Fund_filter_mapper, Fund_company_mapper
 from filter.models import Fund_type, Fund_company
-from tools.get_pagination import get_pagination
+from tools.paginator import get_paging
 
 from tools.logging_check import logging_check
 
@@ -61,7 +61,7 @@ def query_fund(request):
                                               f_name=fund_name,
                                               company_id=company_id)
                                               # ,page=ser_num
-    re_data = get_pagination(list_fund,cur_page)
+    re_data = get_paging(list_fund,cur_page)
     re_json = {"code":1,"data":re_data}
     return JsonResponse(re_json,safe=False)
 

@@ -35,7 +35,7 @@ class Article_mapper:
     @staticmethod
     def query_title_by_name(value):
         sql = "select article_id,url,title from t_article_info where is_active = 1 and " \
-              "instr(title,'%s')=1" % value
+              "instr(title,'%s')>0" % value
         re = Article_info_model.objects.raw(sql)
         # 返回了rawQuerySet生成器对象，这里用字典生成式处理
         return {item.url:item.title for item in re} if re else ""
@@ -59,46 +59,6 @@ class Article_mapper:
         # return {item.kind:{"title":item.title,"childs":item.info.all()[:pagesize]} for item in re} if re else ""
 
 
-
-
-
-    # @staticmethod
-    # def query_by_type(type,pagesize=10):
-    #     re = Article_model.objects.values('title', 'url', 'parent_id','article_id','article_type').filter(
-    #         level_id=type).order_by('sort')[:pagesize]
-    #     # 提升方法迭代性能转化为链表
-    #     list_re = linkedList(tuple(re))
-    #     re_dic = {}
-    #     for item in list_re:
-    #         if item.get('parent_id') == "0":
-    #             # print(list_re.length())
-    #             dic = {}
-    #             dic["art_id"] = item.get('article_id')
-    #             dic["title"] = item.get('title')
-    #             dic["url"] = item.get('url')
-    #             dic["parent_id"] = item.get('parent_id')
-    #             list_re.remove(item)
-    #             # for item2 in list_re:
-    #             Article_mapper.create_child(dic, list_re)
-    #             re_dic[item.get("article_type")] = dic
-    #     re_dic = re_dic if re_dic else ""
-    #     return re_dic
-    #
-    # @staticmethod
-    # def create_child(dic ,l_data):
-    #     for l_item in l_data:
-    #         if l_item.get('parent_id') == dic.get("art_id"):
-    #             if not dic.get("childs"):
-    #                 dic["childs"] = []
-    #             dic_son = {}
-    #             dic_son["art_id"] = l_item.get('article_id')
-    #             dic_son["title"] = l_item.get('title')
-    #             dic_son["url"] = l_item.get('url')
-    #             dic_son["parent_id"] = l_item.get('parent_id')
-    #             dic["childs"].append(dic_son)
-    #             l_data.remove(l_item)
-    #             for item in l_data:
-    #                 Article_mapper.create_child(dic_son, l_data)
 
     @staticmethod
     def query_article_list2(type,module=None):
@@ -134,7 +94,7 @@ class Article_mapper:
         """
         re = Article_level_model.objects.filter(module='inv_course',kind='cls')
 
-        # 提升方法迭代性能转化为链表
+        # 提升方法迭代效率转化为链表
         list_re = linkedList(tuple(re))
         re_dic,re_list = {},None
         for item in list_re:

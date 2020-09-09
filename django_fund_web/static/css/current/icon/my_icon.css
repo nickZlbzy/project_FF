@@ -67,6 +67,19 @@
     transform: translateY(-1px);
 }
 
+.icon_set_top{
+    display: inline-block;
+    width: 31px;
+    height: 18px;
+    background: url(/static/images/img2/jj_bg_newicon.png) no-repeat -150px -30px;;
+    text-align: center;
+    font-size:12px;
+    color:#FFF;
+    line-height:18px;
+    margin-left:3px;
+    font-style: normal;
+    cursor: default;
+}
 .icon_hot_search{
     width: 14px;
     height: 14px;
@@ -130,10 +143,28 @@
     height: 6px;
     transform: translateY(-2px);
 }
-.icon_delete{
+.icon_dustbin{
     background-image: url(/static/images/img2/jj_sendjcon.png);
     background-position: -170px -130px;
     width: 12px;
     height: 12px;
     transform: translateY(-1px);
+}
+.icon_point_right{
+    background-image: url(/static/images/img2/jj_bg_newicon.png);
+    background-position: 0 -270px;
+    width: 5px;
+    height: 9px;
+}
+.icon_cancel{
+    background-image: url(/static/images/img2/jj_bg_newicon.png);
+    background-position: -180px -180px;
+    width: 9px;
+    height: 9px;
+}
+.icon_cancel02{
+    background-image: url(/static/images/img2/jj_bg_newicon.png);
+    background-position: -179px -419px;
+    width: 9px;
+    height: 9px;
 }

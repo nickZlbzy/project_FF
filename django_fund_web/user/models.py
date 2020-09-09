@@ -15,7 +15,9 @@ class User_profile_model(BaseModel):
     ability = models.IntegerField("风险能力",default=0,blank=True)
     preference = models.IntegerField("风险偏好",default=0,blank=True)
     uid=models.CharField('第三方id',max_length=32,default="",blank=True)
-    is_active = models.BooleanField(default=False)
+    user_img=models.CharField('用户头像',max_length=32,default="userImg/1.jpeg")
+    is_active = models.BooleanField('是否激活',default=False)
+    live_flag = models.SmallIntegerField('存活状态',default=1)
 
     class Meta:
         db_table="user_profile"

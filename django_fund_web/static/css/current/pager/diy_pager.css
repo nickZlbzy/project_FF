@@ -6,13 +6,15 @@
 }
 .diy_paging_default{
     box-sizing: content-box;
-    font-size: 14px;
+    font-size: 13px;
     color:#464646;
     display: inline-block;
     height:20px;
-   
-}   
-.list_page a{        
+}
+.diy_paging_default .list_page{
+    padding-left: 15px;
+}
+.list_page a{
     padding:1.5px 6px;
     color: #039;
 }
@@ -40,8 +42,8 @@
     cursor: pointer;
     margin-left:8px;
 }
-a.page_on {
-    background-color:  rgb(81, 149, 233);
+a.page_on{
+    background-color: #ea5404;
     color:#fff;
     cursor: default;
 }
