@@ -10,18 +10,26 @@
     padding-bottom: 3vw;
 }
 .u-from{
-    width:20vw;
+    width:308px;
     margin: 30px auto 0;
 }
 .u-from tr{
     height:42px;
 }
+.reg-content-table input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fff inset; }
+.reg-content-table input{
+    text-indent: 5px;
+    width: 185px;
+    height:28px;
+    border-color: rgba(205,205,205,0.75);
+    border-width: 1px;
+}
 .sub-btns{
-    float:right;
-    margin-right:2vw;
+
+    margin-left:90px;
 }
 .sub-btns input{
-    margin:2.5vw 1vw 0 0;
+    margin:22px 1.5vw 22px 0;
 }
 .image-box img{
     width:100%;
@@ -35,10 +43,10 @@
     margin-top:16vh;
 }
 #mobile-code{
-    width:60px;
+    width:75px;
 }
 #send-btn{
-    margin-left:20px;
+    margin-left:25px;
 
 }
 
@@ -290,7 +298,7 @@ function checkPwd(){
             <div class="u-from">
                 <form id="reg_form" action="/user/register" method="post">
                     {% csrf_token %}
-                    <table>
+                    <table class="reg-content-table">
                     <tr>
                         <td>用户名:&nbsp;</td>
                         <td><input id="username" type="text" name="username" placeholder="请输入用户名"
@@ -315,7 +323,7 @@ function checkPwd(){
                         <td>手机号码:&nbsp;</td>
                         <td><input type="text" id="phone" name="phone"
     {#                               onkeyup="value=value.replace(/[^\d]/g,'')" onblur="if(/\d{11}/gi.test(this.value)?true:false){}else{alert('请输入正确的电话号码');}"  #}
-                                   placeholder="请输入手机号码" maxlength="11"></td>
+                                   placeholder="请输入手机号" maxlength="11"></td>
                         <td>&nbsp;<i id="phone-icon"><span style="color:red">*</span></i></td>
                     </tr>
                     <tr>
@@ -326,7 +334,7 @@ function checkPwd(){
                             <button type="button" id="send-btn" disabled
                                     class="btn btn-primary search-btn ">短信验证</button>
                         </td>
-                        <td>&nbsp;<i id="code-icon"></i></td>
+                        <td>&nbsp;<i id="code-icon"><span style="color:red">*</span></i></td>
 
                     </tr>
 
@@ -338,8 +346,9 @@ function checkPwd(){
                     </tr>
                     </table>
                     <div class="sub-btns">
-                        <input class="btn btn-primary" id="reg_btn" type="button" value="注册">
                         <input class="btn btn-primary" id="quit-btn" type="button" value="返回">
+                        <input class="btn btn-primary" id="reg_btn" type="button" value="注册">
+
                     </div>
                 </form>
             </div>

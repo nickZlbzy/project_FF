@@ -216,6 +216,17 @@ EMAIL_HOST_USER = 'nickZlbzy@qq.com'
 EMAIL_HOST_PASSWORD = 'ovvjhhcyyiptbhdf'
 EMAIL_USE_TLS = False #向服务器通信时，是否启动TLS连接（安全连接） 默认Flase 实际开发设置成True
 
+#QQ第三方登录的配置信息
+# APP_ID
+QQ_CLIENT_ID = '101901022'
+# APP_KEY
+QQ_CLIENT_SECRET = 'f24b295b8b6e31327362243239eca120'
+# 正常登录返回的回调地址
+QQ_REDIRECT_URI = 'http://www.nickzlbzy.com.cn/user/personal/qq_token'
+#
+QQ_STATE = 'aaqqcc12345'
+
+
 
 
 # Static files (CSS, JavaScript, Images)

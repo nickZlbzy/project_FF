@@ -52,9 +52,7 @@
 
 ### 模块负责人
 
-- 首页：石镏金，钟超 ;          		用户管理模块：肖睿，余胜豪 ;          风险评估：陈胜;  
-- 基金筛选模块：花花，钟超，肖睿;  								
-- 美工，样式：缺省
+- 缺省
 
 重要：1.项目环境：
 
@@ -66,6 +64,32 @@
 
   ```she
   celery -A django_fund_web worker -l info   
+  ```
+
+- 基金历史净值数据爬虫
+
+  ```html
+  天天基金网历史净值数据的页面地址是
+  http://fund.eastmoney.com/f10/F10DataApi.aspx?type=lsjz&code=519702&sdate=2010-02-22&edate=2020-08-06&per=65535
+  参数说明如下：
+  
+  type 类型，历史净值用lsjz表示
+  code 基金代码，六位数字
+  sdate 开始日期，格式是yyyy-mm-dd
+  edate 结束日期，格式是yyyy-mm-dd
+  per 一页显示多少条记录
+  为了便于分析页面数据，要保证所选择日期范围内的净值在一个页面全部显示，可以把per设成很大的值，比如65535。
+  
+  
+  export RABBIT_HOME=/usr/local/Cellar/rabbitmq/3.8.8
+  export PATH=$PATH:$RABBIT_HOME/sbin
+  
+  ```
+
+- 服务器地址
+
+  ```shell
+  $ ssh root@120.79.178.190
   ```
 
   

@@ -24,23 +24,105 @@
     top:0;
     left:0;
 }
-.ul-from{
-    margin:3vw 0 3vw 27vw;
-}
-.ul-from{
-    padding:1vw 0;
-}
-.user-btns>*{
-    margin:2.5vw 1vw 0 0;
-}
-.user-btns input{width:4.5vw;}
+
 .sub-btns a{
     color:purple;
 }
 .text-red{
     color:red;
-    width:62px;
+    width:76px;
 }
+.login_box{
+    box-sizing: content-box;
+    width:460px;
+    font-size: 14px;
+    margin: 105px auto 0;
+    padding:17.5px;
+    border: 1px solid #777;
+    box-shadow: 0 3px 3px #777;
+}
+.login_header_left{
+    font-size: 16px;
+    color: red;
+}
+.login_header_right{
+    font-size: 14px;
+    line-height: 22px;
+}
+.table_main .table_main_text{
+    display: inline-block;
+    width:72px;
+}
+.t-from{
+    display: flex;
+    padding:0.5vw 0;
+}
+.table_main{
+    flex: 7;
+}
+.table_main >p,
+.table_opt >div{
+    margin-bottom: 15px;
+}
+.table_opt{
+    flex: 3;
+}
+#submit-form{
+    box-sizing: content-box;
+    width:60px;
+    height: 15px;
+    line-height: 15px;
+}
+.save_pwd,
+.submit_btn{
+     height:24px;
+    line-height: 24px;
+    float: right;
+    margin-right: 10px;
+
+}
+.reg_span_btn em{
+   padding-left: 5px;
+}
+
+.submit_btn{
+    height:35px;
+
+}
+.login_by_others{
+    box-sizing: content-box;
+    height:26px;
+    line-height: 26px;
+    font-size: 12px;
+    padding: 5px 0;
+
+}
+.login_by_others a{
+    margin-left: 5px;
+}
+.other_text{
+    vertical-align: top;
+}
+.qq_login_icon{
+    display: inline-block;
+    width: 76px;
+    height:24px;
+    background-image: url("/static/images/img1/bt_blue.png");
+    background-repeat: no-repeat;
+}
+
+.table_main input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fff inset; }
+.table_main input{
+    text-indent: 10px;
+    width: 185px;
+    height:24px;
+    border-color: rgba(240,240,240,0.3);
+    border-width: 1px;
+}
+.table_opt .login_btn{
+    padding:7px 13px;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -51,6 +133,28 @@ $(function(){
         $("#login_form")[0].reset();
     {% endif %}
 
+    $('#qq_login_btn').bind('click',function(){
+        $.ajax({
+                type:'GET',
+                url:'/user/qq/authorization',
+                success:function(response){
+                    if(response.code==200){
+                        window.location.href=response.oauth_url
+                    }else{
+                        alert('服务器异常')
+                    }
+                }
+            })
+    });
+
+
+ function to_login(){
+         var A=window.open("/user/qq/authorization","TencentLogin",
+   "width=450,height=320,menubar=0,scrollbars=1," +
+       "resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+
+    }
+
 })
 </script>
 {% endblock %}
@@ -58,35 +162,45 @@ $(function(){
 {#核心页面部分#}
 {% block page_main %}
     <div id="d1" style="">
-            <div style="color:crimson;text-align: center;"><h1>欢 迎 登 录 瑞 选</h1></div>
 
-            <div style="">
-                <div class="ul-from">
-                <form id="login_form" action="/user/login" method="post">
-                    {% csrf_token %}
-                <table>
-                    <tr>
-                        <td class="text-red">用户名:</td>
-                        <td><input type="text" name="username" placeholder="请输入用户名"></td>
-                    </tr>
-                    <td>&nbsp;</td>
-                    <tr>
-                        <td class="text-red">密 码:</td>
-                        <td><input type="password" name="password" placeholder="请输入密码"></td>
-                    </tr>
-                    <td>&nbsp;</td>
-                </table>
-                    <div class="sub-btns">
-                        <input type="checkbox" id="isSave"  name="isSave" >
-                        <label for="isSave" style="margin-left: 5px;">记住密码</label>
-                        <a href="/user/pwd_page" style="margin-left: 80px;">忘记密码</a>
-                        <div class="user-btns" style="margin-left: 35px;">
-                            <a class="btn" href="/user/register">注册新用户</a>
-                            <input class="btn btn-default" type="submit" id="log_btn" value="登录">
-                        </div>
-                    </div>
-                </form>
+        <div class="login_box">
+            <div class="login_header">
+                <div class="login_header_left pull-left">登 录 瑞 选</div>
+                <div class="login_header_right pull-right">
+                    <span><a href="/user/pwd_page">忘记密码</a></span> &nbsp;|&nbsp;
+                    <span class="reg_span_btn"><a href="/user/register">新用户注册
+                        <div class="icon_half_triangle"><div class="icon_inner_triangle"></div>
+                        </div> </a></span>
+                </div>
+                <div class="cl10"></div>
             </div>
+            <form id="login_form" action="/user/login" method="post">
+            <div class="t-from">
+                <div class="table_main">
+                     <p><span class="table_main_text">用户名：</span>
+                        <input type="text" name="username" maxlength="21" placeholder="请输入用户名">
+                     </p>
+                     <p><span class="table_main_text">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+                        <input type="password" name="password"  maxlength="21" placeholder="请输入密码">
+                     </p>
+                </div>
+                <div class="table_opt">
+                    <div class="save_pwd"><input type="checkbox" id="isSave"  name="isSave" >
+                        <label for="isSave" style="padding-left: 5px;">记住密码</label>
+                    </div>
+
+                    <div class="submit_btn">
+                        <input class="btn btn-warning login_btn" type="submit" id="submit-form"
+                               value="登录">
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class="login_by_others">
+                <span class="other_text">其他账号登录：</span>
+                <a href="#" id="qq_login_btn"><em class="qq_login_icon"></em></a>
+            </div>
+
         </div>
         </div>
     </div>

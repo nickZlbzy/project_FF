@@ -1,24 +1,21 @@
 import base64
-import hashlib
 import random
+from urllib.parse import urlencode
 
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-
+from django.views import View
+from django_fund_web import settings
 from tools.sms_code import Sms_verify
+from tools.utils import Utils
 from .task import send_active_mail
-
-from django.urls import reverse
-
-from django_redis import get_redis_connection
-
 from tools import contains, pro_dict
 from tools.logging_check import logging_check
 
-from tools.utils import Utils
 from user.mappers import User_mapper
 from user.models import User_profile_model
-
+from django_redis import get_redis_connection
+from QQLoginTool.QQtool import OAuthQQ
 
 r = get_redis_connection()
 
@@ -344,3 +341,45 @@ def send_email_again(request):
         else:
             send_email_verify(user.username,user.email)
             return JsonResponse({"code": 200,"msg":"发送成功！"})
+
+def get_qq_login_url():
+    params = {
+        'response_type': 'code',
+        'client_id': settings.QQ_CLIENT_ID,
+        'redirect_uri': settings.QQ_REDIRECT_URI.encode(),
+        'state': settings.QQ_STATE,
+        'scope': 'get_user_info',
+    }
+    return 'https://graph.qq.com/oauth2.0/authorize?' + urlencode(params)
+
+class OauthQQUrlView(View):
+    def get(self,request):
+        url = get_qq_login_url()
+        return JsonResponse({'code': 200, 'oauth_url': url})
+
+
+class OauthQQTokenView(View):
+    """
+        用于扫码后接受Authorization Code,通过Authorization Code获取Access Token
+        然后通过Access Token获取openid
+    """
+    def get(self,request):
+        # 获取前端传入的code
+        code = request.GET.get('code',None)
+        print('code:',code)
+        if not code:
+            return HttpResponse({"code": 10115,'msg':'缺少code'})
+        oauth = OAuthQQ(client_id=settings.QQ_CLIENT_ID,
+                        client_secret=settings.QQ_CLIENT_SECRET,
+                        redirect_uri=settings.QQ_REDIRECT_URI)
+        try:
+            #使用code向qq请求access_token
+            access_token = oauth.get_access_token(code)
+            # 使用access_token获取openid
+            openid = oauth.get_open_id(access_token)
+        except:
+            return HttpResponse({"code": 10116,'msg':'qq服务器异常'})
+
+        print('access_token:',access_token)
+        print('openid:',openid)
+        return JsonResponse({"code": 200, 'msg': 'success!'})

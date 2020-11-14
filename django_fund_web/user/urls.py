@@ -12,4 +12,8 @@ urlpatterns=[
     url(r'^evaluation$',views.envaluation),
     url(r'^activation$',views.users_active),
     url(r'^send_email_again$',views.send_email_again),
+
+    url(r'^qq/authorization$',views.OauthQQUrlView.as_view()),
+    url(r'^personal/qq_token$',views.OauthQQTokenView.as_view()),
+
 ]

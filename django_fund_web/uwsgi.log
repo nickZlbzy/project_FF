@@ -1533,3 +1533,123 @@ uWSGI running as root, you can use --uid/--gid/--chroot options
 *** uWSGI is running in multiple interpreter mode ***
 gracefully (RE)spawned uWSGI master process (pid: 1292)
 spawned uWSGI worker 1 (pid: 2471, cores: 2)
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:32:11 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:32:25 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:33:12 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:34:25 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:37:29 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:42:19 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:43:10 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Nov  1 09:43:31 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.10.44.4) on 05 February 2020 01:56:33
+os: Darwin-17.7.0 Darwin Kernel Version 17.7.0: Thu Jun 21 22:53:14 PDT 2018; root:xnu-4570.71.2~1/RELEASE_X86_64
+nodename: xiaoruideMacBook-Air.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/nick/PycharmProjects/fProject/django_fund_web
+writing pidfile to uwsgi.pid
+detected binary path: /Library/Frameworks/Python.framework/Versions/3.6/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /Users/nick/PycharmProjects/django_fund_web
+chdir(): No such file or directory [core/uwsgi.c line 2623]
