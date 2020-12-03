@@ -7,15 +7,16 @@
 
 2. t_risk_evalution     会员风险评估表
 
-3. t_article            投资文章,资讯管理表               
+3. t_article_level            投资文章,资讯层级管理表     
+4.  t_article_info           投资文章,资讯表  
 
-4. t_comment               有问题，找专家(用户评论表)
+4. t_comment               有问题，找专家(用户评论)表
 
-5. t_fund_filter             基金信息筛选表
+5. t_fund_filter             基金信息简(筛选)表
 
-6. t_fund_type              基金类别表：与基金信息表type字段为一对一关系。
+6. t_fund_type              基金类别表：与基金信息表type字段一对一关系。
 
-7. t_fund_company    基金公司信息表 ：会与基金信息表company_id字段为一对                
+7. t_fund_company    基金公司信息表 ：与基金信息表company_id字段一对                
 
    ​                                        一关系。
 
@@ -23,7 +24,7 @@
 
 9. t_log                             操作日志记录表：记录增删改相关操作
 
-10. t_fund_payment        基金订单交易管理表
+10. t_fund_payment        基金交易订单管理表
 
     
 
@@ -44,7 +45,7 @@
 
 ### 前端功能
 
-- 资讯，基金信息动态更新
+- 资讯，基金净值动态更新
 - 后台管理
 - 注册登录
 - 模糊查询等表单提交
@@ -52,7 +53,7 @@
 
 ### 模块负责人
 
-- 缺省
+- self,缺省
 
 重要：1.项目环境：
 
